@@ -8,9 +8,9 @@
         <category>python flask</category>
       </categories>
       <tags>
+        <tag>jQuery</tag>
         <tag>商城</tag>
         <tag>flask</tag>
-        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -28,6 +28,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[linux的chmod赋权限语句]]></title>
+    <url>%2Flmx110522.github.io%2F2017%2F02%2F19%2Funtitled-1547022739896%2F</url>
+    <content type="text"><![CDATA[linux下chmod 755的解释很多时候在Linux系统下给安装好的软件赋权限的时候回用的755、555,那么数字表示什么呢？ 普及一下chmod的数字 chmod是Linux下设置文件权限的命令，后面的数字表示不同用户或用户组的权限。 一般是三个数字： 第一个数字表示文件所有者的权限 第二个数字表示与文件所有者同属一个用户组的其他用户的权限 第三个数字表示其它用户组的权限。 权限分为三种：读（r=4），写（w=2），执行（x=1） 。 综合起来还有可读可执行（rx=5=4+1）、可读可写（rw=6=4+2）、可读可写可执行(rwx=7=4+2+1)。 举个例子 1234chmod 755 设置用户的权限为： 1.文件所有者可读可写可执行 --7 2.与文件所有者同属一个用户组的其他用户可读可执行 --5 3.其它用户组可读可执行]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[springboot实现模拟QQ的实现(超具体)]]></title>
     <url>%2Flmx110522.github.io%2F2017%2F02%2F08%2Fhello-world%2F</url>
     <content type="text"><![CDATA[springboot实现QQ在线聊天，大部分功能已经实现！ 如果需要的话，去我的github空间download,有不足，希望大家指出~ 1.登录页面 2.先来看看主界面是什么样子 3.然后我们再看看聊天界面是什么样的 4.添加好友的时候什么样子呢! 5.对方加你好友的时候，你的接受好友申请的界面 6.你点击同意之后，你可以选择好友在哪个好友分组，当然你也可以添加分组 7.基本的功能都已经实现主要难点有以下 数据库如何保存聊天信息，如果频繁操作数据库，会让网页每次访问压力很大，不利于体验效果 作为一个后端人员，做网页效果难度很大，还好我闲暇时间都会去看看前端，这个前后端完全来自我一个人四天的努力，所以难免有点地方不足，请大家给我留言 逻辑比较清楚，但是实现起来比较麻烦！变量传来传去，丢参数很正常，但是，现在程序一切运行正常，大家可以从下载下来，在idea运行，有一个问题，在chrome内核的浏览器上支持度比较好，在其他浏览器的滚动条有点问题！ 注册功能我没有写，我下一条博客准备发我的用python框架flask写的小型商城，那个里面有邮箱注册，到时候大家可以从哪里瞅瞅 希望你的小星星点赞我的github，谢谢 我的github站点：https://github.com/lmx110522/nyist_chat_project.git 谢谢大家花时间看我的博客，万分感谢~~~]]></content>
@@ -35,8 +40,8 @@
         <category>springboot</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>socket</tag>
+        <tag>jQuery</tag>
       </tags>
   </entry>
 </search>
