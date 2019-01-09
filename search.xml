@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2Flmx110522.github.io%2F2019%2F01%2F08%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[python flask做的二手交易商城]]></title>
     <url>%2Flmx110522.github.io%2F2018%2F08%2F09%2F%E4%BA%8C%E6%89%8B%E4%BA%A4%E6%98%93%E5%95%86%E5%9F%8E%2F</url>
     <content type="text"><![CDATA[看了几天python，想着做一个东西出来，就做出了一个小型二手 商城练练手1.解释以下的二手 商城展示，商品照片为了好看，从京东上爬下来的，有一些动态效果，我只制作了一张，在线转换成gif的话由于录制屏幕视频文件太大不太容易转格式 2.用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册 3.卖东西的界面使用了可以拖拽的方式让用户上传商品更方便 4.用户添加商品到购物车的界面，由于二手商品数量每件比较少，所以限定用户在提交到购物车20分钟内完成结算，否则商品会从购物车内清除 5.加入购物车之后，用户可以去个人中心查看(顺便展示一下更换照片的界面) 6. 这个时候商品已经在你的购物车内，你在个人中心也可以看到购物车并且去结算 7. 去结算 8. 如果用户没有完成结算的话，会在订单中，同样也有时间限制，每件商品都有根据当初进入订单那个时间算起至三十分钟后自动从订单中取消 9. 商品列表页面 10. 在二手商城中难免有些买家觉着卖家定价不合适，会跟商家交谈，所以我也做了一个商品议价的模块，可以实现回复再回复的问题 11.我的总结： 上面只是简单的页面展示，具体代码在github上，这个项目中有很多的知识点 希望大家又遇到同样的功能不知道怎么实现的时候，我的代码能够帮到你 调bug是一件培养心态的一件事，做web也有二年左右了，感觉从代码中培养了好性格 12.github地址是:https://github.com/lmx110522/nyist_python_secondmall.git上面的页面可能不太好看，我是一个写后端代码的小码农却喜欢做前台页面，我去努力进步的！，希望你的支持，谢谢花费时间看我的博客，万分感谢！]]></content>
+      <categories>
+        <category>python flask</category>
+      </categories>
+      <tags>
+        <tag>商城</tag>
+        <tag>flask</tag>
+        <tag>jQuery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[springboot实现模拟QQ的实现(超具体)]]></title>
+    <url>%2Flmx110522.github.io%2F2017%2F02%2F08%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[springboot实现QQ在线聊天，大部分功能已经实现！ 如果需要的话，去我的github空间download,有不足，希望大家指出~ 1.登录页面 2.先来看看主界面是什么样子 3.然后我们再看看聊天界面是什么样的 4.添加好友的时候什么样子呢! 5.对方加你好友的时候，你的接受好友申请的界面 6.你点击同意之后，你可以选择好友在哪个好友分组，当然你也可以添加分组 7.基本的功能都已经实现主要难点有以下 数据库如何保存聊天信息，如果频繁操作数据库，会让网页每次访问压力很大，不利于体验效果 作为一个后端人员，做网页效果难度很大，还好我闲暇时间都会去看看前端，这个前后端完全来自我一个人四天的努力，所以难免有点地方不足，请大家给我留言 逻辑比较清楚，但是实现起来比较麻烦！变量传来传去，丢参数很正常，但是，现在程序一切运行正常，大家可以从下载下来，在idea运行，有一个问题，在chrome内核的浏览器上支持度比较好，在其他浏览器的滚动条有点问题！ 注册功能我没有写，我下一条博客准备发我的用python框架flask写的小型商城，那个里面有邮箱注册，到时候大家可以从哪里瞅瞅 希望你的小星星点赞我的github，谢谢 我的github站点：https://github.com/lmx110522/nyist_chat_project.git 谢谢大家花时间看我的博客，万分感谢~~~]]></content>
+      <categories>
+        <category>springboot</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+        <tag>socket</tag>
+      </tags>
   </entry>
 </search>
