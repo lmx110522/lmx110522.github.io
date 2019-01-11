@@ -90,7 +90,7 @@
 <link href="/lmx110522.github.io/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="jQuery,商城,flask,">
+  <meta name="keywords" content="spring注解驱动,">
 
 
 
@@ -106,28 +106,18 @@
 
 
 
-<meta name="description" content="看了几天python，想着做一个东西出来，就做出了一个小型二手 商城练练手1.解释以下的二手 商城展示，商品照片为了好看，从京东上爬下来的，有一些动态效果，我只制作了一张，在线转换成gif的话由于录制屏幕视频文件太大不太容易转格式 2.用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册 3.卖东西的界面使用了可以拖拽的方式让用户上传商品更方便 4.用户添加商品到购物车的界面，由于二">
-<meta name="keywords" content="jQuery,商城,flask">
+<meta name="description" content="spring注解驱动开发（二）@Import的使用目前我们知道的往ioc容器中注册组件的方式有两种  在类上标注@component、@Service、@Controller、@Repository，然后通过@ComponentScan的方式扫描到ioc容器中 在配置类中需要注册到ioc容器的组件使用@Bean主机的方式出了上面的方法，那么我们再介绍几种方法  @Import可以实现快速注册组件的">
+<meta name="keywords" content="spring注解驱动">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python flask做的二手交易商城">
-<meta property="og:url" content="https://lmx110522.github.io/2018/08/09/二手交易商城/index.html">
+<meta property="og:title" content="spring注解驱动开发（二）">
+<meta property="og:url" content="https://lmx110522.github.io/2017/12/18/spring注解驱动（二）/index.html">
 <meta property="og:site_name" content="茂展的分享博客">
-<meta property="og:description" content="看了几天python，想着做一个东西出来，就做出了一个小型二手 商城练练手1.解释以下的二手 商城展示，商品照片为了好看，从京东上爬下来的，有一些动态效果，我只制作了一张，在线转换成gif的话由于录制屏幕视频文件太大不太容易转格式 2.用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册 3.卖东西的界面使用了可以拖拽的方式让用户上传商品更方便 4.用户添加商品到购物车的界面，由于二">
+<meta property="og:description" content="spring注解驱动开发（二）@Import的使用目前我们知道的往ioc容器中注册组件的方式有两种  在类上标注@component、@Service、@Controller、@Repository，然后通过@ComponentScan的方式扫描到ioc容器中 在配置类中需要注册到ioc容器的组件使用@Bean主机的方式出了上面的方法，那么我们再介绍几种方法  @Import可以实现快速注册组件的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181110202812635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181110202928861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181110203102771.gif">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181110203547493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181110203756381.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181110203830590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181110204036928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181110204127316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181110204419137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-01-09T05:56:39.643Z">
+<meta property="og:updated_time" content="2019-01-11T05:35:57.598Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python flask做的二手交易商城">
-<meta name="twitter:description" content="看了几天python，想着做一个东西出来，就做出了一个小型二手 商城练练手1.解释以下的二手 商城展示，商品照片为了好看，从京东上爬下来的，有一些动态效果，我只制作了一张，在线转换成gif的话由于录制屏幕视频文件太大不太容易转格式 2.用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册 3.卖东西的界面使用了可以拖拽的方式让用户上传商品更方便 4.用户添加商品到购物车的界面，由于二">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181110202812635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="spring注解驱动开发（二）">
+<meta name="twitter:description" content="spring注解驱动开发（二）@Import的使用目前我们知道的往ioc容器中注册组件的方式有两种  在类上标注@component、@Service、@Controller、@Repository，然后通过@ComponentScan的方式扫描到ioc容器中 在配置类中需要注册到ioc容器的组件使用@Bean主机的方式出了上面的方法，那么我们再介绍几种方法  @Import可以实现快速注册组件的">
 
 
 
@@ -155,7 +145,7 @@
 
 
 
-  <link rel="canonical" href="https://lmx110522.github.io/2018/08/09/二手交易商城/">
+  <link rel="canonical" href="https://lmx110522.github.io/2017/12/18/spring注解驱动（二）/">
 
 
 
@@ -178,7 +168,7 @@
 </style>
 
 
-  <title> python flask做的二手交易商城 | 茂展的分享博客 </title>
+  <title> spring注解驱动开发（二） | 茂展的分享博客 </title>
 </head>
 
   	 <!-- custom analytics part create by xiamo -->
@@ -427,7 +417,7 @@ $(function() {
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/lmx110522.github.io/2018/08/09/二手交易商城/">
+  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/lmx110522.github.io/2017/12/18/spring注解驱动（二）/">
 
   <span style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
     <meta itemprop="name" content="李茂展">
@@ -451,7 +441,7 @@ $(function() {
             
             
               
-                python flask做的二手交易商城
+                spring注解驱动开发（二）
               
             
           </h2>
@@ -466,8 +456,8 @@ $(function() {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-09T11:39:51+08:00">
-                2018-08-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-18T13:33:23+08:00">
+                2017-12-18
               </time>
             
 
@@ -489,8 +479,8 @@ $(function() {
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/lmx110522.github.io/categories/python-flask/" itemprop="url" rel="index">
-                    <span itemprop="name">python flask</span>
+                  <a href="/lmx110522.github.io/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
                   </a>
                 </span>
 
@@ -509,7 +499,7 @@ $(function() {
 			 
           
           
-             <span id="/lmx110522.github.io/2018/08/09/二手交易商城/" class="leancloud_visitors" data-flag-title="python flask做的二手交易商城">
+             <span id="/lmx110522.github.io/2017/12/18/spring注解驱动（二）/" class="leancloud_visitors" data-flag-title="spring注解驱动开发（二）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -572,22 +562,47 @@ $(function() {
       
 
       
-        <h3 id="看了几天python，想着做一个东西出来，就做出了一个小型二手-商城练练手"><a href="#看了几天python，想着做一个东西出来，就做出了一个小型二手-商城练练手" class="headerlink" title="看了几天python，想着做一个东西出来，就做出了一个小型二手 商城练练手"></a>看了几天python，想着做一个东西出来，就做出了一个小型<em>二手</em> 商城练练手</h3><h2 id="1-解释"><a href="#1-解释" class="headerlink" title="1.解释"></a>1.解释</h2><p><strong>以下的<em>二手</em> 商城展示，商品照片为了好看，从京东上爬下来的，有一些动态效果，我只制作了一张，在线转换成gif的话由于录制屏幕视频文件太大不太容易转格式</strong></p>
-<h2 id="2-用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册"><a href="#2-用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册" class="headerlink" title="2.用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册"></a>2.用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册</h2><p><img src="https://img-blog.csdnimg.cn/20181110202812635.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="3-卖东西的界面使用了可以拖拽的方式让用户上传商品更方便"><a href="#3-卖东西的界面使用了可以拖拽的方式让用户上传商品更方便" class="headerlink" title="3.卖东西的界面使用了可以拖拽的方式让用户上传商品更方便"></a>3.卖东西的界面使用了可以拖拽的方式让用户上传商品更方便</h2><p><img src="https://img-blog.csdnimg.cn/20181110202928861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="4-用户添加商品到购物车的界面，由于二手商品数量每件比较少，所以限定用户在提交到购物车20分钟内完成结算，否则商品会从购物车内清除"><a href="#4-用户添加商品到购物车的界面，由于二手商品数量每件比较少，所以限定用户在提交到购物车20分钟内完成结算，否则商品会从购物车内清除" class="headerlink" title="4.用户添加商品到购物车的界面，由于二手商品数量每件比较少，所以限定用户在提交到购物车20分钟内完成结算，否则商品会从购物车内清除"></a>4.用户添加商品到购物车的界面，由于二手商品数量每件比较少，所以限定用户在提交到购物车20分钟内完成结算，否则商品会从购物车内清除</h2><p><img src="https://img-blog.csdnimg.cn/20181110203102771.gif" alt="在这里插入图片描述"></p>
-<h2 id="5-加入购物车之后，用户可以去个人中心查看-顺便展示一下更换照片的界面"><a href="#5-加入购物车之后，用户可以去个人中心查看-顺便展示一下更换照片的界面" class="headerlink" title="5.加入购物车之后，用户可以去个人中心查看(顺便展示一下更换照片的界面)"></a>5.加入购物车之后，用户可以去个人中心查看(顺便展示一下更换照片的界面)</h2><p><img src="https://img-blog.csdnimg.cn/20181110203547493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="6-这个时候商品已经在你的购物车内，你在个人中心也可以看到购物车并且去结算"><a href="#6-这个时候商品已经在你的购物车内，你在个人中心也可以看到购物车并且去结算" class="headerlink" title="6. 这个时候商品已经在你的购物车内，你在个人中心也可以看到购物车并且去结算"></a>6. 这个时候商品已经在你的购物车内，你在个人中心也可以看到购物车并且去结算</h2><p><img src="https://img-blog.csdnimg.cn/20181110203756381.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="7-去结算"><a href="#7-去结算" class="headerlink" title="7. 去结算"></a>7. 去结算</h2><p><img src="https://img-blog.csdnimg.cn/20181110203830590.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="8-如果用户没有完成结算的话，会在订单中，同样也有时间限制，每件商品都有根据当初进入订单那个时间算起至三十分钟后自动从订单中取消"><a href="#8-如果用户没有完成结算的话，会在订单中，同样也有时间限制，每件商品都有根据当初进入订单那个时间算起至三十分钟后自动从订单中取消" class="headerlink" title="8. 如果用户没有完成结算的话，会在订单中，同样也有时间限制，每件商品都有根据当初进入订单那个时间算起至三十分钟后自动从订单中取消"></a>8. 如果用户没有完成结算的话，会在订单中，同样也有时间限制，每件商品都有根据当初进入订单那个时间算起至三十分钟后自动从订单中取消</h2><p><img src="https://img-blog.csdnimg.cn/20181110204036928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="9-商品列表页面"><a href="#9-商品列表页面" class="headerlink" title="9. 商品列表页面"></a>9. 商品列表页面</h2><p><img src="https://img-blog.csdnimg.cn/20181110204127316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="10-在二手商城中难免有些买家觉着卖家定价不合适，会跟商家交谈，所以我也做了一个商品议价的模块，可以实现回复再回复的问题"><a href="#10-在二手商城中难免有些买家觉着卖家定价不合适，会跟商家交谈，所以我也做了一个商品议价的模块，可以实现回复再回复的问题" class="headerlink" title="10. 在二手商城中难免有些买家觉着卖家定价不合适，会跟商家交谈，所以我也做了一个商品议价的模块，可以实现回复再回复的问题"></a>10. 在二手商城中难免有些买家觉着卖家定价不合适，会跟商家交谈，所以我也做了一个商品议价的模块，可以实现回复再回复的问题</h2><p><img src="https://img-blog.csdnimg.cn/20181110204419137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L292ZXIxMTA1MjI=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="11-我的总结："><a href="#11-我的总结：" class="headerlink" title="11.我的总结："></a>11.我的总结：</h2><ol>
-<li>上面只是简单的页面展示，具体代码在github上，这个项目中有很多的知识点</li>
-<li>希望大家又遇到同样的功能不知道怎么实现的时候，我的代码能够帮到你</li>
-<li>调bug是一件培养心态的一件事，做web也有二年左右了，感觉从代码中培养了好性格</li>
+        <h1 id="spring注解驱动开发（二）"><a href="#spring注解驱动开发（二）" class="headerlink" title="spring注解驱动开发（二）"></a>spring注解驱动开发（二）</h1><h3 id="Import的使用"><a href="#Import的使用" class="headerlink" title="@Import的使用"></a>@Import的使用</h3><p>目前我们知道的往ioc容器中注册组件的方式有两种</p>
+<ol>
+<li>在类上标注@component、@Service、@Controller、@Repository，然后通过@ComponentScan的方式扫描到ioc容器中</li>
+<li>在配置类中需要注册到ioc容器的组件使用@Bean主机的方式<br>出了上面的方法，那么我们再介绍几种方法</li>
 </ol>
-<h2 id="12-github地址是-https-github-com-lmx110522-nyist-python-secondmall-git"><a href="#12-github地址是-https-github-com-lmx110522-nyist-python-secondmall-git" class="headerlink" title="12.github地址是:https://github.com/lmx110522/nyist_python_secondmall.git"></a>12.github地址是:<a href="https://github.com/lmx110522/nyist_python_secondmall.git" target="_blank" rel="noopener">https://github.com/lmx110522/nyist_python_secondmall.git</a></h2><p>上面的页面可能不太好看，我是一个写后端代码的小码农却喜欢做前台页面，我去努力进步的！，希望你的支持，谢谢花费时间看我的博客，万分感谢！</p>
+<h4 id="Import可以实现快速注册组件的目的"><a href="#Import可以实现快速注册组件的目的" class="headerlink" title="@Import可以实现快速注册组件的目的"></a>@Import可以实现快速注册组件的目的</h4><p><code>@Import({MyImportSelector.class})</code>然而在ioc中的id是该类的全类名</p>
+<h4 id="FactoryBean接口可以实现注册组件的目的"><a href="#FactoryBean接口可以实现注册组件的目的" class="headerlink" title="FactoryBean接口可以实现注册组件的目的"></a>FactoryBean接口可以实现注册组件的目的</h4><p>我们可以创建一个类实现FactoryBean接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonFactoryBean</span> <span class="keyword">implements</span> <span class="title">FactoryBean</span>&lt;<span class="title">Person</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//返回对象会加载到ioc容器中</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Person <span class="title">getObject</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">"成功调用"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Person();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//指定类型</span></span><br><span class="line">	<span class="keyword">public</span> Class&lt;?&gt; getObjectType() &#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">return</span> Person.class;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//指定是否是单例模式</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSingleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后我们可以测试<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">AnnotationConfigApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(MyConfig.class);</span><br><span class="line">		Object bean = context.getBean(<span class="string">"personFactoryBean"</span>);</span><br><span class="line">		System.out.println(bean.getClass());<span class="comment">//打印出来的是class cn.itcast.pojo.Person</span></span><br><span class="line">		Object bean1 = context.getBean(<span class="string">"&amp;personFactoryBean"</span>);</span><br><span class="line">		System.out.println(bean1.getClass());<span class="comment">//打印出来的是class cn.itcast.config.PersonFactoryBean</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注：上面在获取bean的时候，有一个符号<code>&amp;</code>，通过加上这个符号可以获得注册组件自己</p>
+</blockquote>
+<h4 id="ImportSelector接口可以实现注册组件的目的"><a href="#ImportSelector接口可以实现注册组件的目的" class="headerlink" title="ImportSelector接口可以实现注册组件的目的"></a>ImportSelector接口可以实现注册组件的目的</h4><p>我们把要注册到ioc容器中组件的全类名放在返回的数组中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyImportSelector</span> <span class="keyword">implements</span> <span class="title">ImportSelector</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> String[] selectImports(AnnotationMetadata importingClassMetadata) &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> String[] &#123;<span class="string">"cn.itcast.pojo.Role"</span>,<span class="string">"cn.itcast.pojo.Dog"</span>&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>记得把MyImportSelector注册到ioc容器中，这里我们采用快速注入的方式<code>@Import({MyImportSelector.class})</code><br>我们可以一次注册多个组件到容器中</p>
+<h4 id="ImportBeanDefinitionRegistrar接口可以实现注册组件的目的"><a href="#ImportBeanDefinitionRegistrar接口可以实现注册组件的目的" class="headerlink" title="ImportBeanDefinitionRegistrar接口可以实现注册组件的目的"></a>ImportBeanDefinitionRegistrar接口可以实现注册组件的目的</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyImportBeanDefinitionRegister</span> <span class="keyword">implements</span> <span class="title">ImportBeanDefinitionRegistrar</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerBeanDefinitions</span><span class="params">(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//首先判断ioc中是否有role这个组件，如果有的话，就注册bean</span></span><br><span class="line">		<span class="keyword">boolean</span> flag = registry.containsBeanDefinition(<span class="string">"cn.itcast.pojo.Role"</span>);</span><br><span class="line">		<span class="keyword">if</span>(flag) &#123;</span><br><span class="line">			<span class="comment">//注册person组件</span></span><br><span class="line">			RootBeanDefinition beanDefinition = <span class="keyword">new</span> RootBeanDefinition(Person.class);</span><br><span class="line">			registry.registerBeanDefinition(<span class="string">"person"</span>,beanDefinition);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Bean中的initMethod、destroyMethod"><a href="#Bean中的initMethod、destroyMethod" class="headerlink" title="@Bean中的initMethod、destroyMethod"></a>@Bean中的initMethod、destroyMethod</h3><p>原先我们使用xml配置的方式表示为:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Role</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"容器初始化"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"容器被销毁"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"role"</span> <span class="attr">class</span>=<span class="string">"cn.itcast.pojo.Role"</span> <span class="attr">init-method</span>=<span class="string">"init"</span> <span class="attr">destroy-method</span>=<span class="string">"destory"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"bean生命周期"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在@Bean中有两个属性<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span>(initMethod=<span class="string">"init"</span>,destroyMethod=<span class="string">"destory"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Role <span class="title">role</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Role();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注：在销毁的时候，单实例容器会销毁，但是多实例，容器不负责销毁，所以在多实例下销毁方法不调用<br>    在初始化的时候，单实例容器运行时，会调用初始化（init）方法，多实例在调用对象的时候创建(执行init的方法)</p>
+</blockquote>
+<h3 id="Value、-PropertySource的使用"><a href="#Value、-PropertySource的使用" class="headerlink" title="@Value、@PropertySource的使用"></a>@Value、@PropertySource的使用</h3><p><strong>以前我们使用下面方式给组件赋值</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"dog"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"cn.itcast.pojo.Dog"</span>&gt;</span><br><span class="line">		&lt;property name="name" value="旺财"&gt;&lt;/property&gt;</span><br><span class="line">	&lt;/bean&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在注解版中我们可以使用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value</span>(<span class="string">"旺财"</span>)</span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"><span class="meta">@Value</span>(<span class="string">"#&#123;2*3&#125;"</span>)</span><br><span class="line"><span class="keyword">private</span> String nickName;</span><br></pre></td></tr></table></figure></p>
+<p>当然这种<strong>硬编码</strong>不太好，所以我们可以加载配置文件中的值，那么引入<strong>@PropertySource</strong>实现引入配置文件<br>然后使用属性占位符的方式得到<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value</span>(<span class="string">"$&#123;dog.name&#125;"</span>)</span><br><span class="line"><span class="keyword">private</span> String name;</span><br></pre></td></tr></table></figure></p>
+<p>当然你也可以使用SPEL表达式得到。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   <span class="meta">@Value</span>(<span class="string">"#&#123;systemProperties['dog.name']&#125;"</span>)</span><br><span class="line"><span class="keyword">private</span> String name;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Autowired、-Qualifier、-Primary注解的使用"><a href="#Autowired、-Qualifier、-Primary注解的使用" class="headerlink" title="@Autowired、@Qualifier、@Primary注解的使用"></a>@Autowired、@Qualifier、@Primary注解的使用</h3><p>@Autowired用作组件的自动装配，装配的规则是</p>
+<ol>
+<li>首先按照组件的类型从ioc容器中查找，查找到装配完成</li>
+<li>如果遇到多个同类型的组件，那么会使用属性名作为查找ioc容器组件的id</li>
+<li>如果没有查到到，<strong>会报错</strong>！但是我们又不想让它报错，那么我们可以使用<code>@Autowired(required=false)</code><br>当然我们也可以自己指定需要查找组件的id,用<code>@Qualifier(&quot;indexService1&quot;)</code>,这样我们就可以去ioc容器中查找id是indexService1的组件<br>同时呢，spring也给我们提供了@Primary，意思是要找此类型的组件，首选此组件<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Primary</span></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> IndexService <span class="title">indexService1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> IndexService();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>注：@Primary注解使用的时候，就不要使用@Qualifier注解了</p>
+</blockquote>
+<p><strong>spring也支持@Resource(JSR250)和@Inject(JSR330),这些都是java规范</strong><br>@Resource默认按照属性的名称作为组件的id去ioc容器查找，当然我们也可以使用@Resource（name=’indexDao1’）设置<br>@Inject需要导入javax.inject的包，在使用上和@Autowired一样<br><strong>@Autowired可以使用在构造器，方法，属性上面、参数位置，如果组件只有一个有参构造器，参数位置的@Autowired可以省略，还有@Bean中的参数，也不用写@Autowired，都可以从容器中自动装配</strong></p>
+<h3 id="Profile注解的使用"><a href="#Profile注解的使用" class="headerlink" title="@Profile注解的使用"></a>@Profile注解的使用</h3><p>Spring为我们提供的可以根据当前环境，动态的激活和切换一系列组件的功能<br><strong>默认的profile是default</strong><br>我们在某个组件上面加上<code>@Profile(&#39;test&#39;)</code>,一旦加上之后，就是当环境激活的时候，对应的bean才可以注册到容器中<br>那么如何激活呢</p>
+<ul>
+<li>在运行到时候，设置命令行参数的方式 -Dspring.profiles.active=test</li>
+<li>可以借助applicationContext方式激活环境，例如：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">AnnotationConfigApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext();</span><br><span class="line"><span class="comment">//设置需要激活的环境</span></span><br><span class="line">context.getEnvironment().setActiveProfiles(<span class="string">"test"</span>,<span class="string">"dev"</span>);</span><br><span class="line"><span class="comment">//注册主配置类</span></span><br><span class="line">context.register(MyConfig.class);</span><br><span class="line"><span class="comment">//启动刷新容器</span></span><br><span class="line">context.refresh();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -601,11 +616,7 @@ $(function() {
   
         <div class="post-tags">
           
-            <a href="/lmx110522.github.io/tags/jQuery/" rel="tag"># jQuery</a>
-          
-            <a href="/lmx110522.github.io/tags/商城/" rel="tag"># 商城</a>
-          
-            <a href="/lmx110522.github.io/tags/flask/" rel="tag"># flask</a>
+            <a href="/lmx110522.github.io/tags/spring注解驱动/" rel="tag"># spring注解驱动</a>
           
         </div>
       
@@ -652,16 +663,16 @@ $(function() {
 
         <li class="post-copyright-link">
           <strong>本文标题：</strong>
-          <a href="https://lmx110522.github.io/2018/08/09/二手交易商城/" title="python flask做的二手交易商城">python flask做的二手交易商城</a>
+          <a href="https://lmx110522.github.io/2017/12/18/spring注解驱动（二）/" title="spring注解驱动开发（二）">spring注解驱动开发（二）</a>
         </li>
 
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="https://lmx110522.github.io/2018/08/09/二手交易商城/" title="python flask做的二手交易商城">https://lmx110522.github.io/2018/08/09/二手交易商城/</a>
+          <a href="https://lmx110522.github.io/2017/12/18/spring注解驱动（二）/" title="spring注解驱动开发（二）">https://lmx110522.github.io/2017/12/18/spring注解驱动（二）/</a>
         </li>
 
         <li class="post-copyright-date">
-            <strong>发布时间：</strong>2018年8月9日 - 11时08分
+            <strong>发布时间：</strong>2017年12月18日 - 13时12分
         </li>  
 
         <li class="post-copyright-license">
@@ -675,8 +686,8 @@ $(function() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/lmx110522.github.io/2018/04/09/南阳理工下载中心/" rel="next" title="南阳理工下载中心">
-                <i class="fa fa-chevron-left"></i> 南阳理工下载中心
+              <a href="/lmx110522.github.io/2017/12/15/spring注解驱动（一）/" rel="next" title="spring注解驱动开发（一）">
+                <i class="fa fa-chevron-left"></i> spring注解驱动开发（一）
               </a>
             
           </div>
@@ -684,6 +695,10 @@ $(function() {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/lmx110522.github.io/2018/02/08/springboot实现模拟QQ的实现(超具体)/" rel="prev" title="springboot实现模拟QQ的实现(超具体)">
+                springboot实现模拟QQ的实现(超具体) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -849,7 +864,7 @@ $(function() {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#看了几天python，想着做一个东西出来，就做出了一个小型二手-商城练练手"><span class="nav-number">1.</span> <span class="nav-text">看了几天python，想着做一个东西出来，就做出了一个小型二手 商城练练手</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#1-解释"><span class="nav-number"></span> <span class="nav-text">1.解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册"><span class="nav-number"></span> <span class="nav-text">2.用户在没有登录的时候点击买东西，会弹出首先登录，同时也可以选择注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-卖东西的界面使用了可以拖拽的方式让用户上传商品更方便"><span class="nav-number"></span> <span class="nav-text">3.卖东西的界面使用了可以拖拽的方式让用户上传商品更方便</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-用户添加商品到购物车的界面，由于二手商品数量每件比较少，所以限定用户在提交到购物车20分钟内完成结算，否则商品会从购物车内清除"><span class="nav-number"></span> <span class="nav-text">4.用户添加商品到购物车的界面，由于二手商品数量每件比较少，所以限定用户在提交到购物车20分钟内完成结算，否则商品会从购物车内清除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-加入购物车之后，用户可以去个人中心查看-顺便展示一下更换照片的界面"><span class="nav-number"></span> <span class="nav-text">5.加入购物车之后，用户可以去个人中心查看(顺便展示一下更换照片的界面)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-这个时候商品已经在你的购物车内，你在个人中心也可以看到购物车并且去结算"><span class="nav-number"></span> <span class="nav-text">6. 这个时候商品已经在你的购物车内，你在个人中心也可以看到购物车并且去结算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-去结算"><span class="nav-number"></span> <span class="nav-text">7. 去结算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-如果用户没有完成结算的话，会在订单中，同样也有时间限制，每件商品都有根据当初进入订单那个时间算起至三十分钟后自动从订单中取消"><span class="nav-number"></span> <span class="nav-text">8. 如果用户没有完成结算的话，会在订单中，同样也有时间限制，每件商品都有根据当初进入订单那个时间算起至三十分钟后自动从订单中取消</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-商品列表页面"><span class="nav-number"></span> <span class="nav-text">9. 商品列表页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-在二手商城中难免有些买家觉着卖家定价不合适，会跟商家交谈，所以我也做了一个商品议价的模块，可以实现回复再回复的问题"><span class="nav-number"></span> <span class="nav-text">10. 在二手商城中难免有些买家觉着卖家定价不合适，会跟商家交谈，所以我也做了一个商品议价的模块，可以实现回复再回复的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-我的总结："><span class="nav-number"></span> <span class="nav-text">11.我的总结：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-github地址是-https-github-com-lmx110522-nyist-python-secondmall-git"><span class="nav-number"></span> <span class="nav-text">12.github地址是:https://github.com/lmx110522/nyist_python_secondmall.git</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#spring注解驱动开发（二）"><span class="nav-number">1.</span> <span class="nav-text">spring注解驱动开发（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Import的使用"><span class="nav-number">1.0.1.</span> <span class="nav-text">@Import的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Import可以实现快速注册组件的目的"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">@Import可以实现快速注册组件的目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FactoryBean接口可以实现注册组件的目的"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">FactoryBean接口可以实现注册组件的目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImportSelector接口可以实现注册组件的目的"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">ImportSelector接口可以实现注册组件的目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ImportBeanDefinitionRegistrar接口可以实现注册组件的目的"><span class="nav-number">1.0.1.4.</span> <span class="nav-text">ImportBeanDefinitionRegistrar接口可以实现注册组件的目的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean中的initMethod、destroyMethod"><span class="nav-number">1.0.2.</span> <span class="nav-text">@Bean中的initMethod、destroyMethod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Value、-PropertySource的使用"><span class="nav-number">1.0.3.</span> <span class="nav-text">@Value、@PropertySource的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Autowired、-Qualifier、-Primary注解的使用"><span class="nav-number">1.0.4.</span> <span class="nav-text">@Autowired、@Qualifier、@Primary注解的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Profile注解的使用"><span class="nav-number">1.0.5.</span> <span class="nav-text">@Profile注解的使用</span></a></li></ol></li></ol></div>
             
 
           </div>
