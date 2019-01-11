@@ -90,7 +90,7 @@
 <link href="/lmx110522.github.io/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="linux,命令,">
+  <meta name="keywords" content="yml,springboot入门,">
 
 
 
@@ -106,18 +106,22 @@
 
 
 
-<meta name="description" content="linux下chmod 755的解释很多时候在Linux系统下给安装好的软件赋权限的时候回用的755、555,那么数字表示什么呢？ 普及一下chmod的数字   chmod是Linux下设置文件权限的命令，后面的数字表示不同用户或用户组的权限。    一般是三个数字：        第一个数字表示文件所有者的权限        第二个数字表示与文件所有者同属一个用户组的其他用户的权限">
-<meta name="keywords" content="linux,命令">
+<meta name="description" content="Spring全家桶之SpringBoot的学习总结（一）SpringBoot简化spring开发，约定大于配置 优点：  快速创建独立运行的Spring项目以及与主流框架集成 使用嵌入式的Servlet容器,应用无需打成WAR包 starters自动依赖与版本控制 大量的自动配置,简化开发,也可修改默认值 无需配置XML ,无代码生成,开箱即用 准生产环境的运行时应用监控 与云计算的天然集成  使">
+<meta name="keywords" content="yml,springboot入门">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux的chmod赋权限语句">
-<meta property="og:url" content="https://lmx110522.github.io/2017/02/19/linux的chmod赋权限语句/index.html">
+<meta property="og:title" content="Spring全家桶之SpringBoot的学习总结（一）">
+<meta property="og:url" content="https://lmx110522.github.io/2018/01/10/Spring全家桶之SpringBoot的学习总结（一)/index.html">
 <meta property="og:site_name" content="茂展的分享博客">
-<meta property="og:description" content="linux下chmod 755的解释很多时候在Linux系统下给安装好的软件赋权限的时候回用的755、555,那么数字表示什么呢？ 普及一下chmod的数字   chmod是Linux下设置文件权限的命令，后面的数字表示不同用户或用户组的权限。    一般是三个数字：        第一个数字表示文件所有者的权限        第二个数字表示与文件所有者同属一个用户组的其他用户的权限">
+<meta property="og:description" content="Spring全家桶之SpringBoot的学习总结（一）SpringBoot简化spring开发，约定大于配置 优点：  快速创建独立运行的Spring项目以及与主流框架集成 使用嵌入式的Servlet容器,应用无需打成WAR包 starters自动依赖与版本控制 大量的自动配置,简化开发,也可修改默认值 无需配置XML ,无代码生成,开箱即用 准生产环境的运行时应用监控 与云计算的天然集成  使">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-09T08:43:08.643Z">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/ConfigurationProperties.png">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/jsr303_length.png">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/profile.png">
+<meta property="og:updated_time" content="2019-01-11T10:19:10.557Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux的chmod赋权限语句">
-<meta name="twitter:description" content="linux下chmod 755的解释很多时候在Linux系统下给安装好的软件赋权限的时候回用的755、555,那么数字表示什么呢？ 普及一下chmod的数字   chmod是Linux下设置文件权限的命令，后面的数字表示不同用户或用户组的权限。    一般是三个数字：        第一个数字表示文件所有者的权限        第二个数字表示与文件所有者同属一个用户组的其他用户的权限">
+<meta name="twitter:title" content="Spring全家桶之SpringBoot的学习总结（一）">
+<meta name="twitter:description" content="Spring全家桶之SpringBoot的学习总结（一）SpringBoot简化spring开发，约定大于配置 优点：  快速创建独立运行的Spring项目以及与主流框架集成 使用嵌入式的Servlet容器,应用无需打成WAR包 starters自动依赖与版本控制 大量的自动配置,简化开发,也可修改默认值 无需配置XML ,无代码生成,开箱即用 准生产环境的运行时应用监控 与云计算的天然集成  使">
+<meta name="twitter:image" content="http://qiniuyun.lmxljc.xyz/ConfigurationProperties.png">
 
 
 
@@ -145,7 +149,7 @@
 
 
 
-  <link rel="canonical" href="https://lmx110522.github.io/2017/02/19/linux的chmod赋权限语句/">
+  <link rel="canonical" href="https://lmx110522.github.io/2018/01/10/Spring全家桶之SpringBoot的学习总结（一)/">
 
 
 
@@ -168,7 +172,7 @@
 </style>
 
 
-  <title> linux的chmod赋权限语句 | 茂展的分享博客 </title>
+  <title> Spring全家桶之SpringBoot的学习总结（一） | 茂展的分享博客 </title>
 </head>
 
   	 <!-- custom analytics part create by xiamo -->
@@ -417,7 +421,7 @@ $(function() {
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/lmx110522.github.io/2017/02/19/linux的chmod赋权限语句/">
+  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/lmx110522.github.io/2018/01/10/Spring全家桶之SpringBoot的学习总结（一)/">
 
   <span style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
     <meta itemprop="name" content="李茂展">
@@ -441,7 +445,7 @@ $(function() {
             
             
               
-                linux的chmod赋权限语句
+                Spring全家桶之SpringBoot的学习总结（一）
               
             
           </h2>
@@ -456,8 +460,8 @@ $(function() {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-19T16:32:19+08:00">
-                2017-02-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-10T18:15:22+08:00">
+                2018-01-10
               </time>
             
 
@@ -479,8 +483,8 @@ $(function() {
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/lmx110522.github.io/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/lmx110522.github.io/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
                   </a>
                 </span>
 
@@ -499,7 +503,7 @@ $(function() {
 			 
           
           
-             <span id="/lmx110522.github.io/2017/02/19/linux的chmod赋权限语句/" class="leancloud_visitors" data-flag-title="linux的chmod赋权限语句">
+             <span id="/lmx110522.github.io/2018/01/10/Spring全家桶之SpringBoot的学习总结（一)/" class="leancloud_visitors" data-flag-title="Spring全家桶之SpringBoot的学习总结（一）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -562,9 +566,104 @@ $(function() {
       
 
       
-        <h2 id="linux下chmod-755的解释"><a href="#linux下chmod-755的解释" class="headerlink" title="linux下chmod 755的解释"></a>linux下chmod 755的解释</h2><p>很多时候在Linux系统下给安装好的软件赋权限的时候回用的755、555,那么数字表示什么呢？</p>
-<h3 id="普及一下chmod的数字"><a href="#普及一下chmod的数字" class="headerlink" title="普及一下chmod的数字"></a>普及一下chmod的数字</h3><p>   chmod是Linux下设置文件权限的命令，后面的数字表示不同用户或用户组的权限。<br>    一般是三个数字：<br>        第一个数字表示文件所有者的权限<br>        第二个数字表示与文件所有者同属一个用户组的其他用户的权限<br>        第三个数字表示其它用户组的权限。<br>        权限分为三种：读（r=4），写（w=2），执行（x=1） 。 综合起来还有可读可执行（rx=5=4+1）、可读可写（rw=6=4+2）、可读可写可执行(rwx=7=4+2+1)。</p>
-<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3>  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod <span class="number">755</span> 设置用户的权限为：</span><br><span class="line">  <span class="number">1.</span>文件所有者可读可写可执行 -<span class="number">-7</span></span><br><span class="line">  <span class="number">2.</span>与文件所有者同属一个用户组的其他用户可读可执行 -<span class="number">-5</span> </span><br><span class="line">  <span class="number">3.</span>其它用户组可读可执行</span><br></pre></td></tr></table></figure>
+        <h1 id="Spring全家桶之SpringBoot的学习总结（一）"><a href="#Spring全家桶之SpringBoot的学习总结（一）" class="headerlink" title="Spring全家桶之SpringBoot的学习总结（一）"></a>Spring全家桶之SpringBoot的学习总结（一）</h1><p>SpringBoot简化spring开发，约定大于配置</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>快速创建独立运行的Spring项目以及与主流框架集成</li>
+<li>使用嵌入式的Servlet容器,应用无需打成WAR包</li>
+<li>starters自动依赖与版本控制</li>
+<li>大量的自动配置,简化开发,也可修改默认值</li>
+<li>无需配置XML ,无代码生成,开箱即用</li>
+<li>准生产环境的运行时应用监控</li>
+<li>与云计算的天然集成</li>
+</ul>
+<p>使用springboot也跟目前大时代背景有关，现在企业级应用如此庞大，集群，微服务，SOA词汇渐渐进入我们的视野<br>提到了微服务，我们就要看看<a href="https://martinfowler.com/articles/microservices.html" title="马丁大叔的个人主页" target="_blank" rel="noopener">马丁大叔的个人主页</a>,马丁大叔14年提到了微服务，提倡服务之间应使用restful风格，后来我们将要学习的<strong>springcloud</strong>采用的就是基于restful风格的架构方案</p>
+<p><strong>开发springboot最好用的是IDEA，这是我的百度网盘链接，拿去用吧<a href="https://pan.baidu.com/s/1n0bJwsaVNBaaWvDkW_fAlg" title="IDEA工具下载" target="_blank" rel="noopener">IDEA工具下载</a></strong></p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p><strong>SpringBoot使用一个全局的配置文件，配置文件名是固定的</strong></p>
+<ul>
+<li>application.yml</li>
+<li>application.properties</li>
+</ul>
+<p><strong>YAML是”YAML Ain’t a Markup Language”（YAML不是一种置标语言）的递归缩写</strong><br>yml是一种标记语言，yml以数据为中心，相比于xml,xml花费太多的时间在标签上，效率不高</p>
+<h4 id="yml语法："><a href="#yml语法：" class="headerlink" title="yml语法："></a>yml语法：</h4><h5 id="1、基本语法"><a href="#1、基本语法" class="headerlink" title="1、基本语法"></a>1、基本语法</h5><pre><code>k:(空格)v：表示一对键值对（空格必须有）；
+</code></pre><p>   以空格的缩进来控制层级关系；只要是左对齐的一列数据，都是同一个层级的<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">	<span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">	<span class="attr">path:</span> <span class="string">/test</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="2、值的写法"><a href="#2、值的写法" class="headerlink" title="2、值的写法"></a>2、值的写法</h5><p><strong>字面量</strong></p>
+<ul>
+<li>字符串默认不用加上单引号或者双引号</li>
+<li>双引号不会转义特殊字符，例如：”spring \n boot” 输出则是 “spring”换行“boot”</li>
+<li>单引号会转义特殊字符，例如：”spring \n boot” 输出则是 “spring \n boot”</li>
+</ul>
+<p><strong>对象</strong></p>
+<p>通常下面写法：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dog:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">阿黄</span></span><br><span class="line"><span class="attr">  age:</span> <span class="number">12</span></span><br></pre></td></tr></table></figure></p>
+<p>也可以下面这种行内写法<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dog:</span> <span class="string">&#123;name:</span> <span class="string">阿黄,age:</span> <span class="number">12</span><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>数组</strong><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pets:</span> </span><br><span class="line"><span class="bullet">  -</span> <span class="string">dog</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">cat</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">pig</span></span><br></pre></td></tr></table></figure></p>
+<p>它也有一个行内写法<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pets:</span> <span class="string">[dog,cat,pig]</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>yml语法还支持占位符</strong></p>
+<ol>
+<li>随机数 <code>age: ${random.uuid}</code></li>
+<li>使用上面定义好的 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dog:</span><br><span class="line">  name: 阿黄</span><br><span class="line">  age: $&#123;random.uuid&#125;</span><br><span class="line">  nickname: 小$&#123;dog.name:狗狗&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong><code>狗狗</code>表示是如果加载不到dog.name，狗狗就是就是默认值</strong></p>
+<blockquote>
+<p>注：在yml中，last-name和lastName是表示的一样 </p>
+</blockquote>
+<h3 id="从yml得到数据绑定给pojo"><a href="#从yml得到数据绑定给pojo" class="headerlink" title="从yml得到数据绑定给pojo"></a>从yml得到数据绑定给pojo</h3><p>yml数据<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">person:</span></span><br><span class="line"><span class="attr">   username:</span> <span class="string">旺财</span></span><br><span class="line"><span class="attr">   password:</span> <span class="number">123</span></span><br></pre></td></tr></table></figure></p>
+<p>@ConfigurationProperties：告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定，prefix=”person”配置文件中哪个下面的所有属性进行一一映射<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>                                             </span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"person"</span>)            </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>  </span>&#123;                                 </span><br><span class="line">                                                       </span><br><span class="line">    <span class="keyword">private</span> String username;                           </span><br><span class="line">                                                       </span><br><span class="line">    <span class="keyword">private</span> String password;                           </span><br><span class="line">                                                       </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;                      </span><br><span class="line">        <span class="keyword">return</span> username;                               </span><br><span class="line">    &#125;                                                  </span><br><span class="line">                                                       </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;         </span><br><span class="line">        <span class="keyword">this</span>.username = username;                      </span><br><span class="line">    &#125;                                                  </span><br><span class="line">                                                       </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;                      </span><br><span class="line">        <span class="keyword">return</span> password;                               </span><br><span class="line">    &#125;                                                  </span><br><span class="line">                                                       </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;         </span><br><span class="line">        <span class="keyword">this</span>.password = password;                      </span><br><span class="line">		&#125;&#125;                                                  </span><br><span class="line">                                             </span><br><span class="line">然后我们使用springboot的测试功能</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloworldApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> Person person;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(person.getUsername());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>成功打印出： <strong>旺财</strong>，成功绑定</p>
+<p>这个用法是springboot中很多底层源码都会用的到,<br><strong>源码摘取</strong>： redis属性和yml数据绑定，就是用的这个方法</p>
+<p><img src="http://qiniuyun.lmxljc.xyz/ConfigurationProperties.png" alt="ConfigurationProperties" title="ConfigurationProperties"></p>
+<h3 id="ConfigurationProperties和Value的对比"><a href="#ConfigurationProperties和Value的对比" class="headerlink" title="ConfigurationProperties和Value的对比"></a>ConfigurationProperties和Value的对比</h3><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">@ConfigurationPropertie</th>
+<th style="text-align:center">@Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">功能</td>
+<td style="text-align:center">批量注入配置文件中的属性</td>
+<td style="text-align:center">一个个指定</td>
+</tr>
+<tr>
+<td style="text-align:center">松散绑定（松散语法）</td>
+<td style="text-align:center">支持</td>
+<td style="text-align:center">不支持</td>
+</tr>
+<tr>
+<td style="text-align:center">SpEL</td>
+<td style="text-align:center">不支持</td>
+<td style="text-align:center">支持</td>
+</tr>
+<tr>
+<td style="text-align:center">JSR303数据校验</td>
+<td style="text-align:center">支持</td>
+<td style="text-align:center">不支持</td>
+</tr>
+<tr>
+<td style="text-align:center">复杂类型封</td>
+<td style="text-align:center">支持</td>
+<td style="text-align:center">不支持</td>
+</tr>
+</tbody>
+</table>
+<p>在注解ConfigurationProperties的情况下在类上添加@Validated实现JSR303校验</p>
+<p><img src="http://qiniuyun.lmxljc.xyz/jsr303_length.png" alt="jsr303_length" title="12"></p>
+<h4 id="PropertySource和-ImportSource区别"><a href="#PropertySource和-ImportSource区别" class="headerlink" title="@PropertySource和@ImportSource区别"></a>@PropertySource和@ImportSource区别</h4><p>由于我们使用ConfigurationProperties默认会从application.properties/yml中获取数据，所以，如果我们自己写了一个properties，我们则需要@PropertySource<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.helloworld.pojo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.hibernate.validator.constraints.Length;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.PropertySource;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.validation.annotation.Validated;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@PropertySource</span>(value = &#123;<span class="string">"classpath:person.properties"</span>&#125;)</span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"person"</span>)</span><br><span class="line"><span class="meta">@Validated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span>  </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Length</span>(min = <span class="number">8</span>,max = <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.password = password;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>@ImportSource：导入spring的配置文件，让配置文件生效<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ImportResource</span>(locations = &#123;<span class="string">"classpath:beans.xml"</span>&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="profile"><a href="#profile" class="headerlink" title="profile"></a>profile</h3><p>环境配置，在spring注解的时候有@Profile,和在学习注解版的时候作用是相同的，<br>有两种方法可以根据环境不同来实现配置文件不同</p>
+<ul>
+<li>application-dev.properties、application-prod.properties的方式</li>
+<li>分区文档快，yml文件可以分区，如下，注意<strong>看红线</strong><br><img src="http://qiniuyun.lmxljc.xyz/profile.png" alt="profile" title="profile"></li>
+</ul>
+<p><strong>重要的知识点来了</strong></p>
+<h4 id="如何激活环境"><a href="#如何激活环境" class="headerlink" title="如何激活环境"></a>如何激活环境</h4><ol>
+<li>运行时配置环境 –spring.profiles.active=dev</li>
+<li>项目打包好，我们在命令行可以使用 java jar test.jar –spring.profiles.active=dev</li>
+<li>虚拟机参数 -Dspring.profiles.active=dev</li>
+</ol>
 
       
     </div>
@@ -578,9 +677,9 @@ $(function() {
   
         <div class="post-tags">
           
-            <a href="/lmx110522.github.io/tags/linux/" rel="tag"># linux</a>
+            <a href="/lmx110522.github.io/tags/yml/" rel="tag"># yml</a>
           
-            <a href="/lmx110522.github.io/tags/命令/" rel="tag"># 命令</a>
+            <a href="/lmx110522.github.io/tags/springboot入门/" rel="tag"># springboot入门</a>
           
         </div>
       
@@ -627,16 +726,16 @@ $(function() {
 
         <li class="post-copyright-link">
           <strong>本文标题：</strong>
-          <a href="https://lmx110522.github.io/2017/02/19/linux的chmod赋权限语句/" title="linux的chmod赋权限语句">linux的chmod赋权限语句</a>
+          <a href="https://lmx110522.github.io/2018/01/10/Spring全家桶之SpringBoot的学习总结（一)/" title="Spring全家桶之SpringBoot的学习总结（一）">Spring全家桶之SpringBoot的学习总结（一）</a>
         </li>
 
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="https://lmx110522.github.io/2017/02/19/linux的chmod赋权限语句/" title="linux的chmod赋权限语句">https://lmx110522.github.io/2017/02/19/linux的chmod赋权限语句/</a>
+          <a href="https://lmx110522.github.io/2018/01/10/Spring全家桶之SpringBoot的学习总结（一)/" title="Spring全家桶之SpringBoot的学习总结（一）">https://lmx110522.github.io/2018/01/10/Spring全家桶之SpringBoot的学习总结（一)/</a>
         </li>
 
         <li class="post-copyright-date">
-            <strong>发布时间：</strong>2017年2月19日 - 16时02分
+            <strong>发布时间：</strong>2018年1月10日 - 18时01分
         </li>  
 
         <li class="post-copyright-license">
@@ -650,14 +749,18 @@ $(function() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/lmx110522.github.io/2017/12/18/spring注解驱动（二）/" rel="next" title="spring注解驱动开发（二）">
+                <i class="fa fa-chevron-left"></i> spring注解驱动开发（二）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/lmx110522.github.io/2017/10/17/消息中间件/" rel="prev" title="消息中间件">
-                消息中间件 <i class="fa fa-chevron-right"></i>
+              <a href="/lmx110522.github.io/2018/02/08/springboot实现模拟QQ的实现(超具体)/" rel="prev" title="springboot实现模拟QQ的实现(超具体)">
+                springboot实现模拟QQ的实现(超具体) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -824,7 +927,7 @@ $(function() {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux下chmod-755的解释"><span class="nav-number">1.</span> <span class="nav-text">linux下chmod 755的解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#普及一下chmod的数字"><span class="nav-number">1.1.</span> <span class="nav-text">普及一下chmod的数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举个例子"><span class="nav-number">1.2.</span> <span class="nav-text">举个例子</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring全家桶之SpringBoot的学习总结（一）"><span class="nav-number">1.</span> <span class="nav-text">Spring全家桶之SpringBoot的学习总结（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件"><span class="nav-number">1.0.1.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#yml语法："><span class="nav-number">1.0.1.1.</span> <span class="nav-text">yml语法：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、基本语法"><span class="nav-number">1.0.1.1.1.</span> <span class="nav-text">1、基本语法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、值的写法"><span class="nav-number">1.0.1.1.2.</span> <span class="nav-text">2、值的写法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从yml得到数据绑定给pojo"><span class="nav-number">1.0.2.</span> <span class="nav-text">从yml得到数据绑定给pojo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConfigurationProperties和Value的对比"><span class="nav-number">1.0.3.</span> <span class="nav-text">ConfigurationProperties和Value的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PropertySource和-ImportSource区别"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">@PropertySource和@ImportSource区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#profile"><span class="nav-number">1.0.4.</span> <span class="nav-text">profile</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何激活环境"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">如何激活环境</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
