@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[GIS音乐盒页面]]></title>
+    <url>%2Flmx110522.github.io%2F2018%2F12%2F23%2FGIS%E9%9F%B3%E4%B9%90%E7%9B%92%E9%A1%B5%E9%9D%A2%2F</url>
+    <content type="text"><![CDATA[GIS音乐盒说明：这个音乐盒网站是我前一段时间做的前后端项目，结果在一个我自己清理文件的时候，不小心删除一个文件夹，下面所有的项目都被我给删除了，当我发现的时候，已经是第二天我准备上线的时候，回收站也已经被我清空了，我很是伤心。昨天我在查找资料的时候，看到了我之前做的前端静态文件，所以我打算拿出来给大家，什么时候用，拿走 注： 页面截屏一个页面截不全，你可以自己下载下来查看 以前测试阶段录的小视频我录了一个测试的小视频，然后转gif,展示出来推荐一个在线wav转gif的网站，很不错，点我去 首页 所有歌手的页面 歌曲详情页（含有评论的回复和再回复） 歌手的页面 所有歌曲的页面 专辑详情页 登录页(自己写了个模态框) 个人主页 总结： 写前端css最浪费时间，我这个页面写了差不多一个星期，包括设计页面的布局 这个后端我已经给删除了，你可以自己加后端功能，建议快速开发springboot 短信我当初使用的是阿里的短信 存储文件我使用的是七牛云，很好用]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端页面</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java8——Stream流]]></title>
     <url>%2Flmx110522.github.io%2F2018%2F09%2F15%2FJava8%E2%80%94%E2%80%94Stream%E6%B5%81%2F</url>
     <content type="text"><![CDATA[Java8——Stream流我们先上手个小demo123456789101112import java.util.Arrays;public class DemoStream &#123; public static void main(String[] args) &#123; String[] strList = &#123;"李茂展","董浩","李沫熙","李哲","杨宁宁"&#125;; //接下来我们将使用stream流方式对strList进行操作，返回带 李 ，长度为3的 Arrays.stream(strList).filter((name)-&gt;name.contains("李")) .filter((name)-&gt;name.length()==3) .forEach(name-&gt; System.out.println(name)); &#125;&#125; Stream中集合的处理方案 这张图展示了过滤、映射、跳过、计数等多步操作，这是一个集合元素的处理方案，也就是一种函数模型中间执行过程中集合并不会真正的被处理，而是到最后count的时候才会被执行，这就是函数模型的操作，而之所以这样的得益于Lambda的延迟加载 Stream流获取Stream流获取有两种方式 Collection的有stream()方法获取stream流 1234567891011121314151617181920212223242526import java.util.*;import java.util.stream.Stream;public class DemoStream &#123; public static void main(String[] args) &#123; //list集合获取stream方式 ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;(); Stream&lt;String&gt; stream1 = list.stream(); //hash获取stream方式 HashSet&lt;String&gt; hashSet = new HashSet&lt;&gt;(); Stream&lt;String&gt; stream2 = hashSet.stream(); //map集合我们可以分别把键值对转换成流对象 HashMap&lt;String, String&gt; map = new HashMap&lt;&gt;(); Set&lt;String&gt; keySet = map.keySet(); Stream&lt;String&gt; stream3 = keySet.stream(); Collection&lt;String&gt; values = map.values(); Stream&lt;String&gt; stream = values.stream(); &#125;&#125; 有一个Java.util.stream有一个静态方法of也可以获得stream流 123456public static void main(String[] args) &#123; //list集合获取stream方式 ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;(); Stream&lt;ArrayList&lt;String&gt;&gt; stream = Stream.of(list); &#125; Stream方法的学习总结首先分成两类 延迟方法 终结方法 foreach()方法 —— 终结方法遍历之后就不能使用stream流中的其他方法12345678import java.util.stream.Stream;public class ForStream &#123; public static void main(String[] args) &#123; Stream.of("李茂展","李沫熙","杨宁宁").forEach(name-&gt; System.out.println(name)); &#125;&#125; filter()方法 —— 延迟方法执行过滤之后，仍然可以使用stream的其他方法1Stream.of("李茂展","李沫熙","杨宁宁").filter(name-&gt;name.contains("李")).forEach(name-&gt; System.out.println(name)); 类名引用静态方法的使用我们使用Math.abs()来求绝对值首先我们创建一个函数式接口1234@FunctionalInterfacepublic interface AbsFunc &#123; public abstract int myAbs(int num);&#125; 然后我们可以使用lambda表达式来引用Math的静态方法12345678910111213public class DemoStream &#123; public static void getAbs(Integer num,AbsFunc absFunc)&#123; int myAbs = absFunc.myAbs(num); System.out.println(myAbs); &#125; public static void main(String[] args) &#123; getAbs(-10,Math::abs); &#125;&#125; 结构打印出来是 10 同样的使用super引用父类方法的时候，由于在子类中super是存在的，在lambda中我们可以使用super::show来完成调用 同样的使用this的时候，在lambda中我们可以使用this::show来完成调用 同样的使用new的时候，在lambda中我们可以使用Person::new来完成调用]]></content>
