@@ -114,7 +114,7 @@
 <meta property="og:site_name" content="茂展的分享博客">
 <meta property="og:description" content="配置文件加载位置springboot 启动会扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件  file:./config/ file:./ classpath:/config/ classpath:/  加载规则如下：  优先级由高到底，高优先级的配置会覆盖低优先级的配置；  SpringBoot会从这四个位">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T13:00:26.531Z">
+<meta property="og:updated_time" content="2019-01-13T12:46:43.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot的配置">
 <meta name="twitter:description" content="配置文件加载位置springboot 启动会扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件  file:./config/ file:./ classpath:/config/ classpath:/  加载规则如下：  优先级由高到底，高优先级的配置会覆盖低优先级的配置；  SpringBoot会从这四个位">
@@ -579,8 +579,7 @@ $(function() {
 </li>
 <li>项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；</li>
 </ol>
-<h3 id="外部配置加载顺序"><a href="#外部配置加载顺序" class="headerlink" title="外部配置加载顺序"></a>外部配置加载顺序</h3><p>#####SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置</p>
-<p><strong>1.命令行参数</strong><br>所有的配置都可以在命令行上进行指定<br>java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar –server.port=8087 –server.context-path=/abc<br>多个配置用空格分开； 配置项=值<br><strong>2.来自java:comp/env的JNDI属性</strong><br><strong>3.Java系统属性（System.getProperties()）</strong><br><strong>4.操作系统环境变量</strong><br><strong>5.RandomValuePropertySource配置的random.*属性值</strong><br>由jar包外向jar包内进行寻找；<br>优先加载带profile<br><strong>6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件<br>7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong><br>再来加载不带profile<br><strong>8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件<br>9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件<br>10.@Configuration注解类上的@PropertySource<br>11.通过SpringApplication.setDefaultProperties指定的默认属性</strong></p>
+<h3 id="外部配置加载顺序"><a href="#外部配置加载顺序" class="headerlink" title="外部配置加载顺序"></a>外部配置加载顺序</h3><h5 id="SpringBoot也可以从以下位置加载配置；-优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置"><a href="#SpringBoot也可以从以下位置加载配置；-优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置" class="headerlink" title="SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置"></a>SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置</h5><p><strong>1.命令行参数</strong><br>所有的配置都可以在命令行上进行指定<br>java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar –server.port=8087 –server.context-path=/abc<br>多个配置用空格分开； 配置项=值<br><strong>2.来自java:comp/env的JNDI属性</strong><br><strong>3.Java系统属性（System.getProperties()）</strong><br><strong>4.操作系统环境变量</strong><br><strong>5.RandomValuePropertySource配置的random.*属性值</strong><br>由jar包外向jar包内进行寻找；<br>优先加载带profile<br><strong>6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件<br>7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件</strong><br>再来加载不带profile<br><strong>8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件<br>9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件<br>10.@Configuration注解类上的@PropertySource<br>11.通过SpringApplication.setDefaultProperties指定的默认属性</strong></p>
 
       
     </div>
@@ -746,7 +745,7 @@ $(function() {
           
             <div class="site-state-item site-state-posts">
               <a href="/lmx110522.github.io/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -755,7 +754,7 @@ $(function() {
           
             <div class="site-state-item site-state-categories">
               <a href="/lmx110522.github.io/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -764,7 +763,7 @@ $(function() {
           
             <div class="site-state-item site-state-tags">
               <a href="/lmx110522.github.io/tags">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -842,7 +841,7 @@ $(function() {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件加载位置"><span class="nav-number">1.</span> <span class="nav-text">配置文件加载位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部配置加载顺序"><span class="nav-number">2.</span> <span class="nav-text">外部配置加载顺序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件加载位置"><span class="nav-number">1.</span> <span class="nav-text">配置文件加载位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部配置加载顺序"><span class="nav-number">2.</span> <span class="nav-text">外部配置加载顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SpringBoot也可以从以下位置加载配置；-优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置"><span class="nav-number">2.0.1.</span> <span class="nav-text">SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置</span></a></li></ol></li></ol></div>
             
 
           </div>

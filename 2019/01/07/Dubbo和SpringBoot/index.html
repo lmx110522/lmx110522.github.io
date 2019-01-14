@@ -1,0 +1,1315 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/lmx110522.github.io/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Dubbo和SpringBoot,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/lmx110522.github.io/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Dubbo和SpringBoot建议大家看看官方文档springboot对应dubbo版本关系 springboot整合Dubbo灰度发布：指的是新功能发布，部分用户尝试使用，一部分用户继续使用旧的功能，尝试稳定后，慢慢恢复！ 服务提供者pom.xml引入dubbo，由于我使用的是springboot2.1,所以 dubbo必须使用0.2.012345&amp;lt;dependency&amp;gt; &amp;lt;">
+<meta name="keywords" content="Dubbo和SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dubbo和SpringBoot">
+<meta property="og:url" content="https://lmx110522.github.io/2019/01/07/Dubbo和SpringBoot/index.html">
+<meta property="og:site_name" content="茂展的分享博客">
+<meta property="og:description" content="Dubbo和SpringBoot建议大家看看官方文档springboot对应dubbo版本关系 springboot整合Dubbo灰度发布：指的是新功能发布，部分用户尝试使用，一部分用户继续使用旧的功能，尝试稳定后，慢慢恢复！ 服务提供者pom.xml引入dubbo，由于我使用的是springboot2.1,所以 dubbo必须使用0.2.012345&amp;lt;dependency&amp;gt; &amp;lt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/dubbo-springboot.png">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/dubbo-prop.png">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/dubbo%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7.png">
+<meta property="og:updated_time" content="2019-01-14T03:22:38.569Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dubbo和SpringBoot">
+<meta name="twitter:description" content="Dubbo和SpringBoot建议大家看看官方文档springboot对应dubbo版本关系 springboot整合Dubbo灰度发布：指的是新功能发布，部分用户尝试使用，一部分用户继续使用旧的功能，尝试稳定后，慢慢恢复！ 服务提供者pom.xml引入dubbo，由于我使用的是springboot2.1,所以 dubbo必须使用0.2.012345&amp;lt;dependency&amp;gt; &amp;lt;">
+<meta name="twitter:image" content="http://qiniuyun.lmxljc.xyz/dubbo-springboot.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/lmx110522.github.io/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lmx110522.github.io/2019/01/07/Dubbo和SpringBoot/">
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  <title> Dubbo和SpringBoot | 茂展的分享博客 </title>
+</head>
+
+  	 <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+});
+</script>
+  
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?340874ba9357cbe81570aa4ac1185941";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/lmx110522.github.io/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">茂展的分享博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">享受编码的乐趣</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/lmx110522.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/lmx110522.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/lmx110522.github.io/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/lmx110522.github.io/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/lmx110522.github.io/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/lmx110522.github.io/2019/01/07/Dubbo和SpringBoot/">
+
+  <span style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="李茂展">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/lmx110522.github.io/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="茂展的分享博客">
+    <span style="display:none" itemprop="logo" itemscope="" itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="茂展的分享博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Dubbo和SpringBoot
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-07T11:20:55+08:00">
+                2019-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/lmx110522.github.io/categories/Dubbo/" itemprop="url" rel="index">
+                    <span itemprop="name">Dubbo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/lmx110522.github.io/2019/01/07/Dubbo和SpringBoot/" class="leancloud_visitors" data-flag-title="Dubbo和SpringBoot">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Dubbo和SpringBoot"><a href="#Dubbo和SpringBoot" class="headerlink" title="Dubbo和SpringBoot"></a>Dubbo和SpringBoot</h1><p>建议大家看看<a href="https://github.com/apache/incubator-dubbo-spring-boot-project" title="官方文档" target="_blank" rel="noopener">官方文档</a><br>springboot对应dubbo版本关系<br><img src="http://qiniuyun.lmxljc.xyz/dubbo-springboot.png" alt="springboot与dubbo版本关系" title="springboot与dubbo版本关系"></p>
+<h2 id="springboot整合Dubbo"><a href="#springboot整合Dubbo" class="headerlink" title="springboot整合Dubbo"></a>springboot整合Dubbo</h2><p><strong>灰度发布：</strong>指的是新功能发布，部分用户尝试使用，一部分用户继续使用旧的功能，尝试稳定后，慢慢恢复！</p>
+<h3 id="服务提供者"><a href="#服务提供者" class="headerlink" title="服务提供者"></a>服务提供者</h3><p>pom.xml引入dubbo，<strong>由于我使用的是springboot2.1,所以 dubbo必须使用0.2.0</strong><br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dubbo-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>代替原先的provider.xml,同样的配置写在application.yml中<br>之前我们对外暴露接口是xml配置，由于以后对外暴露接口太多，<br>为了方便我们使用<code>@Service</code> (import com.alibaba.dubbo.config.annotation.Service);<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">boot-service-provider</span></span><br><span class="line"><span class="attr">  registry:</span></span><br><span class="line"><span class="attr">    address:</span> <span class="attr">zookeeper:127.0.0.1:2181</span></span><br><span class="line"><span class="attr">  protocol:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">dubbo</span></span><br><span class="line"><span class="attr">    port:</span> <span class="number">20880</span> <span class="comment"># 通信规则</span></span><br><span class="line"><span class="comment"># 连接监控中心</span></span><br><span class="line"><span class="attr">  monitor:</span></span><br><span class="line"><span class="attr">    protocol:</span> <span class="string">register</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>然后启动时，千万别忘了开启dubbo注解配置</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableDubbo</span> <span class="comment">// 开启注解的dubbo功能</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BootServiceProvider</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(BootServiceProvider.class,args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="服务消费者"><a href="#服务消费者" class="headerlink" title="服务消费者"></a>服务消费者</h3><p>pom.xml和服务提供者的相同<br>然后使用application.yml替代原先的consumer.xml配置<br><strong>以前我们使用@Autowired,现在我们使用@Reference加载接口</strong><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">boot-service-consumer</span></span><br><span class="line"><span class="attr">  registry:</span></span><br><span class="line"><span class="attr">    address:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line"><span class="attr">    protocol:</span> <span class="string">zookeeper</span></span><br><span class="line"><span class="attr">  monitor:</span></span><br><span class="line"><span class="attr">    protocol:</span> <span class="string">register</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>然后启动时，千万别忘了开启dubbo注解配置</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.config.spring.context.annotation.EnableDubbo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableDubbo</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BootServiceConsumer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(BootServiceConsumer.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后运行成功！</p>
+<h3 id="Dubbo属性配置加载顺序"><a href="#Dubbo属性配置加载顺序" class="headerlink" title="Dubbo属性配置加载顺序"></a>Dubbo属性配置加载顺序</h3><p>规则：<strong>（方法级优先，接口级次之，全局配置再次之，如果级别一样，消费方优先，提供方次之）</strong><br><a href="http://dubbo.apache.org/zh-cn/docs/user/configuration/properties.html" title="官网" target="_blank" rel="noopener">官网</a>告诉我们有三种可以dubbo属性配置的方法，它们互补，优先级顺序为：<br><img src="http://qiniuyun.lmxljc.xyz/dubbo-prop.png" alt="dubbo属性配置加载顺序" title="dubbo属性配置加载顺序"></p>
+<h3 id="Dubbo启动时检查"><a href="#Dubbo启动时检查" class="headerlink" title="Dubbo启动时检查"></a>Dubbo启动时检查</h3><p>很多时候，注册中心没有对应的服务的时候，消费者就已经启动了，往往会<strong>报错</strong>，原因:dubbo默认启动时检查<br>我们可以在yml关闭启动时检查()<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line"><span class="attr">  reference:</span></span><br><span class="line"><span class="attr">     check:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>关闭所有服务的不检查<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line"><span class="attr">  consumer:</span></span><br><span class="line"><span class="attr">    check:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>在启动的时候，如果没有注册中心，会报错，但是我们可以关闭<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line"><span class="attr">  registry:</span></span><br><span class="line"><span class="attr">    check:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="消费者全局配置-dubbo-provider"><a href="#消费者全局配置-dubbo-provider" class="headerlink" title="消费者全局配置(dubbo.provider)"></a>消费者全局配置(dubbo.provider)</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line"><span class="attr">  provider:</span></span><br><span class="line"><span class="attr">    timeout:</span> <span class="number">2000</span>  <span class="comment"># 单位秒</span></span><br></pre></td></tr></table></figure>
+<h3 id="timeout-retries"><a href="#timeout-retries" class="headerlink" title="timeout retries"></a>timeout retries</h3><p>它们两个配合使用，timeout<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line"><span class="attr">  consumer:</span></span><br><span class="line"><span class="attr">    timeout:</span> <span class="number">1000</span> <span class="comment"># 单位毫秒，默认是1000 访问大于1秒就会报错</span></span><br><span class="line"><span class="attr">    retries:</span> <span class="number">3</span> <span class="comment"># 第一次尝试失败不算，总共尝试三次</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="dubbo多版本"><a href="#dubbo多版本" class="headerlink" title="dubbo多版本"></a>dubbo多版本</h3><p>就是我们上面提到的<strong>灰度发布</strong>,我们使用 version版本来控制版本<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line"><span class="attr">  provider:</span></span><br><span class="line"><span class="attr">    version:</span> <span class="number">0.0</span><span class="number">.2</span></span><br></pre></td></tr></table></figure></p>
+<p>我们在消费者使用时使用<code>*</code>的方式,会随机切换</p>
+<h3 id="本地存根"><a href="#本地存根" class="headerlink" title="本地存根"></a>本地存根</h3><p>客户端一般只有接口，具体的实现都在服务器端，但是有时候我们想要做参数的提前校验，以及做缓存之类的<br>这个时候我们只需要在客户端创建类实现远程调用接口，然后里面<strong>必须</strong>有一个构造函数<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.itcast.gmall.bean.UserAddress;</span><br><span class="line"><span class="keyword">import</span> com.itcast.gmall.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.StringUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceStub</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> UserService userService;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">UserServiceStub</span><span class="params">(UserService userService)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.userService = userService;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 构造函数传入真正的远程代理对象</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">getUserAddressList</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//如果参数不为空就返回</span></span><br><span class="line">		<span class="keyword">if</span>(!StringUtils.isEmpty(userId))&#123;</span><br><span class="line">			List&lt;UserAddress&gt; userAddressList = userService.getUserAddressList(userId);</span><br><span class="line">			<span class="keyword">return</span> userAddressList;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后我们需要在<strong>消费者端</strong>使用<strong>stub</strong>来设置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dubbo:reference</span> <span class="attr">interface</span>=<span class="string">"com.itcast.gmall.service.UserService"</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">stub</span>=<span class="string">"gmall.service.impl.UserServiceStub"</span>&gt;</span><span class="tag">&lt;/<span class="name">dubbo:reference</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>只有当我们的stub验证通过后，才会执行服务器端的代码(在开发中，我们通常把存根放在接口工程中)</p>
+<h3 id="Dubbo和SpringBoot整合的三种方式"><a href="#Dubbo和SpringBoot整合的三种方式" class="headerlink" title="Dubbo和SpringBoot整合的三种方式"></a>Dubbo和SpringBoot整合的三种方式</h3><ul>
+<li>使用dubbo自动扫描 @Reference（引入服务）,@Service(暴露服务),记得使用@EnableDubbo</li>
+<li>使用xml配置，那么我们使用@ImportResource配置xml文件，不需要使用@EnableDubbo</li>
+<li>我们使用XXXConfig注册组件的方式，例如 <code>&lt;dubbo:application&gt;&lt;/dubbo:application&gt;</code>,记得使用@EnableDubbo</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.alibaba.dubbo.config.ApplicationConfig;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyConfig</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApplicationConfig <span class="title">applicationConfig</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ApplicationConfig applicationConfig = <span class="keyword">new</span> ApplicationConfig();</span><br><span class="line">        applicationConfig.setName(<span class="string">"boot-service-consumer"</span>);</span><br><span class="line">        <span class="keyword">return</span> applicationConfig;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p><strong>Zookeeper宕机之后是消费者仍可以继续调用生产者的服务，因为他们仍能通过本地缓存通讯</strong><br>我们也可以使用@Reference(url=””)实现dubbo直连</p>
+<h3 id="Dubbo的负载均衡"><a href="#Dubbo的负载均衡" class="headerlink" title="Dubbo的负载均衡"></a>Dubbo的负载均衡</h3><p>Random LoadBalance 基于权重的随机负载均衡机制 dubbo默认负载均衡机制<br>RoundRobin LoadBalance 基于权重的轮询负载均衡机制<br>LeastActive LoadBalance 基于最小活跃数负载均衡机制</p>
+<p><strong>我们自定义负载均衡机制</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Reference</span>(loadbalance = <span class="string">"roundrobin"</span>)</span><br><span class="line">UserService userService;</span><br></pre></td></tr></table></figure></p>
+<h3 id="服务降级"><a href="#服务降级" class="headerlink" title="服务降级"></a>服务降级</h3><p>我们可以在duubo控制台操作服务的屏蔽或者容错<br><strong>屏蔽</strong>：指的是消费者不向生产者发送请求，直接返回空<br><strong>容错</strong>：指的是消费者生产者发送请求失败后不报错，然后返回空<br><img src="http://qiniuyun.lmxljc.xyz/dubbo%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7.png" alt="dubbo服务降级操作" title="dubbo服务降级操作"></p>
+<h3 id="Dubbo容错机制"><a href="#Dubbo容错机制" class="headerlink" title="Dubbo容错机制"></a>Dubbo容错机制</h3><p>dubbo默认的容错机制会切换另一台服务器，当然我们也可以借助springcloud的Hystrix来实现自定义容错机制</p>
+<ul>
+<li><strong> 首先在服务提供者端引入依赖</strong><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;dependency&gt;</span></span><br><span class="line"> <span class="string">&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span></span><br><span class="line"> <span class="string">&lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;</span></span><br><span class="line"> <span class="string">&lt;version&gt;1.4.4.RELEASE&lt;/version&gt;</span></span><br><span class="line"><span class="string">&lt;/dependency&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后在方法上使用@HystrixCommand注解<br>千万记住开启Hystrix注解模式，在启动类上加上 @EnableHystrix</p>
+<ul>
+<li><strong>同样的在消费端，我们也要引入相应的依赖，然后在调用方法上使用@HystrixCommand注解</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@HystrixCommand</span>(fallbackMethod = <span class="string">"errorMethod"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">initOrder</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">"用户id："</span>+userId);</span><br><span class="line">		<span class="comment">//1、查询用户的收货地址</span></span><br><span class="line">		List&lt;UserAddress&gt; addressList = userService.getUserAddressList(userId);</span><br><span class="line">		<span class="keyword">for</span> (UserAddress userAddress : addressList) &#123;</span><br><span class="line">			System.out.println(userAddress.getUserAddress());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> addressList;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">errorMethod</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> Arrays.asList(<span class="keyword">new</span> UserAddress(<span class="number">1</span>,<span class="string">"出错"</span>,<span class="string">"出错"</span>,<span class="string">"出错"</span>,<span class="string">"出错"</span>,<span class="string">"出错"</span>));</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后我们需要在启动类上添加 @EnableHystrix</p>
+<h3 id="dubbo底层原理我建议阅读官方文档"><a href="#dubbo底层原理我建议阅读官方文档" class="headerlink" title="dubbo底层原理我建议阅读官方文档"></a>dubbo底层原理我建议阅读<a href="http://dubbo.apache.org/zh-cn/docs/dev/design.html" title="官方文档" target="_blank" rel="noopener">官方文档</a></h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+  
+        <div class="post-tags">
+          
+            <a href="/lmx110522.github.io/tags/Dubbo和SpringBoot/" rel="tag"># Dubbo和SpringBoot</a>
+          
+        </div>
+      
+
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="李茂展 WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="李茂展 Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+      <ul class="post-copyright">
+         <li class="post-copyright-link">
+          <strong>本文作者：</strong>
+          <a href="/" title="欢迎访问 李茂展 的个人博客">李茂展</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文标题：</strong>
+          <a href="https://lmx110522.github.io/2019/01/07/Dubbo和SpringBoot/" title="Dubbo和SpringBoot">Dubbo和SpringBoot</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文链接：</strong>
+          <a href="https://lmx110522.github.io/2019/01/07/Dubbo和SpringBoot/" title="Dubbo和SpringBoot">https://lmx110522.github.io/2019/01/07/Dubbo和SpringBoot/</a>
+        </li>
+
+        <li class="post-copyright-date">
+            <strong>发布时间：</strong>2019年1月7日 - 11时01分
+        </li>  
+
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong>
+          本文由 李茂展 原创，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="license" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a> <br>转载请保留以上声明信息！
+        </li>
+      </ul>
+    
+  </div>  
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/lmx110522.github.io/2019/01/03/Dubbo基础/" rel="next" title="Dubbo基础">
+                <i class="fa fa-chevron-left"></i> Dubbo基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI4My84ODQ3"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/lmx110522.github.io/images/avatar.gif" alt="李茂展">
+          <p class="site-author-name" itemprop="name">李茂展</p>
+          <p class="site-description motion-element" itemprop="description">欢迎您光临本站!~</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/lmx110522.github.io/archives">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/lmx110522.github.io/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/lmx110522.github.io/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lmx110522?tab=repositories" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/u/5393136352?nick=%E5%9B%BD%E6%B0%91%E5%B0%8F%E6%B2%AB%E7%86%99" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://blog.csdn.net/over110522" target="_blank" title="csdn">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  csdn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.csdn.net/" title="CSDN" target="_blank">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dubbo和SpringBoot"><span class="nav-number">1.</span> <span class="nav-text">Dubbo和SpringBoot</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot整合Dubbo"><span class="nav-number">1.1.</span> <span class="nav-text">springboot整合Dubbo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务提供者"><span class="nav-number">1.1.1.</span> <span class="nav-text">服务提供者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务消费者"><span class="nav-number">1.1.2.</span> <span class="nav-text">服务消费者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubbo属性配置加载顺序"><span class="nav-number">1.1.3.</span> <span class="nav-text">Dubbo属性配置加载顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubbo启动时检查"><span class="nav-number">1.1.4.</span> <span class="nav-text">Dubbo启动时检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消费者全局配置-dubbo-provider"><span class="nav-number">1.1.5.</span> <span class="nav-text">消费者全局配置(dubbo.provider)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#timeout-retries"><span class="nav-number">1.1.6.</span> <span class="nav-text">timeout retries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dubbo多版本"><span class="nav-number">1.1.7.</span> <span class="nav-text">dubbo多版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地存根"><span class="nav-number">1.1.8.</span> <span class="nav-text">本地存根</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubbo和SpringBoot整合的三种方式"><span class="nav-number">1.1.9.</span> <span class="nav-text">Dubbo和SpringBoot整合的三种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高可用"><span class="nav-number">1.1.10.</span> <span class="nav-text">高可用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubbo的负载均衡"><span class="nav-number">1.1.11.</span> <span class="nav-text">Dubbo的负载均衡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务降级"><span class="nav-number">1.1.12.</span> <span class="nav-text">服务降级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubbo容错机制"><span class="nav-number">1.1.13.</span> <span class="nav-text">Dubbo容错机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dubbo底层原理我建议阅读官方文档"><span class="nav-number">1.1.14.</span> <span class="nav-text">dubbo底层原理我建议阅读官方文档</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李茂展</span>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/lmx110522/lmx110522.github.io" rel="external nofollow">
+    github
+  </a>| 感谢光临本站！<a style="font-weight:bolder;" href="mailto:1247721306@qq.com?subject=寻求疑问&body=你的名字%0d%0a疑问宝宝">有疑问可以给我留言</a>
+  |	<div class="powered-by">
+		<i class="fa fa-user-md"></i><span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv">999</span>次
+</span>
+	</div>
+</div>
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+  
+  <script type="text/javascript" src="/lmx110522.github.io/vendors/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/lmx110522.github.io/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/lmx110522.github.io/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/lmx110522.github.io/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/lmx110522.github.io/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/lmx110522.github.io/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/lmx110522.github.io/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+	<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>
