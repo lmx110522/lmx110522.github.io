@@ -63,9 +63,20 @@
         <category>python flask</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>商城</tag>
         <tag>flask</tag>
+        <tag>jQuery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SpringBoot的难点总结]]></title>
+    <url>%2Flmx110522.github.io%2F2018%2F05%2F14%2FSpringBoot%E7%9A%84%E9%9A%BE%E7%82%B9%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[SpringBoot的难点总结WebJars:以jar包的方式引入例如jquery,我们可以这样引入12345&lt;dependency&gt; &lt;groupId&gt;org.webjars&lt;/groupId&gt; &lt;artifactId&gt;jquery&lt;/artifactId&gt; &lt;version&gt;3.0.0&lt;/version&gt;&lt;/dependency&gt; 然后在目录结构是： html中引入 /webjars/jquery/3.0.0/jquery.js就可以加载到 分析 WebMvcAutoConfiguration“/**”访问当前项目的任何资源(静态资源文件夹)12345"classpath:/META‐INF/resources/","classpath:/resources/","classpath:/static/","classpath:/public/""/"：当前项目的根路径 欢迎页； 静态资源文件夹下的所有index.html页面；被”/**”映射访问 localhost/ 会首先找Index.html 所有的 **/favicon.ico 都是在静态资源文件下找；SpringBoot自定义web配置文件以及拦截器springboot1.x版本的时候我们会继承WebMvcConfigurerAdapter,但是在2.x版本以后被标注@Deprecated，表示这个方法再慢慢被其他用法给替代所以我们使用实现WebMvcConfigurer,然后重写其方法12345678@Configurationpublic class MyConfig implements WebMvcConfigurer&#123; public void addViewControllers(ViewControllerRegistry registry) &#123; //主要处理一些不需要直接操作，只需要映射地址的 registry.addViewController("/index").setViewName("index"); &#125;&#125; 当然我们也可以这样使用123456789101112@Configurationpublic class MyConfig implements WebMvcConfigurer&#123; public WebMvcConfigurer webMvcConfigurer()&#123; return new WebMvcConfigurer() &#123; @Override public void addViewControllers(ViewControllerRegistry registry) &#123; registry.addViewController("/test").setViewName("test"); &#125; &#125;; &#125;&#125; SpringBoot的拦截器我们往往在操作前要校验权限，所以拦截器有必要使用创建一个类，实现HandlerInterceptor接口123456789101112131415161718@Componentpublic class LoginInterceptor implements HandlerInterceptor &#123; public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception &#123; String username = (String) request.getSession().getAttribute("username"); if(StringUtils.isEmpty(username))&#123; username = request.getParameter("username"); if(!StringUtils.isEmpty(username))&#123; request.getSession().setAttribute("username",username); &#125; //没有输入username并且没有登录转发给登录页面 request.getRequestDispatcher("/index").forward(request,response); return false; &#125; return true; &#125;&#125; 我使用的是把拦截器注册到ioc容器中，这样防止以后我在拦截器中注入其他组件不能使用的问题12345678910111213141516171819202122232425262728@Configurationpublic class MyConfig implements WebMvcConfigurer&#123; @Autowired private LoginInterceptor loginInterceptor; public void addViewControllers(ViewControllerRegistry registry) &#123; //主要处理一些不需要直接操作，只需要映射地址的 registry.addViewController("/index").setViewName("index"); &#125; public WebMvcConfigurer webMvcConfigurer()&#123; return new WebMvcConfigurer() &#123; @Override public void addViewControllers(ViewControllerRegistry registry) &#123; registry.addViewController("/test").setViewName("test"); &#125; // 按住ctrl+O // springboot 1.x版本静态资源默认不拦截，但是2.x以后会拦截静态资源 @Override public void addInterceptors(InterceptorRegistry registry) &#123; registry.addInterceptor(loginInterceptor).addPathPatterns("/**"). excludePathPatterns("/index","/login","/"); &#125; &#125;; &#125;&#125; 我使用的12@Autowired private LoginInterceptor loginInterceptor; 注意： 加载ioc容器中的拦截组件，然后registry.addInterceptor(loginInterceptor)加载，而不是使用 registry.addInterceptor(new loginInterceptor())方式，这种情况时，自定义的interceptor中不能注入其他内容，比 如redis或者其他service，如果要注入，必须使用上面这种方法 SpringBoot错误处理机制查看源码 ErrorMvcAutoConfiguration类的使用当访问后出现4XX或者5XX的错误的时候，会转发/error请求，然后查看静态文件夹有没有error文件夹，如果没有，根据请求的设备不同，会有不同的处理结果(默认错误页面)检查设备是PC会返回html,其他设备返回json格式的数据 如何定制错误呢 有模板引擎的情况下；error/状态码; 【将错误页面命名为 错误状态码.html 放在模板引擎文件夹里面的error文件夹下】，发生此状态码的错误就会来到 对应的页面；我们可以使用4xx和5xx作为错误页面的文件名来匹配这种类型的所有错误，精确优先（优先寻找精确的状态码.html）； 页面能获取的信息； timestamp：时间戳 status：状态码 error：错误提示 exception：异常对象 message：异常消息 errors：JSR303数据校验的错误都在这里 没有模板引擎（模板引擎找不到这个错误页面），静态资源文件夹下找； 以上都没有错误页面，就是默认来到SpringBoot默认的错误提示页面； 定义错误页面1234567891011121314//出现异常会进入这个类中的方法@ControllerAdvicepublic class MyException &#123; @ExceptionHandler(CustomException.class) public String handleException(Exception e)&#123; Map&lt;String,Object&gt; map = new HashMap&lt;&gt;(); map.put("code","500"); map.put("message",e.getMessage()); return "forward:/error"; &#125;&#125; 但是上面这一种不具有适配性，所以我们可以这样做123456789public class MyErrorAttributes extends DefaultErrorAttributes &#123; @Override public Map&lt;String, Object&gt; getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) &#123; Map&lt;String, Object&gt; map = super.getErrorAttributes(webRequest, includeStackTrace); map.put("company","nyist"); return map; &#125;&#125; SpringBoot嵌入式Servlet容器优点： 简单、便携缺点： 默认不支持JSP，优化定制比较复杂我们可以外置的Servlet容器，然后我们可以这样做 创建成一个war项目 将嵌入式的tomcat设置成provided 必须编写一个类 12345678public class ServletInitializer extends SpringBootServletInitializer &#123; @Override protected SpringApplicationBuilder configure(SpringApplicationBuilder application) &#123; return application.sources(TomcatDemoApplication.class); &#125;&#125; 启动就可以使用了 我们也要配置静态资源的访问12spring.mvc.view.prefix=/WEB-INF/spring.mvc.view.suffix=.jsp]]></content>
+      <categories>
+        <category>springboot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot难点</tag>
       </tags>
   </entry>
   <entry>
@@ -90,8 +101,8 @@
         <category>springboot</category>
       </categories>
       <tags>
-        <tag>socket</tag>
         <tag>jQuery</tag>
+        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
