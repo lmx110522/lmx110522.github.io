@@ -114,7 +114,7 @@
 <meta property="og:site_name" content="茂展的分享博客">
 <meta property="og:description" content="线程复习知识点总结并行： 指的是多个线程同时运行(多核CPU)并发: 借助CPU的高速运转，只不过切换时间极短，用户察觉不到，这也是多线程运行的原因 JVM启动也是属于多线程的，在运行主线程的同时，与之切换运行的至少也有垃圾回收线程在JAVA实现多线程的两种方法  继承Thread: 由于子类重写了Thread类的run(),当调用start()时，直接去找子类的run()方法 实现Runnabl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-16T04:07:07.689Z">
+<meta property="og:updated_time" content="2019-01-16T07:13:29.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程复习知识点总结">
 <meta name="twitter:description" content="线程复习知识点总结并行： 指的是多个线程同时运行(多核CPU)并发: 借助CPU的高速运转，只不过切换时间极短，用户察觉不到，这也是多线程运行的原因 JVM启动也是属于多线程的，在运行主线程的同时，与之切换运行的至少也有垃圾回收线程在JAVA实现多线程的两种方法  继承Thread: 由于子类重写了Thread类的run(),当调用start()时，直接去找子类的run()方法 实现Runnabl">
@@ -574,7 +574,7 @@ $(function() {
 <li><strong>实现Runnable</strong>: 构造函数中传入Runnable的引用，成员变量记住了它，start()调用run()方法内部判断成员变量Runable的引用是否为空，不为空编译时看的是Runnable的run(),运行时执行子类的run方法</li>
 </ul>
 <p>Thread的方法： Thread.currentThread().getName();获取当前线程然后再获取到线程的名字<br>join():当前线程停止，然后等待其他线程执行结束后，再恢复运行状态(应该抛出中断异常)<br>yield: 让出cpu执行权给其他线程（Thread.yield()）<br>setPriority(): 设置优先级，默认是5,值范围在0-10之间<br>代码块加锁的时候，不能用匿名对象，否则synchronized不起作用<br><strong>非静态的同步方法的锁对象是this</strong><br><strong>静态的同步锁对象是字节码对象</strong></p>
-<p>同步代码块嵌套会导致死锁<br>StringBuffer适用于单线程下在字符缓冲区进行大量操作的情况,它是线程安全的<br>StringBuilder适用于多线程下在字符缓冲区进行大量操作的情况，他是线程不安全的<br>String是适用于少量的字符串操作的情况</p>
+<p>同步代码块嵌套会导致死锁<br>StringBuffer适用于多线程下在字符缓冲区进行大量操作的情况,它是线程安全的<br>StringBuilder适用于单线程下在字符缓冲区进行大量操作的情况，他是线程不安全的<br>String是适用于少量的字符串操作的情况</p>
 <p>单例设计模式（保证类在内存中只有一个对象）</p>
 <p>线程的生命周期 新建、就绪、阻塞、运行、死亡</p>
 
@@ -747,7 +747,7 @@ $(function() {
           
             <div class="site-state-item site-state-categories">
               <a href="/lmx110522.github.io/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
