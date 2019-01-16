@@ -90,7 +90,7 @@
 <link href="/lmx110522.github.io/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="LMX">
+  <meta name="keywords" content="java底层知识,">
 
 
 
@@ -106,16 +106,20 @@
 
 
 
-<meta name="description" content="欢迎您光临本站!~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="茂展的分享博客">
-<meta property="og:url" content="https://lmx110522.github.io/archives/2018/05/index.html">
+<meta name="description" content="深挖基础知识动静态代理的区别，什么场景使用静态代理通常只代理一个类，动态代理是代理一个接口下的多个实现类静态代理事先知道代理的是什么，而动态代理不知道代理什么东西，只有运行的时候才知道。动态代理是实现JDK里的InvocationHandler接口的invoke方法。但注意的是代理的是接口，也就是你的业务类必须实现接口，通过Proxy里的newProxyInstance得到代理对象AOP是基于动态">
+<meta name="keywords" content="java底层知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深挖基础知识">
+<meta property="og:url" content="https://lmx110522.github.io/2019/01/12/深挖基础知识/index.html">
 <meta property="og:site_name" content="茂展的分享博客">
-<meta property="og:description" content="欢迎您光临本站!~">
+<meta property="og:description" content="深挖基础知识动静态代理的区别，什么场景使用静态代理通常只代理一个类，动态代理是代理一个接口下的多个实现类静态代理事先知道代理的是什么，而动态代理不知道代理什么东西，只有运行的时候才知道。动态代理是实现JDK里的InvocationHandler接口的invoke方法。但注意的是代理的是接口，也就是你的业务类必须实现接口，通过Proxy里的newProxyInstance得到代理对象AOP是基于动态">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/GC%E6%A0%B9%E6%90%9C%E7%B4%A2.png">
+<meta property="og:updated_time" content="2019-01-16T10:21:34.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="茂展的分享博客">
-<meta name="twitter:description" content="欢迎您光临本站!~">
+<meta name="twitter:title" content="深挖基础知识">
+<meta name="twitter:description" content="深挖基础知识动静态代理的区别，什么场景使用静态代理通常只代理一个类，动态代理是代理一个接口下的多个实现类静态代理事先知道代理的是什么，而动态代理不知道代理什么东西，只有运行的时候才知道。动态代理是实现JDK里的InvocationHandler接口的invoke方法。但注意的是代理的是接口，也就是你的业务类必须实现接口，通过Proxy里的newProxyInstance得到代理对象AOP是基于动态">
+<meta name="twitter:image" content="http://qiniuyun.lmxljc.xyz/GC%E6%A0%B9%E6%90%9C%E7%B4%A2.png">
 
 
 
@@ -143,7 +147,7 @@
 
 
 
-  <link rel="canonical" href="https://lmx110522.github.io/archives/2018/05/">
+  <link rel="canonical" href="https://lmx110522.github.io/2019/01/12/深挖基础知识/">
 
 
 
@@ -166,7 +170,7 @@
 </style>
 
 
-  <title> 归档 | 茂展的分享博客 </title>
+  <title> 深挖基础知识 | 茂展的分享博客 </title>
 </head>
 
   	 <!-- custom analytics part create by xiamo -->
@@ -280,7 +284,7 @@ $(function() {
     
   
 
-  <div class="container one-collumn sidebar-position-right  page-archive  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -405,64 +409,361 @@ $(function() {
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 24 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/lmx110522.github.io/2019/01/12/深挖基础知识/">
+
+  <span style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="李茂展">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/lmx110522.github.io/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="茂展的分享博客">
+    <span style="display:none" itemprop="logo" itemscope="" itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="茂展的分享博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                深挖基础知识
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-12T18:19:50+08:00">
+                2019-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/lmx110522.github.io/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/lmx110522.github.io/2019/01/12/深挖基础知识/" class="leancloud_visitors" data-flag-title="深挖基础知识">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,927
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <h1 id="深挖基础知识"><a href="#深挖基础知识" class="headerlink" title="深挖基础知识"></a>深挖基础知识</h1><h2 id="动静态代理的区别，什么场景使用"><a href="#动静态代理的区别，什么场景使用" class="headerlink" title="动静态代理的区别，什么场景使用"></a>动静态代理的区别，什么场景使用</h2><p>静态代理通常只代理一个类，动态代理是代理一个接口下的多个实现类<br>静态代理事先知道代理的是什么，而动态代理不知道代理什么东西，只有运行的时候才知道。<br><strong>动态代理是实现JDK里的InvocationHandler接口的invoke方法。但注意的是代理的是接口，也就是你的业务类必须实现接口，通过Proxy里的newProxyInstance得到代理对象</strong><br>AOP是基于动态代理实现的，比如著名的Spring框架、Hibernate框架等待都是动态代理的使用例子</p>
+<h2 id="Java中单例设计模式"><a href="#Java中单例设计模式" class="headerlink" title="Java中单例设计模式"></a>Java中单例设计模式</h2><p>分为<strong>懒汉式和饿汉式</strong><br>饿汉式指的是在使用前就提前创建好，懒汉式指的是先声明变量名，然后什么时候使用再创建。</p>
+<h2 id="JVM垃圾回收机制和常见算法"><a href="#JVM垃圾回收机制和常见算法" class="headerlink" title="JVM垃圾回收机制和常见算法"></a>JVM垃圾回收机制和常见算法</h2><p>GC在回收对象前必须发现那些无用的对象，那么如何发现呢？常用的搜索算法：</p>
+<ul>
+<li><strong>引用计数器算法</strong>(废弃)<br>指的是在创建每个对象时设置一个计数器，当有地方使用时，加1，当引用失效后，计数器减1，当计数器为0的时候，JVM就认为对象不再被使用。但是即使计数器实现简单，效率高，但不能解决循环引用的问题，同时也会带来额外的开销，从jdk1.1之后这个算法就被丢弃了</li>
+<li><strong>根搜索算法</strong><br>根搜索算法是通过一些”GC Roots”对象作为起点，从这些节点开始搜索，搜索通过的路径成为引用链，当一个对象没有被GC Roots的引用链连接的时候，说明这个对象不可用<br><img src="http://qiniuyun.lmxljc.xyz/GC%E6%A0%B9%E6%90%9C%E7%B4%A2.png" alt="GC根搜索算法" title="GC根搜索算法"></li>
+</ul>
+<p><strong>GC Roots对象包括</strong>：</p>
+<ul>
+<li>虚拟机栈(栈帧中的本地变量表)中的引用对象</li>
+<li>方法区域中的静态属性引用的对象</li>
+<li>方法区域中常量引用的对象</li>
+<li>本地方法栈中JNI中引用的对象</li>
+</ul>
+<h3 id="搜索到无用对象后，回收算法："><a href="#搜索到无用对象后，回收算法：" class="headerlink" title="搜索到无用对象后，回收算法："></a>搜索到无用对象后，回收算法：</h3><ol>
+<li><strong>标记—清除算法(DVM使用的算法)</strong>： 效率不高，清除后有许多不连续的空间</li>
+<li><strong>复制算法</strong>：将内存分成两块，当垃圾回收的时候，把存活的对象复制到另一块，然后把这个内存整个清除掉。但是由于每次只能使用其中的一半，所以内存利用率不高，现在的JVM用复制方法收集新生代，由于新生代大部分对象都是朝生夕死的，所以两块的内存比例不再是一半一半了！</li>
+<li><strong>标记—整理算法</strong>：适合收集存活时间比较久的对象，因为他是把存活的对象往内存的一端移动，然后回收边界以外的内存，从而提高了内存利用率。</li>
+<li><strong>分代收集</strong>： 根据对象的存活时间把内存分为新生代和老年代，每个代采用不同的垃圾回收算法。新生代使用复制算法，然后老年代采用标记整理算法。<strong>实现方式依赖于不同的虚拟机</strong>。</li>
+</ol>
+<h2 id="JVM内存结构"><a href="#JVM内存结构" class="headerlink" title="JVM内存结构"></a>JVM内存结构</h2><ul>
+<li><strong>方法区</strong>： 静态分配，编译器将变量绑定到某个存储位置，而且绑定不会在运行时改变。常数池，源代码的命名常量、String常量和static变量保存在方法区</li>
+<li><strong>Java Stack</strong>(栈)： 一个栈的空间可能是连续的，也有可能不连续。<strong>栈中存储数据也是运行时确定的</strong></li>
+<li><strong>堆分配</strong>： 以任意的顺序，在运行时进行存储空间分配和收回的内存管理模型。堆存储的数据通常是大小，数量和生命期在编译是不能确定的</li>
+</ul>
+<h2 id="JAVA内存分配"><a href="#JAVA内存分配" class="headerlink" title="JAVA内存分配"></a>JAVA内存分配</h2><ol>
+<li>基本数据类型直接在栈空间分配</li>
+<li>方法的形式参数，直接在栈空间分配，当方法调用完从栈空间回收</li>
+<li>引用数据类型，需要通过new来创建，既在栈空间分配一个地址空间，又在堆空间分配对象的类变量</li>
+<li>方法的引用参数，在栈空间分配一个地址空间，并指向堆空间的对象区，当方法调用结束之后从栈空间回收</li>
+<li>局部变量通过new出来的，在栈空间和堆空间中分配空间，当局部变量生命周期结束后，栈空间立刻被回收，堆空间区域等待GC回收</li>
+<li>方法调用时传入的实际参数，先在栈空间分配，在方法调用完成后从栈空间释放。</li>
+<li>字符串常量在 DATA区域分配，this在堆空间分配</li>
+<li>数组既在栈空间分配数组名称，又在堆空间分配数组实际的大小</li>
+</ol>
+<h2 id="Java强引用，垃圾回收器绝不会回收它，即使内存不够报错。"><a href="#Java强引用，垃圾回收器绝不会回收它，即使内存不够报错。" class="headerlink" title="Java强引用，垃圾回收器绝不会回收它，即使内存不够报错。"></a>Java强引用，垃圾回收器绝不会回收它，即使内存不够报错。</h2><p>Java引用分为四种级别：</p>
+<ol>
+<li>强引用</li>
+<li>软引用</li>
+<li>弱引用</li>
+<li>虚引用</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String abc = <span class="keyword">new</span> String(<span class="string">"abc"</span>); <span class="comment">//强引用</span></span><br><span class="line">SoftReference&lt;String&gt; softRef = <span class="keyword">new</span> SoftReference&lt;String&gt;(abc); <span class="comment">//软引用</span></span><br><span class="line">WeakReference&lt;String&gt; weakRef = <span class="keyword">new</span> WeakReference&lt;String&gt;(abc); <span class="comment">//弱引用</span></span><br><span class="line">softRef.clear(); <span class="comment">//虚引用</span></span><br></pre></td></tr></table></figure>
+<h2 id="heap和stack区别"><a href="#heap和stack区别" class="headerlink" title="heap和stack区别"></a>heap和stack区别</h2><ol>
+<li><p><strong>申请方式</strong>：</p>
+<ul>
+<li>stack是系统自动分配。系统自动在栈中开辟空间</li>
+<li>heap是程序员自己申请并且指定大小，通过new的方式</li>
+</ul>
+</li>
+<li><p><strong>申请后系统反应</strong>：</p>
+<ul>
+<li>stack: 只要是栈的剩余空间大于所申请的空间大小，系统将为程序提供内存，否则包异常提示栈溢出</li>
+<li>heap: 操作系统有一个记录空间内存地址的链表，当系统收到程序申请时，会遍历链表，寻找第一个空间大于所申请空间的堆结点，然后将该结点从链表中删除，并把结点的空间分配程序。系统会将多余的那部分重新放入空闲链表中。</li>
+</ul>
+</li>
+<li><p><strong>申请的大小限制</strong>:</p>
+<ul>
+<li>stack: 栈是向低地址扩展的数据结构，是一块连续的内存区域。栈顶地址和栈的最大容量是事先设定好的，栈的能获得空间很小</li>
+<li>heap:堆是从向高地址扩展的数据结构，不是连续的内存区域。由于系统是用链表来储存空间内存地址的，自然是不连续的，而链表的遍历方向是由低地址向高地址的。堆的大小受限于计算机系统的有效虚拟内存的大小。由此可见，堆获得的空间比较灵活，也比较大。</li>
+</ul>
+</li>
+<li><p><strong>申请效率的比较</strong>:</p>
+<ul>
+<li>stack: 由系统自动分配，速度较快。程序员无法控制的</li>
+<li>heap: 由new分配的内存，一般速度比较慢，容器产生内存碎片</li>
+</ul>
+</li>
+</ol>
+<h2 id="Java的类加载器"><a href="#Java的类加载器" class="headerlink" title="Java的类加载器"></a>Java的类加载器</h2><h3 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h3><ol>
+<li>根类加载器</li>
+<li>扩展类加载器</li>
+<li>系统(应用)类加载器</li>
+<li>自定义加载器(必须继承ClassLoader)</li>
+</ol>
+<h3 id="java类加载体系值ClassLoader双亲委托机制"><a href="#java类加载体系值ClassLoader双亲委托机制" class="headerlink" title="java类加载体系值ClassLoader双亲委托机制"></a>java类加载体系值ClassLoader双亲委托机制</h3><p>java是一种类型安全的语言，它有四类称为安全沙箱机制的安全机制来保证语言的安全性，这四种分别是：</p>
+<ul>
+<li>类加载机制</li>
+<li>.class文件检验器</li>
+<li>内置于java虚拟机(及语言)的安全特性</li>
+<li>安全管理器及java api</li>
+</ul>
+<p>java程序中的.java文件编译完成会生成.class文件，而.class文件就是通过类加载器的ClassLoader加载的，而ClassLoader在加载过程中会使用“双亲委派机制”来加载.class文件</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
+
+      
+    </div>
+  
+        <div class="post-tags">
+          
+            <a href="/lmx110522.github.io/tags/java底层知识/" rel="tag"># java底层知识</a>
+          
+        </div>
+      
+
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="李茂展 WeChat Pay">
+          <p>微信打赏</p>
         </div>
       
       
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="李茂展 Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
 
-      <h2 class="post-title">
+    <footer class="post-footer">
         
-            <a class="post-title-link" href="/lmx110522.github.io/2018/05/14/SpringBoot的难点总结/" itemprop="url">
-              
-                <span itemprop="name">SpringBoot的难点总结</span>
-              
-            </a>
-        
-      </h2>
+     <div>    
+      
+      <ul class="post-copyright">
+         <li class="post-copyright-link">
+          <strong>本文作者：</strong>
+          <a href="/" title="欢迎访问 李茂展 的个人博客">李茂展</a>
+        </li>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-05-14T17:21:27+08:00" content="2018-05-14">
-          05-14
-        </time>
-      </div>
+        <li class="post-copyright-link">
+          <strong>本文标题：</strong>
+          <a href="https://lmx110522.github.io/2019/01/12/深挖基础知识/" title="深挖基础知识">深挖基础知识</a>
+        </li>
 
-    </header>
+        <li class="post-copyright-link">
+          <strong>本文链接：</strong>
+          <a href="https://lmx110522.github.io/2019/01/12/深挖基础知识/" title="深挖基础知识">https://lmx110522.github.io/2019/01/12/深挖基础知识/</a>
+        </li>
+
+        <li class="post-copyright-date">
+            <strong>发布时间：</strong>2019年1月12日 - 18时01分
+        </li>  
+
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong>
+          本文由 李茂展 原创，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="license" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a> <br>转载请保留以上声明信息！
+        </li>
+      </ul>
+    
+  </div>  
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/lmx110522.github.io/2019/01/07/Dubbo和SpringBoot/" rel="next" title="Dubbo和SpringBoot">
+                <i class="fa fa-chevron-left"></i> Dubbo和SpringBoot
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/lmx110522.github.io/2019/01/15/JVM/" rel="prev" title="JVM">
+                JVM <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -470,6 +771,12 @@ $(function() {
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI4My84ODQ3"></div>
+    
+  </div>
+
 
         </div>
         
@@ -489,8 +796,17 @@ $(function() {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/lmx110522.github.io/images/avatar.gif" alt="李茂展">
           <p class="site-author-name" itemprop="name">李茂展</p>
@@ -587,6 +903,22 @@ $(function() {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深挖基础知识"><span class="nav-number">1.</span> <span class="nav-text">深挖基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#动静态代理的区别，什么场景使用"><span class="nav-number">1.1.</span> <span class="nav-text">动静态代理的区别，什么场景使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中单例设计模式"><span class="nav-number">1.2.</span> <span class="nav-text">Java中单例设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM垃圾回收机制和常见算法"><span class="nav-number">1.3.</span> <span class="nav-text">JVM垃圾回收机制和常见算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索到无用对象后，回收算法："><span class="nav-number">1.3.1.</span> <span class="nav-text">搜索到无用对象后，回收算法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM内存结构"><span class="nav-number">1.4.</span> <span class="nav-text">JVM内存结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA内存分配"><span class="nav-number">1.5.</span> <span class="nav-text">JAVA内存分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java强引用，垃圾回收器绝不会回收它，即使内存不够报错。"><span class="nav-number">1.6.</span> <span class="nav-text">Java强引用，垃圾回收器绝不会回收它，即使内存不够报错。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#heap和stack区别"><span class="nav-number">1.7.</span> <span class="nav-text">heap和stack区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的类加载器"><span class="nav-number">1.8.</span> <span class="nav-text">Java的类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#种类"><span class="nav-number">1.8.1.</span> <span class="nav-text">种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java类加载体系值ClassLoader双亲委托机制"><span class="nav-number">1.8.2.</span> <span class="nav-text">java类加载体系值ClassLoader双亲委托机制</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -714,11 +1046,9 @@ $(function() {
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/lmx110522.github.io/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/lmx110522.github.io/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
@@ -751,6 +1081,10 @@ $(function() {
 
   
 
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
   
 
 
