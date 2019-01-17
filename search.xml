@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JavaWeb基础]]></title>
+    <url>%2Flmx110522.github.io%2F2019%2F01%2F17%2FJavaWeb%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[JavaWeb基础JDBC技术JDBC操作数据库流程 Class.forName()加载数据库连接驱动 DriverManager.getConnection()获取数据库连接对象 根据SQL获取sql会话对象，有两种方式Statement、PreparedStatement 执行SQL处理结果集，执行SQL前如果有参数值就设置参数值 关闭结果集、关闭会话、关闭连接 关于使用PreparedStatement不使用Statement的原因 PreparedStatement继承自Statement，PreparedStatement实例包含已编译的SQL语句，因此执行速度快 PreparedStatement三个方法execute、executeQuery、executeUpdate已经更改为不再需要参数 PreparedStatement不需要不断的拼接，但是Statement需要 PreparedStatement传入的内容不会和sql语句发生任何的匹配关系，但Statement容易被SQL注入 关系数据库中连接池的机制是：前提：为数据库连接建立一个缓冲池 从连接池获取或者创建一个可用连接 使用完毕后，把连接返回给连接池 在系统关闭前，断开所有连接并释放连接占用的系统资源 能够处理无效连接，限制连接池中的连接总数不低于或者不超过某个限定值 注：数据库连接池数量一直保持一个最小连接数的数量，当数量不够时，数据库会创建一些连接，直到一个最大连接数，之后的数据库连接就会等待。 Http的长连接和短连接Http协议有HTTP/1.0版本和HTTP/1.1版本。HTTP/1.1默认保持长连接，数据传输完成完成了依然保持TCP连接不断开，等待同域名下继续使用这个通道传输数据。HTTP/1.0默认是短连接，浏览器和服务器每一次进行HTTP操作，就建立一次连接，任务结束就中断连接。 Cookie和SessionCookie和Session的区别：Cookie是web服务器发送给浏览器的一块信息，浏览器会在本地一个文件中给每个web服务器存储cookie。以后浏览器再给特定的web服务器发送请求时，同时会发送所有为该服务器存储的cookie。Session是存储在web服务器端的一块信息。session对象存储特定的用户会话所需的属性以及配置信息。当用户在应用程序的web页之间跳转时，存储在Session对象中的变量将不会丢失，而是在整个会话中一直存在下去。 Cookie和Session的不同点： 无论客户端做怎样的配置，session都能正常工作。当客户端禁用cookie时将无法使用cookie 存储方面，session可以存储任何的java对象，cookie只能存储String类型的对象 关于Session在集群和分布式中的共享问题我们可以使用服务器session复制共享，但是session广播通知其他session会造成网络流量瓶颈，同时session中的内容序列化也会消耗系统性能，所以最好使用接触redis实现session共享：原理： 当服务器发现session不在本机内存中，则会去redis中查找，如果redis查到，会复制到本机。这样就可以实现session同步和高可用！有时候我们可能担心redis宕机，所以我们要使用一主多备，由于redis宕机后不会自动切换master，所以需要结合keepalived来实现切换问题！ 单点登录原理后端生成一个session ID,然后设置到cookie，后面的所有请求 浏览器都会带上cookie，然后服务器端从cookie里面获取sessionID,再查找用户信息。所以，保持登录的关键不是cookie,而是通过cookie保存和传输的sessionID,其本质是能获取用户信息的数据。除了cookie,还通常使用HTTP请求头来传输。但是这个请求头浏览器不会像cookie一样自动携带，需要手工处理。 JSP技术Jsp本质上就是一个Servlet，它是Servlet的一种特殊形式，每个jsp页面都是一个Servlet实例。Servlet是由java提供用于开发web服务器应用程序的一个组件，运行在服务端，由servlet容器管理，用来生成动态内容。一个servlet实例是实现了特殊接口Servlet的Java类，所有自定义的servlet均必须实现Servlet接口。 jsp servlet对比：jsp是html页面中内嵌的Java代码，侧重页面显示Servlet是html代码和java代码分离，侧重逻辑控制，mvc设计思想中jsp位于视图层，servlet位于控制层 JVM只能识别java类，并不能识别jsp代码！web容器收到以.jsp为扩展名的url请求时，会将访问请求交给tomcat中jsp引擎处理，每个jsp页面第一次被访问时，jsp引擎将jsp代码解释为一个servlet源程序接着编译成servlet源程序生成.class文件，再由web容器servlet引擎去装载执行servlet程序，实现页面交互。 jsp域对象一个4个域对象 pageContext 指当前页面，在当前jsp页面有效，跳转到其他页面失效 request request域指的是在一次请求范围内有效，从http请求到服务器处理结束，返回响应的整个过程。 session session域指的是当前会话有效范围，浏览器从打开到关闭的过程中，转发、重定向均可以使用。 application context域指的是能在同一个web中使用，服务器未关闭或者重启，数据有效。 XML技术复习xml是一种可扩展性标记语言，支持自定义标签(使用前必须预定义)使用DTD和XML Schema标准化XML结构优点：用于配置文件，格式统一，符合标准；用于在互不兼容的系统间交互数据，共享数据方便。缺点：xml文件格式复杂，数据传输占流量，服务端和客户端解析xml文件占用大量资源且不易维护xml常用解析器有两种： DOM解析，xml文档以DOM树形结构加载入内存 SAX解析，采用事件模型]]></content>
+      <categories>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>JavaWeb基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JVM内存]]></title>
+    <url>%2Flmx110522.github.io%2F2019%2F01%2F16%2FJVM%E5%86%85%E5%AD%98%2F</url>
+    <content type="text"><![CDATA[JVM内存内存泄露:是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果。 GC机制既然java有垃圾回收(GC)机制，理论上不应该有内存泄露的问题，然而总会有无用但可达的对象，这些对象不能被GC回收，因此也会导致内存泄露的发生。例如： hibernate的Session(一级缓存)中的对象属于持久态，垃圾回收器是不会回收这些对象的，然而这些对象可能存在无用的垃圾对象，如果不及时关闭或者清空一级缓存可能会导致内存泄露 注：栈的pop方法调用，即使栈的程序不再引用这些对象，因为栈内部维护着这些对象的过期引用，所以该不会被当做垃圾回收。这种内存泄露是隐蔽的，垃圾回收机制同时也不会回收内存泄露对象所引用的对象。因此会导致很多对象都排除在垃圾回收之外，从而对性能产生重大的影响 Java中为什么要有GC机制 安全性考虑 减少内存泄露 减少程序员的工作量 Java的GC需要回收那些缓存内存运行时，JVM会有一个运行时数据区来管理内存，包括: 程序计数器 虚拟机栈 本地方法栈 方法区 堆 程序计数器、虚拟机栈、本地方法栈都是每个线程私有的内存空间，随着线程而生，随线程而死。这三个区域的内存分配和回收都是确定的，无序考虑回收的问题，但是方法区和堆就不同了，一个接口的多个实现类需要的内存可能不一样。我们只有在程序运行期间才会知道会创建哪些对象，这部分内存的分配和回收都是动态的，GC主要关注的就是这部分内存 内存溢出的原因很多，简单举几个： 内存中加载的数据量过于庞大，如一次从数据库中取出过多数据 集合类中有对对象的引用，使用完没有情况，使JVM不能回收 代码中存在死循环或者代码中产生过多重复的对象实体]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>jvm底层学习</tag>
+        <tag>java底层知识</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[线程复习知识点总结]]></title>
     <url>%2Flmx110522.github.io%2F2019%2F01%2F16%2F%E7%BA%BF%E7%A8%8B%E5%A4%8D%E4%B9%A0%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93%2F</url>
     <content type="text"><![CDATA[线程复习知识点总结并行： 指的是多个线程同时运行(多核CPU)并发: 借助CPU的高速运转，只不过切换时间极短，用户察觉不到，这也是多线程运行的原因 JVM启动也是属于多线程的，在运行主线程的同时，与之切换运行的至少也有垃圾回收线程在JAVA实现多线程的两种方法 继承Thread: 由于子类重写了Thread类的run(),当调用start()时，直接去找子类的run()方法 实现Runnable: 构造函数中传入Runnable的引用，成员变量记住了它，start()调用run()方法内部判断成员变量Runable的引用是否为空，不为空编译时看的是Runnable的run(),运行时执行子类的run方法 Thread的方法： Thread.currentThread().getName();获取当前线程然后再获取到线程的名字join():当前线程停止，然后等待其他线程执行结束后，再恢复运行状态(应该抛出中断异常)yield: 让出cpu执行权给其他线程（Thread.yield()）setPriority(): 设置优先级，默认是5,值范围在0-10之间代码块加锁的时候，不能用匿名对象，否则synchronized不起作用非静态的同步方法的锁对象是this静态的同步锁对象是字节码对象 同步代码块嵌套会导致死锁StringBuffer适用于多线程下在字符缓冲区进行大量操作的情况,它是线程安全的StringBuilder适用于单线程下在字符缓冲区进行大量操作的情况，他是线程不安全的String是适用于少量的字符串操作的情况 单例设计模式（保证类在内存中只有一个对象） 线程的生命周期 新建、就绪、阻塞、运行、死亡]]></content>
@@ -167,8 +190,8 @@
         <category>springboot</category>
       </categories>
       <tags>
-        <tag>socket</tag>
         <tag>jQuery</tag>
+        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
