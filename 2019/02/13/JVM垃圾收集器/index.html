@@ -106,18 +106,18 @@
 
 
 
-<meta name="description" content="JVM垃圾收集器jdk1.7之后HotSpot虚拟机中提供了商用的G1收集器，之前都是实验状态 垃圾回收中的并发编程中的概念并发：用户线程和垃圾书记线程同时进行，用户进程在继续进行，而垃圾回收线程运行于另外一个CPU并行：指的是多条垃圾收集线程同时工作，但是用户线程在等待 Serial收集器这个收集器最大点特点除了是通过一个cpu或一条收集线程完成垃圾收集工作以外，还必须暂停掉其他所有工作的线程直">
+<meta name="description" content="JVM垃圾收集器jdk1.7之后HotSpot虚拟机中提供了商用的G1收集器，之前都是实验状态 垃圾回收中的并发编程中的概念并发：用户线程和垃圾收集线程同时进行，用户进程在继续进行，而垃圾回收线程运行于另外一个CPU并行：指的是多条垃圾收集线程同时工作，但是用户线程在等待 Serial收集器这个收集器最大点特点除了是通过一个cpu或一条收集线程完成垃圾收集工作以外，还必须暂停掉其他所有工作的线程直">
 <meta name="keywords" content="java底层知识">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM垃圾收集器">
 <meta property="og:url" content="https://lmx110522.github.io/2019/02/13/JVM垃圾收集器/index.html">
 <meta property="og:site_name" content="茂展的分享博客">
-<meta property="og:description" content="JVM垃圾收集器jdk1.7之后HotSpot虚拟机中提供了商用的G1收集器，之前都是实验状态 垃圾回收中的并发编程中的概念并发：用户线程和垃圾书记线程同时进行，用户进程在继续进行，而垃圾回收线程运行于另外一个CPU并行：指的是多条垃圾收集线程同时工作，但是用户线程在等待 Serial收集器这个收集器最大点特点除了是通过一个cpu或一条收集线程完成垃圾收集工作以外，还必须暂停掉其他所有工作的线程直">
+<meta property="og:description" content="JVM垃圾收集器jdk1.7之后HotSpot虚拟机中提供了商用的G1收集器，之前都是实验状态 垃圾回收中的并发编程中的概念并发：用户线程和垃圾收集线程同时进行，用户进程在继续进行，而垃圾回收线程运行于另外一个CPU并行：指的是多条垃圾收集线程同时工作，但是用户线程在等待 Serial收集器这个收集器最大点特点除了是通过一个cpu或一条收集线程完成垃圾收集工作以外，还必须暂停掉其他所有工作的线程直">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-13T03:05:53.396Z">
+<meta property="og:updated_time" content="2019-02-13T03:44:55.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM垃圾收集器">
-<meta name="twitter:description" content="JVM垃圾收集器jdk1.7之后HotSpot虚拟机中提供了商用的G1收集器，之前都是实验状态 垃圾回收中的并发编程中的概念并发：用户线程和垃圾书记线程同时进行，用户进程在继续进行，而垃圾回收线程运行于另外一个CPU并行：指的是多条垃圾收集线程同时工作，但是用户线程在等待 Serial收集器这个收集器最大点特点除了是通过一个cpu或一条收集线程完成垃圾收集工作以外，还必须暂停掉其他所有工作的线程直">
+<meta name="twitter:description" content="JVM垃圾收集器jdk1.7之后HotSpot虚拟机中提供了商用的G1收集器，之前都是实验状态 垃圾回收中的并发编程中的概念并发：用户线程和垃圾收集线程同时进行，用户进程在继续进行，而垃圾回收线程运行于另外一个CPU并行：指的是多条垃圾收集线程同时工作，但是用户线程在等待 Serial收集器这个收集器最大点特点除了是通过一个cpu或一条收集线程完成垃圾收集工作以外，还必须暂停掉其他所有工作的线程直">
 
 
 
@@ -568,7 +568,7 @@ $(function() {
 
       
         <h1 id="JVM垃圾收集器"><a href="#JVM垃圾收集器" class="headerlink" title="JVM垃圾收集器"></a>JVM垃圾收集器</h1><p>jdk1.7之后HotSpot虚拟机中提供了商用的<strong>G1收集器</strong>，之前都是实验状态</p>
-<p><strong>垃圾回收中的并发编程中的概念</strong><br>并发：用户线程和垃圾书记线程同时进行，用户进程在继续进行，而垃圾回收线程运行于另外一个CPU<br>并行：指的是多条垃圾收集线程同时工作，但是用户线程在等待</p>
+<p><strong>垃圾回收中的并发编程中的概念</strong><br>并发：用户线程和垃圾收集线程同时进行，用户进程在继续进行，而垃圾回收线程运行于另外一个CPU<br>并行：指的是多条垃圾收集线程同时工作，但是用户线程在等待</p>
 <h2 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h2><p>这个收集器最大点特点除了是通过一个cpu或一条收集线程完成垃圾收集工作以外，还必须暂停掉其他所有工作的线程直至它收集完成<br>由于单线程的运行机制，简单高效。在限定的单cpu的环境中，没有线程交互的开销，专心做垃圾回收工作，可以获得单线程环境下最高的收集效率<br><strong>虽然上特点会让我们觉着会被舍弃这个收集器，但是目前依然是虚拟机在client默认的新生代垃圾收集器</strong></p>
 <h3 id="Serial为什么要用作client端的新生代收集器？"><a href="#Serial为什么要用作client端的新生代收集器？" class="headerlink" title="Serial为什么要用作client端的新生代收集器？"></a>Serial为什么要用作client端的新生代收集器？</h3><h4 id="原因：在用户的桌面应用中，一般分配给虚拟机的内存一般不会很大，收集几十兆甚至几百兆的内存，收集时间可以在几十毫秒或者几百毫秒之内，只要不频繁发生，这点停顿是可以接受的"><a href="#原因：在用户的桌面应用中，一般分配给虚拟机的内存一般不会很大，收集几十兆甚至几百兆的内存，收集时间可以在几十毫秒或者几百毫秒之内，只要不频繁发生，这点停顿是可以接受的" class="headerlink" title="原因：在用户的桌面应用中，一般分配给虚拟机的内存一般不会很大，收集几十兆甚至几百兆的内存，收集时间可以在几十毫秒或者几百毫秒之内，只要不频繁发生，这点停顿是可以接受的"></a>原因：在用户的桌面应用中，一般分配给虚拟机的内存一般不会很大，收集几十兆甚至几百兆的内存，收集时间可以在几十毫秒或者几百毫秒之内，只要不频繁发生，这点停顿是可以接受的</h4><h2 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h2><p>是多线程版本的Serial，在Server中默认的<strong>新生代垃圾收集器</strong>。目前也只有它可以和CMS收集器配合工作。<br>CMS垃圾回收器是 <strong>唯一</strong> 一个可以并发的垃圾收集器。用户线程可以和垃圾回收线程同时工作，<strong>CMS作为老年代垃圾收集器</strong></p>
 <h2 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h2><p><strong>新生代收集算法，使用复制算法的收集器</strong><br>它和其他的收集器关注点不同，cms等收集器关注点在于<strong>尽可能短的缩短停顿的时间</strong>，而<strong>Parallel Scavenge收集器是达到一个可控制的吞吐量</strong>(<strong>吞吐量 = 执行用户代码的时间/(运行用户代码时间+垃圾收集时间)</strong>)，高吞吐量可以高效的使用利用CPU时间，完成计算任务，一般使用于后台计算而不需要太多交互的任务。对于尽可能减少停顿时间的收集器来说，更适合用做用户交互的任务，有很好的交互体验。<br>由于与吞吐量关系密切，ParallelScavenge收集器也经常称为“吞吐量优先”收集器。除上述两个参数之外，Parallel Scavenge收集器还有一个参数-XX:+UseAdaptiveSizePolicy值得关注。这是一个开关参数，当这个参数打开之后，就不需要手工指定新生代的大小(-Xmn)、Eden 与Survivor区的比例(-XX:SurvivorRatio)、 晋升老年代对象年龄(XX:PretenureSizeThreshold)等细节参数了，虚拟机会根据当前系统的运行情况收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或者最大的吞吐量，这种调节方式称为<strong>GC自适应的调节策略</strong>(GC Ergonomics)。对于收集器运作原来不太了解，手工优化存在困难的时候，使用<strong>ParallelScavenge收集器配合自适应调节策略</strong>，把内存管理的调优任务交给虚拟机去完成将是一个不错的选择。只需要把基本的内存数据设置好(如-Xmx设置最大堆)，然后使用MaxGCPauseMillis参数( 更关注最大停顿时间)或GCTimeRatio(更关注吞吐量)参数给虚拟机设立一个优化目标，那具体细节参数的调节工作就由虚拟机完成了。</p>
