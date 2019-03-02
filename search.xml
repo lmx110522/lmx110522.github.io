@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[面试总结(One)]]></title>
+    <url>%2F2019%2F03%2F02%2F%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93-One%2F</url>
+    <content type="text"><![CDATA[笔试总结(One)面向对象的五大基本原则 单一职责原则（SRP）一个类，最好只做一件事，只有一个引起它的变化。单一职责原则可以看做是低耦合、高内聚在面向对象原则上的引申，将职责定义为引起变化的原因，以提高内聚性来减少引起变化的原因。 开放封闭原则（OCP）软件实体应该是可扩展的，而不可修改的。也就是，对扩展开放，对修改封闭的 里氏替换原则（LSP）子类必须能够替换其基类。这一思想体现为对继承机制的约束规范，只有子类能够替换基类时，才能保证系统在运行期内识别子类，这是保证继承复用的基础。 依赖倒置原则（DIP）依赖于抽象。具体而言就是高层模块不依赖于底层模块，二者都同依赖于抽象；抽象不依赖于具体，具体依赖于抽象。 接口隔离原则（ISP）使用多个小的专门的接口，而不要使用一个大的总接口 单例模式饿汉式加载12345678910111213141516171819package com.nyist.singleton;/** * 饿汉式单例模式 * 线程安全 */public class SingletonDemo1 &#123; private static SingletonDemo1 demo1 = new SingletonDemo1(); //类初始化的时候，立刻加载对象 private SingletonDemo1() &#123; &#125; public static SingletonDemo1 getInstance()&#123; return demo1; &#125;&#125; 懒汉式什么时候需要什么时候加载1234567891011121314151617181920package com.nyist.singleton;/** * 懒汉式 */public class SingletonDemo2 &#123; private static SingletonDemo2 s; private SingletonDemo2()&#123; &#125; public static synchronized SingletonDemo2 getInstance()&#123; if(s == null)&#123; s = new SingletonDemo2(); &#125; return s; &#125;&#125; 静态内部类实现方式1234567891011121314151617package com.nyist.singleton;//静态内部类实现方式(也是一种懒加载的方式)public class SingletonDemo3 &#123; private static class SingletonClassInstance&#123; private static final SingletonDemo3 singletonDemo3 = new SingletonDemo3(); &#125; private SingletonDemo3() &#123; &#125; public SingletonDemo3 getInstance()&#123; return SingletonClassInstance.singletonDemo3; &#125;&#125; 枚举方式(没有懒加载的功能)12345678910111213141516package com.nyist.singleton;public enum SingletonDemo4 &#123; //枚举类型 本身就是单例模式 Instance; //添加自己所需要的操作 public void test()&#123; &#125; public static void main(String[] args) &#123; System.out.println(SingletonDemo4.Instance == SingletonDemo4.Instance);//结果为true &#125;&#125;]]></content>
+      <categories>
+        <category>面试总结</category>
+      </categories>
+      <tags>
+        <tag>单例模式</tag>
+        <tag>面向对象的五大基本原则</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CDN]]></title>
     <url>%2F2019%2F02%2F17%2FCDN%2F</url>
     <content type="text"><![CDATA[CDN学习CDN介绍CDN也就是内容分布网络(Content Delivery Network)，它是构筑在现有Internet上的一种先进的流量分配网络。其目的是通过在现有的Internet中增加一层新的网络架构，将网站的内容发布到最接近用户的网络“边缘”，使用户可以就近取得所需的内容，提高用户访问网站的响应速度。有别于镜像，它比镜像更智能，可以做这样一个比喻:CDN=镜像(Mirror)+缓存(Cache)+整体负载均衡(GSLB)。因而，CDN可以明显提高Internet中信息流动的效率。 目前CDN都以缓存网站中的静态数据为主，如CSS、JS、图片和静态页面等数据。用户在从主站服务器请求到动态内容后，再从CDN上下载这些静态数据，从而加速网页数据内容的下载速度，如淘宝有90%以上的数据都是由CDN来提供的。 通常来说CDN要达到以下几个目标： 可扩展(Scalability)。性能可扩展性:应对新增的大量数据、用户和事务的扩展能力。成本可扩展性:用低廉的运营成本提供动态的服务能力和高质量的内容分发。 安全性( Security)。 强调提供物理设备、网络、软件、数据和服务过程的安全性，(趋势)减少因为DDoS攻击或者其他恶意行为造成商业网站的业务中断。: 可靠性、 响应和执行(Reliability、 Responsiveness 和Performance)。服务可用性指能够处理可能的故障和用户体验下降的问题，通过负载均衡及时提供网络的容错机制。 CDN架构这个流程其中包括了DNS域名解析的过程，通常是首先去Local DNS Server 请求，如果本地有ip对应的域名缓存，则直接获得对应的IP,但是如果本地没有缓存，那么就去Root DNS Server请求，然后返回一个对应域名的服务器地址，然后再向域名服务器(Name Server)发起请求,然后域名服务器返回对应的IP，这样用户就可以通过域名解析到对应的ip。]]></content>
@@ -63,8 +75,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>java底层知识</tag>
         <tag>jvm底层学习</tag>
+        <tag>java底层知识</tag>
       </tags>
   </entry>
   <entry>
@@ -185,9 +197,9 @@
         <category>python flask</category>
       </categories>
       <tags>
+        <tag>jQuery</tag>
         <tag>商城</tag>
         <tag>flask</tag>
-        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -245,8 +257,8 @@
         <category>springboot</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>socket</tag>
+        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
