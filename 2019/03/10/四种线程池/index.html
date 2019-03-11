@@ -90,7 +90,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="SpringBoot druid数据源,">
+  <meta name="keywords" content="线程池,">
 
 
 
@@ -106,21 +106,18 @@
 
 
 
-<meta name="description" content="Druid 数据源Druid能够提供强大的监控和扩展功能。隶属于阿里巴巴旗下的连接池我们使用druid和SpingBoot结合 首先我们引入druid 的maven依赖 123456&amp;lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.a">
-<meta name="keywords" content="SpringBoot druid数据源">
+<meta name="description" content="四种线程池总结java的线程池是什么，有哪些类型，作用分别是什么线程池是一种多线程处理形式，处理过程中将任务添加队列，然后在创建线程后自动启动这些任务，每个线程都使用默认的堆栈大小，以默认的优先级运行，并处在多线程单元中，如果某个线程在托管代码中空闲，则线程池将插入另一个辅助线程来使所有处理器保持繁忙。如果所有线程池都始终保持繁忙，但队列中包含挂起的工作，则线程池将在一段时间后辅助线程的数目永远不">
+<meta name="keywords" content="线程池">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Druid数据源">
-<meta property="og:url" content="https://lmx110522.github.io/2018/06/01/Druid数据源/index.html">
+<meta property="og:title" content="四种线程池">
+<meta property="og:url" content="https://lmx110522.github.io/2019/03/10/四种线程池/index.html">
 <meta property="og:site_name" content="茂展的分享博客">
-<meta property="og:description" content="Druid 数据源Druid能够提供强大的监控和扩展功能。隶属于阿里巴巴旗下的连接池我们使用druid和SpingBoot结合 首先我们引入druid 的maven依赖 123456&amp;lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.a">
+<meta property="og:description" content="四种线程池总结java的线程池是什么，有哪些类型，作用分别是什么线程池是一种多线程处理形式，处理过程中将任务添加队列，然后在创建线程后自动启动这些任务，每个线程都使用默认的堆栈大小，以默认的优先级运行，并处在多线程单元中，如果某个线程在托管代码中空闲，则线程池将插入另一个辅助线程来使所有处理器保持繁忙。如果所有线程池都始终保持繁忙，但队列中包含挂起的工作，则线程池将在一段时间后辅助线程的数目永远不">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/druid-index.png">
-<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/druid-main1.png">
-<meta property="og:updated_time" content="2019-01-14T12:41:11.288Z">
+<meta property="og:updated_time" content="2019-03-11T23:17:17.836Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Druid数据源">
-<meta name="twitter:description" content="Druid 数据源Druid能够提供强大的监控和扩展功能。隶属于阿里巴巴旗下的连接池我们使用druid和SpingBoot结合 首先我们引入druid 的maven依赖 123456&amp;lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&amp;gt;&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;com.a">
-<meta name="twitter:image" content="http://qiniuyun.lmxljc.xyz/druid-index.png">
+<meta name="twitter:title" content="四种线程池">
+<meta name="twitter:description" content="四种线程池总结java的线程池是什么，有哪些类型，作用分别是什么线程池是一种多线程处理形式，处理过程中将任务添加队列，然后在创建线程后自动启动这些任务，每个线程都使用默认的堆栈大小，以默认的优先级运行，并处在多线程单元中，如果某个线程在托管代码中空闲，则线程池将插入另一个辅助线程来使所有处理器保持繁忙。如果所有线程池都始终保持繁忙，但队列中包含挂起的工作，则线程池将在一段时间后辅助线程的数目永远不">
 
 
 
@@ -148,7 +145,7 @@
 
 
 
-  <link rel="canonical" href="https://lmx110522.github.io/2018/06/01/Druid数据源/">
+  <link rel="canonical" href="https://lmx110522.github.io/2019/03/10/四种线程池/">
 
 
 
@@ -171,7 +168,7 @@
 </style>
 
 
-  <title> Druid数据源 | 茂展的分享博客 </title>
+  <title> 四种线程池 | 茂展的分享博客 </title>
 </head>
 
   	 <!-- custom analytics part create by xiamo -->
@@ -420,7 +417,7 @@ $(function() {
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/2018/06/01/Druid数据源/">
+  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/2019/03/10/四种线程池/">
 
   <span style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
     <meta itemprop="name" content="李茂展">
@@ -444,7 +441,7 @@ $(function() {
             
             
               
-                Druid数据源
+                四种线程池
               
             
           </h2>
@@ -459,8 +456,8 @@ $(function() {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-01T12:37:02+08:00">
-                2018-06-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-10T07:16:00+08:00">
+                2019-03-10
               </time>
             
 
@@ -482,8 +479,8 @@ $(function() {
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Druid/" itemprop="url" rel="index">
-                    <span itemprop="name">Druid</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -502,7 +499,7 @@ $(function() {
 			 
           
           
-             <span id="/2018/06/01/Druid数据源/" class="leancloud_visitors" data-flag-title="Druid数据源">
+             <span id="/2019/03/10/四种线程池/" class="leancloud_visitors" data-flag-title="四种线程池">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -532,7 +529,7 @@ $(function() {
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  453
+                  1,385
                 </span>
               
 
@@ -548,7 +545,7 @@ $(function() {
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  6
                 </span>
               
             </div>
@@ -570,14 +567,29 @@ $(function() {
       
 
       
-        <h1 id="Druid-数据源"><a href="#Druid-数据源" class="headerlink" title="Druid 数据源"></a>Druid 数据源</h1><p>Druid能够提供强大的监控和扩展功能。隶属于阿里巴巴旗下的连接池<br>我们使用druid和SpingBoot结合</p>
-<p>首先我们引入<strong>druid</strong> 的maven依赖</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>yml配置如下<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  datasource:</span></span><br><span class="line"><span class="attr">    username:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    password:</span> <span class="string">root</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">jdbc:mysql://192.168.13.131:3306/springboot01</span></span><br><span class="line"><span class="attr">    driver-class-name:</span> <span class="string">com.mysql.jdbc.Driver</span></span><br><span class="line">	<span class="attr">type:</span> <span class="string">com.alibaba.druid.pool.DruidDataSource</span></span><br></pre></td></tr></table></figure></p>
-<p>我们仍然可以使用druid其他的yml配置<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#   数据源其他配置</span></span><br><span class="line"><span class="attr">    initialSize:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    minIdle:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    maxActive:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    maxWait:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    timeBetweenEvictionRunsMillis:</span> <span class="number">60000</span></span><br><span class="line"><span class="attr">    minEvictableIdleTimeMillis:</span> <span class="number">300000</span></span><br><span class="line"><span class="attr">    validationQuery:</span> <span class="string">SELECT</span> <span class="number">1</span> <span class="string">FROM</span> <span class="string">DUAL</span></span><br><span class="line"><span class="attr">    testWhileIdle:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    testOnBorrow:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    testOnReturn:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    poolPreparedStatements:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment">#   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙</span></span><br><span class="line"><span class="comment">#    filters: stat,wall,log4j</span></span><br><span class="line"><span class="attr">    maxPoolPreparedStatementPerConnectionSize:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">    useGlobalDataSourceStat:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    connectionProperties:</span> <span class="string">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span></span><br></pre></td></tr></table></figure></p>
-<p>然后由于很多属性值druid无法映射，我们可以使用yml属性绑定的方式<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix = <span class="string">"spring.datasource"</span>)</span><br><span class="line">   <span class="meta">@Bean</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> DataSource <span class="title">druid</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> DruidDataSource();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后我们需要配置druid的后台管理servlet以及监控的filter<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置管理后台的servlet</span></span><br><span class="line">   <span class="meta">@Bean</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ServletRegistrationBean <span class="title">statViewServlet</span><span class="params">()</span></span>&#123;</span><br><span class="line">       ServletRegistrationBean bean = <span class="keyword">new</span> ServletRegistrationBean(<span class="keyword">new</span> StatViewServlet(), <span class="string">"/druid/*"</span>);</span><br><span class="line">       Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">       map.put(<span class="string">"loginUsername"</span>,<span class="string">"admin"</span>);</span><br><span class="line">       map.put(<span class="string">"loginPassword"</span>,<span class="string">"admin"</span>);</span><br><span class="line">       map.put(<span class="string">"allow"</span>,<span class="string">""</span>);<span class="comment">//默认允许所有访问</span></span><br><span class="line">       map.put(<span class="string">"deny"</span>,<span class="string">"192.168.13.132"</span>);<span class="comment">//禁止192.168.13.132访问</span></span><br><span class="line">       bean.setInitParameters(map);<span class="comment">//初始化参数</span></span><br><span class="line">       <span class="keyword">return</span> bean;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//配置一个web监控的filter</span></span><br><span class="line">   <span class="meta">@Bean</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">webStatFilter</span><span class="params">()</span></span>&#123;</span><br><span class="line">       FilterRegistrationBean&lt;Filter&gt; bean = <span class="keyword">new</span> FilterRegistrationBean&lt;&gt;();</span><br><span class="line">       bean.setFilter(<span class="keyword">new</span> WebStatFilter());</span><br><span class="line">       Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">       map.put(<span class="string">"exclusions"</span>,<span class="string">"*.js,*.css,/druid/*"</span>); <span class="comment">//不拦截这些</span></span><br><span class="line">       bean.setInitParameters(map); <span class="comment">//初始化参数</span></span><br><span class="line">       bean.setUrlPatterns(Arrays.asList(<span class="string">"/*"</span>)); <span class="comment">//表示拦截所有请求</span></span><br><span class="line">       <span class="keyword">return</span> bean;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后输入localhost/druid就可运行成功<br><img src="http://qiniuyun.lmxljc.xyz/druid-index.png" alt="druid的登录页" title="druid的登录页"><br><img src="http://qiniuyun.lmxljc.xyz/druid-main1.png" alt="druid主界面" title="druid主界面"></p>
+        <h1 id="四种线程池总结"><a href="#四种线程池总结" class="headerlink" title="四种线程池总结"></a>四种线程池总结</h1><h2 id="java的线程池是什么，有哪些类型，作用分别是什么"><a href="#java的线程池是什么，有哪些类型，作用分别是什么" class="headerlink" title="java的线程池是什么，有哪些类型，作用分别是什么"></a>java的线程池是什么，有哪些类型，作用分别是什么</h2><p>线程池是一种多线程处理形式，处理过程中将任务添加队列，然后在创建线程后自动启动这些任务，每个线程都使用默认的堆栈大小，以默认的优先级运行，并处在多线程单元中，如果某个线程在托管代码中空闲，则线程池将插入另一个辅助线程来使所有处理器保持繁忙。如果所有线程池都始终保持繁忙，但队列中包含挂起的工作，则线程池将在一段时间后辅助线程的数目永远不会超过最大值。超过最大值的线程可以排队，但他们要等到其他线程完成后才能启动。</p>
+<p><strong>java里面的线程池的顶级接口是Executor，Executor并不是一个线程池，而只是一个执行线程的工具，而真正的线程池是ExecutorService。</strong></p>
+<h2 id="java中的有哪些线程池"><a href="#java中的有哪些线程池" class="headerlink" title="java中的有哪些线程池"></a>java中的有哪些线程池</h2><p>1.newCachedThreadPool创建一个可缓存线程池</p>
+<p>2.newFixedThreadPool 创建一个定长线程池</p>
+<p>3.newScheduledThreadPool 创建一个定时或周期线程池</p>
+<p>4.newSingleThreadExecutor 创建一个单线程化的线程池</p>
+<h2 id="分别解释四种线程池"><a href="#分别解释四种线程池" class="headerlink" title="分别解释四种线程池"></a>分别解释四种线程池</h2><h3 id="newCachedThreadPool"><a href="#newCachedThreadPool" class="headerlink" title="newCachedThreadPool"></a>newCachedThreadPool</h3><p>newCachedThreadPool,是一种线程数量不定的线程池，并且其最大线程数为<strong>Integer.MAX_VALUE</strong>，这个数是很大的，一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。但是线程池中的空闲线程都有超时限制，这个超时时长是60秒，超过60秒闲置线程就会被回收。调用execute将重用以前构造的线程(如果线程可用)。这类线程池比较适合执行大量的耗时较少的任务，当整个线程池都处于闲置状态时，线程池中的线程都会超时被停止。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PoolExecutorTest</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		</span><br><span class="line">		ExecutorService mCachelThreadPool = Executors.newCachedThreadPool();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">7</span>;i++ ) &#123;</span><br><span class="line">			<span class="keyword">final</span> <span class="keyword">int</span> index = i;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			mCachelThreadPool.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">				</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">					System.out.println(<span class="string">"第"</span> +index +<span class="string">"个线程"</span> +Thread.currentThread().getName()); </span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>从结果可以看到，执行第二个任务的时候第一个任务已经完成，会复用执行第一个任务的线程，不用每次新建线程。</p>
+</blockquote>
+<h2 id="newFixedThreadPool"><a href="#newFixedThreadPool" class="headerlink" title="newFixedThreadPool"></a>newFixedThreadPool</h2><p>newFixedThreadPool 创建一个指定工作线程数量的线程池，每当提交一个任务就创建一个工作线程，当线程 处于空闲状态时，它们并不会被回收，除非线程池被关闭了，如果工作线程数量达到线程池初始的最大数，则将提交的任务存入到<strong>池队列</strong>（没有大小限制）中。由于newFixedThreadPool只有核心线程并且这些核心线程不会被回收，这样它更加快速的响应外界的请求。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PoolExecutorTest</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="comment">//设置最大线程数5个</span></span><br><span class="line">		ExecutorService mFixedThreadPool = Executors.newFixedThreadPool(<span class="number">5</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">7</span>;i++ ) &#123;</span><br><span class="line">			<span class="keyword">final</span> <span class="keyword">int</span> index = i;</span><br><span class="line">			mFixedThreadPool.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">				</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">					System.out.println(<span class="string">"时间是:"</span>+System.currentTimeMillis()+<span class="string">"第"</span> +index +<span class="string">"个线程"</span> +Thread.currentThread().getName()); </span><br><span class="line">					<span class="keyword">try</span> &#123;</span><br><span class="line">						Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">					&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">						e.printStackTrace();</span><br><span class="line">					&#125;	</span><br><span class="line">				 &#125;</span><br><span class="line">			&#125;);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>由于设置最大线程是5，所以当执行完这5个线程后，等待两秒后，在执行后面2个线程</p>
+</blockquote>
+<h2 id="newScheduledThreadPool"><a href="#newScheduledThreadPool" class="headerlink" title="newScheduledThreadPool"></a>newScheduledThreadPool</h2><p>newScheduledThreadPool 创建一个线程池，它的核心线程数量是固定的，<strong>而非核心线程数是没有限制的</strong>，并且当非核心线程闲置时会被立即回收，它可安排给定延迟后运行命令或者定期地执行。这类线程池主要用于<strong>执行定时任务和具有固定周期</strong>的重复任务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PoolExecutorTest</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//设置池中核心数量是2</span></span><br><span class="line">        ScheduledExecutorService mScheduledThreadPool = Executors.newScheduledThreadPool(<span class="number">2</span>);  </span><br><span class="line">        System.out.println(<span class="string">"现在的时间:"</span>+System.currentTimeMillis());</span><br><span class="line">        mScheduledThreadPool.scheduleAtFixedRate(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">			</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">				System.out.println(<span class="string">"现在的时间:"</span>+System.currentTimeMillis());</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;, <span class="number">2</span>, <span class="number">3</span>,TimeUnit.SECONDS);<span class="comment">//这里设置延迟2秒后每3秒执行一次</span></span><br><span class="line">		</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>可发现确实延迟2秒后每隔3秒后就会执行一次，程序不退出就一直执行下去</p>
+</blockquote>
+<h2 id="newSingleThreadExecutor"><a href="#newSingleThreadExecutor" class="headerlink" title="newSingleThreadExecutor"></a>newSingleThreadExecutor</h2><p>newSingleThreadExecutor这类线程池内部只有一个核心线程，以无界队列方式来执行该线程，这使得这些任务之间不需要处理线程同步的问题，它确保所有的任务都在同一个线程中按顺序中执行，并且可以在任意给定的时间不会有多个线程是活动的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PoolExecutorTest</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		</span><br><span class="line">		ExecutorService mSingleThreadPool = Executors.newSingleThreadExecutor();     </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">7</span>;i++) &#123;</span><br><span class="line">        	<span class="keyword">final</span> <span class="keyword">int</span> number = i;</span><br><span class="line">        	mSingleThreadPool.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">				</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">					System.out.println(<span class="string">"现在的时间:"</span>+System.currentTimeMillis()+<span class="string">"第"</span>+number+<span class="string">"个线程"</span>);</span><br><span class="line">	                <span class="keyword">try</span> &#123;</span><br><span class="line">						Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">					&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">						e.printStackTrace();</span><br><span class="line">					&#125;</span><br><span class="line">					</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;);</span><br><span class="line">        	</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>可发现是有顺序地去执行上面6个线程</p>
+</blockquote>
+<p>上面的总结来自于<a href="https://blog.csdn.net/qq_33453910/article/details/81413285" title="csdn" target="_blank" rel="noopener">csdn</a>,总结的比较好，拿来自己收藏保存，没有抄袭！</p>
 
       
     </div>
@@ -591,7 +603,7 @@ $(function() {
   
         <div class="post-tags">
           
-            <a href="/tags/SpringBoot-druid数据源/" rel="tag"># SpringBoot druid数据源</a>
+            <a href="/tags/线程池/" rel="tag"># 线程池</a>
           
         </div>
       
@@ -638,16 +650,16 @@ $(function() {
 
         <li class="post-copyright-link">
           <strong>本文标题：</strong>
-          <a href="https://lmx110522.github.io/2018/06/01/Druid数据源/" title="Druid数据源">Druid数据源</a>
+          <a href="https://lmx110522.github.io/2019/03/10/四种线程池/" title="四种线程池">四种线程池</a>
         </li>
 
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="https://lmx110522.github.io/2018/06/01/Druid数据源/" title="Druid数据源">https://lmx110522.github.io/2018/06/01/Druid数据源/</a>
+          <a href="https://lmx110522.github.io/2019/03/10/四种线程池/" title="四种线程池">https://lmx110522.github.io/2019/03/10/四种线程池/</a>
         </li>
 
         <li class="post-copyright-date">
-            <strong>发布时间：</strong>2018年6月1日 - 12时06分
+            <strong>发布时间：</strong>2019年3月10日 - 07时03分
         </li>  
 
         <li class="post-copyright-license">
@@ -661,8 +673,8 @@ $(function() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/14/SpringBoot的难点总结/" rel="next" title="SpringBoot的难点总结">
-                <i class="fa fa-chevron-left"></i> SpringBoot的难点总结
+              <a href="/2019/03/03/XML初步总结/" rel="next" title="XML初步总结">
+                <i class="fa fa-chevron-left"></i> XML初步总结
               </a>
             
           </div>
@@ -670,10 +682,6 @@ $(function() {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/09/二手交易商城/" rel="prev" title="python flask做的二手交易商城">
-                python flask做的二手交易商城 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -839,7 +847,7 @@ $(function() {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Druid-数据源"><span class="nav-number">1.</span> <span class="nav-text">Druid 数据源</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#四种线程池总结"><span class="nav-number">1.</span> <span class="nav-text">四种线程池总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#java的线程池是什么，有哪些类型，作用分别是什么"><span class="nav-number">1.1.</span> <span class="nav-text">java的线程池是什么，有哪些类型，作用分别是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java中的有哪些线程池"><span class="nav-number">1.2.</span> <span class="nav-text">java中的有哪些线程池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分别解释四种线程池"><span class="nav-number">1.3.</span> <span class="nav-text">分别解释四种线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#newCachedThreadPool"><span class="nav-number">1.3.1.</span> <span class="nav-text">newCachedThreadPool</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#newFixedThreadPool"><span class="nav-number">1.4.</span> <span class="nav-text">newFixedThreadPool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#newScheduledThreadPool"><span class="nav-number">1.5.</span> <span class="nav-text">newScheduledThreadPool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#newSingleThreadExecutor"><span class="nav-number">1.6.</span> <span class="nav-text">newSingleThreadExecutor</span></a></li></ol></li></ol></div>
             
 
           </div>
