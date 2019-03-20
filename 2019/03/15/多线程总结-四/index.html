@@ -90,7 +90,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="正则表达式,">
+  <meta name="keywords" content="多线程,">
 
 
 
@@ -106,25 +106,18 @@
 
 
 
-<meta name="description" content="#正则表达式正则表达式是一个独立的语言，不区别于语言 标准字符表示的意义 自定义符合集合[] 方括号表示匹配方式，能够匹配方括号中的任意一个字符其中[]小数点不用转义，但是呢 - d 等都要转义  贪婪模式 | 不贪婪模式{}符号可以表示匹配前一个字符的次数，例如\d{5}表示匹配5位，同样的也有\d{2,6}表示最少匹配2位，最多匹配6位，但是会默认贪婪模式，默认匹配6位！我们可以在对应的后面添">
-<meta name="keywords" content="正则表达式">
+<meta name="description" content="线程总结(四)怎么检测一个线程是否拥有锁？ 可以调用wait()方法，如果出现异常，就说明java中的线程没有持有锁。否则将持有锁。(这种方式不推荐) 我们可以使用API，Thread的一个静态方法boolean isHave = Thread.holdsLock(User.class);如果存在则返回true,没有持有User这个对象的锁，则返回false;  Jdk中排查多线程问题用什么命令j">
+<meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式">
-<meta property="og:url" content="https://lmx110522.github.io/2019/03/02/正则表达式/index.html">
+<meta property="og:title" content="多线程总结(四)">
+<meta property="og:url" content="https://lmx110522.github.io/2019/03/15/多线程总结-四/index.html">
 <meta property="og:site_name" content="茂展的分享博客">
-<meta property="og:description" content="#正则表达式正则表达式是一个独立的语言，不区别于语言 标准字符表示的意义 自定义符合集合[] 方括号表示匹配方式，能够匹配方括号中的任意一个字符其中[]小数点不用转义，但是呢 - d 等都要转义  贪婪模式 | 不贪婪模式{}符号可以表示匹配前一个字符的次数，例如\d{5}表示匹配5位，同样的也有\d{2,6}表示最少匹配2位，最多匹配6位，但是会默认贪婪模式，默认匹配6位！我们可以在对应的后面添">
+<meta property="og:description" content="线程总结(四)怎么检测一个线程是否拥有锁？ 可以调用wait()方法，如果出现异常，就说明java中的线程没有持有锁。否则将持有锁。(这种方式不推荐) 我们可以使用API，Thread的一个静态方法boolean isHave = Thread.holdsLock(User.class);如果存在则返回true,没有持有User这个对象的锁，则返回false;  Jdk中排查多线程问题用什么命令j">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%A6%E5%8F%B7.png">
-<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E7%AC%A6.png">
-<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/%E6%AD%A3%E5%88%99%E9%87%8F%E8%AF%8D%E7%9A%84%E4%BD%BF%E7%94%A8.png">
-<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/%E9%80%89%E6%8B%A9%E7%AC%A6%E5%92%8C%E5%88%86%E7%BB%84.png">
-<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/%E9%A2%84%E6%90%9C%E7%B4%A2.png">
-<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png">
-<meta property="og:updated_time" content="2019-03-02T09:38:37.558Z">
+<meta property="og:updated_time" content="2019-03-15T08:26:56.663Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式">
-<meta name="twitter:description" content="#正则表达式正则表达式是一个独立的语言，不区别于语言 标准字符表示的意义 自定义符合集合[] 方括号表示匹配方式，能够匹配方括号中的任意一个字符其中[]小数点不用转义，但是呢 - d 等都要转义  贪婪模式 | 不贪婪模式{}符号可以表示匹配前一个字符的次数，例如\d{5}表示匹配5位，同样的也有\d{2,6}表示最少匹配2位，最多匹配6位，但是会默认贪婪模式，默认匹配6位！我们可以在对应的后面添">
-<meta name="twitter:image" content="http://qiniuyun.lmxljc.xyz/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%A6%E5%8F%B7.png">
+<meta name="twitter:title" content="多线程总结(四)">
+<meta name="twitter:description" content="线程总结(四)怎么检测一个线程是否拥有锁？ 可以调用wait()方法，如果出现异常，就说明java中的线程没有持有锁。否则将持有锁。(这种方式不推荐) 我们可以使用API，Thread的一个静态方法boolean isHave = Thread.holdsLock(User.class);如果存在则返回true,没有持有User这个对象的锁，则返回false;  Jdk中排查多线程问题用什么命令j">
 
 
 
@@ -152,7 +145,7 @@
 
 
 
-  <link rel="canonical" href="https://lmx110522.github.io/2019/03/02/正则表达式/">
+  <link rel="canonical" href="https://lmx110522.github.io/2019/03/15/多线程总结-四/">
 
 
 
@@ -175,7 +168,7 @@
 </style>
 
 
-  <title> 正则表达式 | 茂展的分享博客 </title>
+  <title> 多线程总结(四) | 茂展的分享博客 </title>
 </head>
 
   	 <!-- custom analytics part create by xiamo -->
@@ -424,7 +417,7 @@ $(function() {
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/2019/03/02/正则表达式/">
+  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/2019/03/15/多线程总结-四/">
 
   <span style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
     <meta itemprop="name" content="李茂展">
@@ -448,7 +441,7 @@ $(function() {
             
             
               
-                正则表达式
+                多线程总结(四)
               
             
           </h2>
@@ -463,8 +456,8 @@ $(function() {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-02T17:34:37+08:00">
-                2019-03-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-15T16:26:00+08:00">
+                2019-03-15
               </time>
             
 
@@ -473,28 +466,6 @@ $(function() {
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/正则表达式/" itemprop="url" rel="index">
-                    <span itemprop="name">正则表达式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -506,7 +477,7 @@ $(function() {
 			 
           
           
-             <span id="/2019/03/02/正则表达式/" class="leancloud_visitors" data-flag-title="正则表达式">
+             <span id="/2019/03/15/多线程总结-四/" class="leancloud_visitors" data-flag-title="多线程总结(四)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -536,7 +507,7 @@ $(function() {
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  353
+                  786
                 </span>
               
 
@@ -552,7 +523,7 @@ $(function() {
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -574,15 +545,22 @@ $(function() {
       
 
       
-        <p>#正则表达式<br>正则表达式是一个独立的语言，不区别于语言</p>
-<h2 id="标准字符表示的意义"><a href="#标准字符表示的意义" class="headerlink" title="标准字符表示的意义"></a>标准字符表示的意义</h2><p><img src="http://qiniuyun.lmxljc.xyz/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%A6%E5%8F%B7.png" alt="正则表达式字符表示意义" title="正则表达式字符表示意义"></p>
-<h2 id="自定义符合集合"><a href="#自定义符合集合" class="headerlink" title="自定义符合集合"></a>自定义符合集合</h2><p><strong>[] 方括号表示匹配方式，能够匹配方括号中的任意一个字符</strong><br>其中[]小数点不用转义，但是呢 - d 等都要转义<br><img src="http://qiniuyun.lmxljc.xyz/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E7%AC%A6.png" alt="自定义符号集合" title="自定义符号集合"> </p>
-<h2 id="贪婪模式-不贪婪模式"><a href="#贪婪模式-不贪婪模式" class="headerlink" title="贪婪模式 | 不贪婪模式"></a>贪婪模式 | 不贪婪模式</h2><p>{}符号可以表示匹配前一个字符的次数，例如<code>\d{5}</code>表示匹配5位，同样的也有<code>\d{2,6}</code>表示最少匹配2位，最多匹配6位，但是会默认<strong>贪婪模式</strong>，默认匹配6位！我们可以在对应的后面添加<code>?</code>表示开启不贪婪模式，默认匹配最少的！我们也可以使用<code>\d{3,}</code>匹配最少3位，最多没有限制！</p>
-<h2 id="其他使用方法"><a href="#其他使用方法" class="headerlink" title="其他使用方法"></a>其他使用方法</h2><p><img src="http://qiniuyun.lmxljc.xyz/%E6%AD%A3%E5%88%99%E9%87%8F%E8%AF%8D%E7%9A%84%E4%BD%BF%E7%94%A8.png" alt="正则量词的使用" title="正则量词的使用"></p>
-<p><code>\b</code>表示前面的字符和后面的字符不全是<code>\w</code>，用于匹配一个单词边界！</p>
-<h2 id="选择符和分组"><a href="#选择符和分组" class="headerlink" title="选择符和分组"></a>选择符和分组</h2><p><img src="http://qiniuyun.lmxljc.xyz/%E9%80%89%E6%8B%A9%E7%AC%A6%E5%92%8C%E5%88%86%E7%BB%84.png" alt="选择符和分组" title="选择符和分组"><br><strong>我们可以使用反向引用的方式实现对分组已经捕获的字符串进行引用。<br>具体操作： 每一对()都分配一个编号，具体顺序以左侧符号出现顺序为准，从1开始编号！</strong></p>
-<h2 id="预搜索"><a href="#预搜索" class="headerlink" title="预搜索"></a>预搜索</h2><p>只对子表达式进行匹配，匹配后的内容不计入最终的结果！是对位置的匹配！<br><img src="http://qiniuyun.lmxljc.xyz/%E9%A2%84%E6%90%9C%E7%B4%A2.png" alt="预搜索" title="预搜索"></p>
-<h2 id="常用正则表达式"><a href="#常用正则表达式" class="headerlink" title="常用正则表达式"></a>常用正则表达式</h2><p><strong>亲测有效</strong><br><img src="http://qiniuyun.lmxljc.xyz/%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="常用正则表达式" title="常用正则表达式"></p>
+        <h1 id="线程总结-四"><a href="#线程总结-四" class="headerlink" title="线程总结(四)"></a>线程总结(四)</h1><h2 id="怎么检测一个线程是否拥有锁？"><a href="#怎么检测一个线程是否拥有锁？" class="headerlink" title="怎么检测一个线程是否拥有锁？"></a>怎么检测一个线程是否拥有锁？</h2><ol>
+<li>可以调用wait()方法，如果出现异常，就说明java中的线程没有持有锁。否则将持有锁。(这种方式不推荐)</li>
+<li>我们可以使用API，Thread的一个静态方法<code>boolean isHave = Thread.holdsLock(User.class);</code>如果存在则返回true,没有持有User这个对象的锁，则返回false;</li>
+</ol>
+<h2 id="Jdk中排查多线程问题用什么命令"><a href="#Jdk中排查多线程问题用什么命令" class="headerlink" title="Jdk中排查多线程问题用什么命令"></a>Jdk中排查多线程问题用什么命令</h2><h3 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h3><p><strong>作用</strong>： 生成JVM当前时刻线程的快照(threaddump,当前进程中所有线程的信息)<br><strong>目的</strong>：帮助快速定位程序问题出现的原因，如长时间停顿、cpu占用率过高。</p>
+<h2 id="向线程传递参数的三种基本方法"><a href="#向线程传递参数的三种基本方法" class="headerlink" title="向线程传递参数的三种基本方法"></a>向线程传递参数的三种基本方法</h2><p><strong>1. 通过构造方法传递数据 </strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nyist.thread;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyThread</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello "</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> MyThread(<span class="string">"demo"</span>);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2.通过变量和方法传递数据</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nyist.thread;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread1</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"hello "</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        MyThread2 myThread = <span class="keyword">new</span> MyThread2();</span><br><span class="line">        myThread.setName(<span class="string">"demo"</span>);</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(myThread);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3.通过回调函数传递数据</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nyist.thread;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Data</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> value = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Work</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Data data, Integer numbers)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> n : numbers)</span><br><span class="line">        &#123;</span><br><span class="line">            data.value += n;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread2</span> <span class="keyword">extends</span> <span class="title">Thread</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Work work;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyThread3</span><span class="params">(Work work)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.work = work;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        java.util.Random random = <span class="keyword">new</span> java.util.Random();</span><br><span class="line">        Data data = <span class="keyword">new</span> Data();</span><br><span class="line">        <span class="keyword">int</span> n1 = random.nextInt(<span class="number">1000</span>);</span><br><span class="line">        <span class="keyword">int</span> n2 = random.nextInt(<span class="number">2000</span>);</span><br><span class="line">        <span class="keyword">int</span> n3 = random.nextInt(<span class="number">3000</span>);</span><br><span class="line">        work.process(data, n1, n2, n3);   <span class="comment">// 使用回调函数</span></span><br><span class="line">        System.out.println(String.valueOf(n1) + <span class="string">"+"</span> + String.valueOf(n2) + <span class="string">"+"</span></span><br><span class="line">                + String.valueOf(n3) + <span class="string">"="</span> + data.value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> MyThread3(<span class="keyword">new</span> Work());</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="锁的降级和升级"><a href="#锁的降级和升级" class="headerlink" title="锁的降级和升级"></a>锁的降级和升级</h2><p>ReadWriteLock是读写锁接口，里面有两个方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ReadWriteLock</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the lock used for reading.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the lock used for reading</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">Lock <span class="title">readLock</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the lock used for writing.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the lock used for writing</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">Lock <span class="title">writeLock</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>一个是读锁，一个写锁</strong></p>
+<p><strong>降级锁</strong>： 由写锁到读锁</p>
+<p><strong>升级锁</strong>： 由读锁到写锁</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nyist.thread;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantReadWriteLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ReentrantReadWriteLock rtLock = <span class="keyword">new</span> ReentrantReadWriteLock();</span><br><span class="line">        rtLock.readLock().lock();</span><br><span class="line">        System.out.println(<span class="string">"获得读锁."</span>);</span><br><span class="line">        rtLock.writeLock().lock();</span><br><span class="line">        System.out.println(<span class="string">"阻塞"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果打印出来是 获得读锁. 这说明ReentrantReadWriteLock不可以锁升级</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nyist.thread;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantReadWriteLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ReentrantReadWriteLock rtLock = <span class="keyword">new</span> ReentrantReadWriteLock();  </span><br><span class="line">        rtLock.writeLock().lock();  </span><br><span class="line">        System.out.println(<span class="string">"写锁"</span>);  </span><br><span class="line">          </span><br><span class="line">        rtLock.readLock().lock();  </span><br><span class="line">        System.out.println(<span class="string">"获得读锁"</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>结果打印出来是 写锁 获得读锁 这说明ReentrantReadWriteLock可以锁降级</strong></p>
+<h2 id="FutureTask和Future区别"><a href="#FutureTask和Future区别" class="headerlink" title="FutureTask和Future区别"></a>FutureTask和Future区别</h2><p>Future是一个接口，代表可以取消的任务，并且返回执行的结果。<br>FutureTask是实现了Futrue和Runnable接口</p>
 
       
     </div>
@@ -596,7 +574,7 @@ $(function() {
   
         <div class="post-tags">
           
-            <a href="/tags/正则表达式/" rel="tag"># 正则表达式</a>
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
           
         </div>
       
@@ -643,16 +621,16 @@ $(function() {
 
         <li class="post-copyright-link">
           <strong>本文标题：</strong>
-          <a href="https://lmx110522.github.io/2019/03/02/正则表达式/" title="正则表达式">正则表达式</a>
+          <a href="https://lmx110522.github.io/2019/03/15/多线程总结-四/" title="多线程总结(四)">多线程总结(四)</a>
         </li>
 
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="https://lmx110522.github.io/2019/03/02/正则表达式/" title="正则表达式">https://lmx110522.github.io/2019/03/02/正则表达式/</a>
+          <a href="https://lmx110522.github.io/2019/03/15/多线程总结-四/" title="多线程总结(四)">https://lmx110522.github.io/2019/03/15/多线程总结-四/</a>
         </li>
 
         <li class="post-copyright-date">
-            <strong>发布时间：</strong>2019年3月2日 - 17时03分
+            <strong>发布时间：</strong>2019年3月15日 - 16时03分
         </li>  
 
         <li class="post-copyright-license">
@@ -666,8 +644,8 @@ $(function() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/02/单例模式漏洞/" rel="next" title="单例模式漏洞">
-                <i class="fa fa-chevron-left"></i> 单例模式漏洞
+              <a href="/2019/03/14/多线程总结-三/" rel="next" title="多线程总结(三)以及HashMap底层源码跟读">
+                <i class="fa fa-chevron-left"></i> 多线程总结(三)以及HashMap底层源码跟读
               </a>
             
           </div>
@@ -675,10 +653,6 @@ $(function() {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/03/XML初步总结/" rel="prev" title="XML初步总结">
-                XML初步总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -844,7 +818,7 @@ $(function() {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准字符表示的意义"><span class="nav-number">1.</span> <span class="nav-text">标准字符表示的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义符合集合"><span class="nav-number">2.</span> <span class="nav-text">自定义符合集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪婪模式-不贪婪模式"><span class="nav-number">3.</span> <span class="nav-text">贪婪模式 | 不贪婪模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他使用方法"><span class="nav-number">4.</span> <span class="nav-text">其他使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择符和分组"><span class="nav-number">5.</span> <span class="nav-text">选择符和分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预搜索"><span class="nav-number">6.</span> <span class="nav-text">预搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用正则表达式"><span class="nav-number">7.</span> <span class="nav-text">常用正则表达式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程总结-四"><span class="nav-number">1.</span> <span class="nav-text">线程总结(四)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么检测一个线程是否拥有锁？"><span class="nav-number">1.1.</span> <span class="nav-text">怎么检测一个线程是否拥有锁？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jdk中排查多线程问题用什么命令"><span class="nav-number">1.2.</span> <span class="nav-text">Jdk中排查多线程问题用什么命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jstack"><span class="nav-number">1.2.1.</span> <span class="nav-text">jstack</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向线程传递参数的三种基本方法"><span class="nav-number">1.3.</span> <span class="nav-text">向线程传递参数的三种基本方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁的降级和升级"><span class="nav-number">1.4.</span> <span class="nav-text">锁的降级和升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FutureTask和Future区别"><span class="nav-number">1.5.</span> <span class="nav-text">FutureTask和Future区别</span></a></li></ol></li></ol></div>
             
 
           </div>
