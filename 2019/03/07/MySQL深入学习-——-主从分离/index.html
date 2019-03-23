@@ -113,7 +113,7 @@
 <meta property="og:site_name" content="茂展的分享博客">
 <meta property="og:description" content="MySQL深入学习 —— 主从分离如何实现MySQL的读写分离基于主从复制架构，有一个主库，挂多个从库，然后我们写在主库，读在从库 MySQL主从复制原理主库将变更写入binlog日志中，然后从库连接主库之后，从库有一个IO线程，将主库的binlog日志拷贝到自己本地，然后写入一个叫做relay中继日志中，接着从库有一个SQL线程从中继日志中取出binlog日志内容，然后执行，相当于执行了一遍sq">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-13T09:28:21.411Z">
+<meta property="og:updated_time" content="2019-03-23T11:04:31.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL深入学习 —— 主从分离">
 <meta name="twitter:description" content="MySQL深入学习 —— 主从分离如何实现MySQL的读写分离基于主从复制架构，有一个主库，挂多个从库，然后我们写在主库，读在从库 MySQL主从复制原理主库将变更写入binlog日志中，然后从库连接主库之后，从库有一个IO线程，将主库的binlog日志拷贝到自己本地，然后写入一个叫做relay中继日志中，接着从库有一个SQL线程从中继日志中取出binlog日志内容，然后执行，相当于执行了一遍sq">
@@ -478,8 +478,8 @@ $(function() {
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
                   </a>
                 </span>
 
@@ -747,7 +747,7 @@ $(function() {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -756,7 +756,7 @@ $(function() {
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -765,7 +765,7 @@ $(function() {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

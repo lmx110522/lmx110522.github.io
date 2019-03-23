@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[mysql优化后续总结]]></title>
+    <url>%2F2019%2F03%2F23%2Fmysql%E4%BC%98%E5%8C%96%E5%90%8E%E7%BB%AD%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[mysql优化后续总结show status like ‘innodb_row_lock%’ 查看行级锁的状态 show status like ‘table%’ 查看表级锁的状态 explainid select_key table type key possible_key key_len ref rows extra 执行顺序id相同，从上往下执行id不同，从大向小执行type: all-&gt;index-&gt;range-&gt;ref-&gt;eq_ref-&gt;const-&gt;systempossible_key: 可能用到的索引key: 实际用到的索引ref: const,实际引用extra: using index using where using filesort(效率偏差，最左匹配原则断层) using temporty(从上往下) 写sql的时候注意点 不对索引建立操作 != &lt;&gt; 适当选择使用 exists in 索引最左匹配 order by 、group by和where一样，根据最左匹配原则合理创建索引 字符类型一定要加双引号 索引操作创建索引create index 索引名 on 表名(索引列1,..)alter table 表名 add index 索引名(索引列1,..) 删除索引drop index 索引名 on 表名 查找所有的索引show index from 表名 执行过程详细查看接着我们需要详细查看执行情况 show variables like ‘profiling’ 默认关闭 set global profiling = 1;打开然后 使用 show profiles 查看所有的语句执行 然后根据某个语句执行id show profile cpu,block io 或者(all) for query id(上面的id);可以获得哪个执行的秒数情况，用来排查 其实我们还可以使用mysql全局监测 set global general_log = 1;默认关闭，是自带数据库mysql中的select * from mysql.general_log;获得以往执行情况 mysql锁表级索 行级索 inndb表级索 myisam mysql5.5以后默认innodb 以 innodb为例： 首先 设置读锁lock table 表名 read; 不可以对表进行写，但是可以读，只能读当前表其他session可以读，但是呢，写的话会阻塞 unlock tables; 释放所有的锁 设置写锁 lock table 表名 write; 不能写也不能读 unlock tables;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[蚂蚁金服面试总结]]></title>
     <url>%2F2019%2F03%2F21%2F%E8%9A%82%E8%9A%81%E9%87%91%E6%9C%8D%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93%2F</url>
     <content type="text"><![CDATA[阿里蚂蚁金服面试总结——查漏补缺内存泄露与内存溢出原理内存溢出out of memory出现的原因是，程序再向系统申请内存的时候，系统没有足够的内存提供给应用程序。 内存泄露经常报错的提示是 memory leak,出现的原因，程序向系统申请内存，系统有内存，但是释放不出来。比如，之前打开一个应用程序，申请了一个内存空间，但是用完之后，没有释放掉。等到了下一个程序用，这份已经闲置的内存就不能用，可能是指针的丢失。 常发性内存泄露发生内存泄露的代码会被多次执行到，每次执行的时候都会导致一块内存的泄露。 偶发性内存泄露发生内存泄露的代码只是在某些特定的环境或操作的过程中才会发生。常发性和偶发性是相对的。对于特定的环境，偶发性也许就会变成常发性。所以测试环境和测试方法对检测内存泄漏至关重要。 一次性内存泄漏发生内存泄漏的代码只会被执行一次，或者由于算法上的缺陷，导致总会有一块仅且一块内存发生泄漏。比如，在类的构造函数中分配内存，在析构函数中却没有释放该内存，所以内存泄漏只会发生一次。 隐式内存泄漏程序在运行过程中不停的分配内存，但是直到结束的时候才释放内存。严格的说这里并没有发生内存泄漏，因为最终程序释放了所有申请的内存。但是对于一个服务器程序，需要运行几天，几周甚至几个月，不及时释放内存也可能导致最终耗尽系统的所有内存。所以，我们称这类内存泄漏为隐式内存泄漏。 内存溢出总结内存溢出中隐式内存泄漏比较难以检测到，所以危害比较大。 总结内存泄露如果不是特别严重，泄露一点半点的，可以容忍，系统的内存空间可能很大，足够分配给新的应用，但是泄露很多，或者一直泄露，这时候会导致，系统闲置的空间越来越小，也就是常讲的，内存泄露最终会导致内存溢出。 内存溢出形成内存溢出的原因有很多种，如下： 内存中加载的数据量过于庞大，如一次从数据库中取出过多数据； 集合类中有对 对象 的引用，使用完后没有清空，是的jvm不能回收； 代码中存在死循环或者循环产生或多重复的对象实体 启动参jvm内存时参数值设定过小和面试官讨论了关于死循环是否会产生内存溢出的问题，所以理由是什么？我后来总结了一下，如果你死循环中大量创建对象，然后就会出现out of memory，由于创建的对象存放在堆区，所以堆区溢出也会造成内存溢出，和递归调用同样的道理。 解决方案 修改虚拟机的参数,直接增加内存 -xmx -xms 检查日志错误，查看“OutOfMemory”错误前是否有其它异常或错误 对代码进行走查和分析，找出可能发生内存溢出的位置 检查对数据库查询中，是否有一次获得全部数据的查询。一般来说，如果一次取十万条记录到内存，就可能引起内存溢出。这个问题比较隐蔽，在上线前，数据库中数据较少，不容易出问题，上线后，数据库中数据多了，一次查询就有可能引起内存溢出。因此对于数据库查询尽量采用分页的方式查询。 检查代码中是否有死循环或递归调用（重复产生新对象实体）。 检查List、MAP等集合对象是否有使用完后，未清除的问题。List、MAP等集合对象会始终存有对对象的引用，使得这些对象不能被GC回收。 socket心跳机制因为防火墙会关闭长时间处于非活跃状态的连接而导致socket连接中断，通过心跳机制可以保持长连接。 原理客户端会每个一段时间向服务器端发送一个心跳包，同时开启定时器。服务器返回一个相同的心跳包给客户端。如果客户端能够接受到心跳包，说明连接正常，删除定时器。如果超时未收到心跳包，则认为连接断开，这个时候进行重连设置。 当客户端和服务器断掉的时候，我们可以重连设置，如何设置直连当与服务器断开连接或网络错误的时候，先不要处理当前socket，应该首先另起一个socket服务，与服务器尝试连接，当连接成功，通知当前socket重新连接，每6秒连接一次，如果30秒内没有连接上，通知掉线，然后继续尝试连接，直到连接上。 快速排序的最坏情况这个其实是会的，但是由于当时紧张脑子有点放空！快速排序的最好情况是，每次恰好能够均分序列，树的深度为log2n+1,仅需要递归log2n次；最坏情况是O(n^2),每次划分序列为一个元素和其他元素部分，退化为冒泡排序，有点像单斜树 mysql的性能优化方面有很多，如：索引优化，查询优化，查询缓存，服务器设置优化，操作系统和硬件优化，应用层面优化(web服务器优化，换缓存) mysql性能的开销指标 执行时间 查询的数据量 返回的结果数量 几种简单的优化查询优化 count的优化计算id大于5的城市 a. select count() from world.city where id &gt; 5; b. select (select count() from world.city) – count() from world.city where id &lt;= 5; a语句当行数超过11行的时候需要扫描的行数比b语句要多， b语句扫描了6行，此种情况下，b语句比a语句更有效率。当没有where语句的时候直接select count() from world.city这样会更快，因为mysql总是知道表的行数 避免使用不兼容的数据类型数据库类型的不兼容可能使优化器无法执行一些本来可以优化的操作 索引字段进行运算会使索引失效（会导致引擎放弃索引进行全表扫描）如： SELECT FROM T1 WHERE F1/2=100 应改为: SELECT FROM T1 WHERE F1=100*2 避免使用!=或＜＞、IS NULL或IS NOT NULL、IN ，NOT IN等这样的操作符 因为这会使系统无法使用索引,而只能直接搜索表中的数据。例如: SELECT id FROM employee WHERE id != “B%” 优化器 将无法通过索引来确定将要命中的行数,因此需要搜索该表的所有行。在in语句中能用exists语句代替的就用exists. 能够用BETWEEN的就不要用IN 能够用DISTINCT的就不用GROUP BY 尽量不要使用SELECT INTO语句。SELECT INTO 语句会导致表被锁定，阻止其他用户访问该表 1234SELECT LastName,Firstname INTO Persons_backup FROM Persons WHERE City='Beijing'将查询后的结果存放在一个新表 Persons_backup中，其中查询的过程表会被锁定 必要的时候强制查询优化器使用某个索引 1SELECT * FROM T1 WHERE nextprocess = 1 AND processid IN (8,32,45) 改成： SELECT * FROM T1 (INDEX = IX_ProcessID) WHERE nextprocess = 1 AND processid IN (8,32,45) 则查询优化器将会强行利用索引IX_ProcessID 执行查询。 Order By语句的Mysql优化 ORDER BY + LIMIT组合的索引优化 索引建立在order by上 Where+ORDER BY + LIMITz组合索引优化 索引建立在where 和 order by 上 WHERE+ORDER BY多个栏位+LIMIT 索引建立在where和多个order by上 不要在选择的栏位上放置索引，应该在条件选择的语句上合理的放置索引，比如order by where 数据类型优化避免使用NULL类型，因为大多数数据库要进行对他特殊处理，最好使用0或者1来标识 先总结那么多，后续再去进行添加总结]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
       <tags>
-        <tag>面试</tag>
+        <tag>蚂蚁金服面试</tag>
       </tags>
   </entry>
   <entry>
@@ -82,7 +96,7 @@
     <url>%2F2019%2F03%2F07%2FMySQL%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0-%E2%80%94%E2%80%94-%E4%B8%BB%E4%BB%8E%E5%88%86%E7%A6%BB%2F</url>
     <content type="text"><![CDATA[MySQL深入学习 —— 主从分离如何实现MySQL的读写分离基于主从复制架构，有一个主库，挂多个从库，然后我们写在主库，读在从库 MySQL主从复制原理主库将变更写入binlog日志中，然后从库连接主库之后，从库有一个IO线程，将主库的binlog日志拷贝到自己本地，然后写入一个叫做relay中继日志中，接着从库有一个SQL线程从中继日志中取出binlog日志内容，然后执行，相当于执行了一遍sql语句，这样就保证了自己和主库的数据是一致的。 注：主库是并行执行的，但是从库是串行化执行的，所以在高并发下，从库数据与主库数据同步会有延迟。 然后会衍生出来一个问题，如果主库执行后还没有来得及给从库，就发生宕机了，那么从库数据就得不到同步。所以有两种比较不错的解决方案1. 半同步复制即 一旦主库变更写入binlog日志中，就会强制此时立即将数据同步到从库，从库日志写入自己的relay中继日志中之后，接着会返回主库一个ack表示，主库收到至少一个ack标识，就认为写操作完成了。2. 并行复制从库开启多个线程，并行读取relay log中不同库的日志，然后并行重放不同库的日志，这是库级别的并行。 延迟比较严重，有以下解决方案 分库： 将一个主库拆分为多个主库，然后这样就可以减少一个主库的并发，从而缓轻从库的主从复制压力 重写代码： 在执行写之后一段时间内，不进行读操作 并行： 打开从库的并行复制 设置直连主库 ，这样分离没有意义 说到这儿了，还没有说为什么要读写分离(主从复制)，接下来说说 什么时候使用读写分离其实就是将数据库分为主库和从库，主库用来读，从库用来读，然后主从进行数据同步。由于互联网的应用大部分都是读多写少，所以我们可以使用读写分离方式来解决数据库的写瓶颈。但是选择读写分离要面对一下几个问题 数据库连接池要进行区分，哪些是读连接池，哪些是写连接池，研发难度很大 要保持主从一致性 为了保证高可用，读连接池要能使用故障自动迁移。 所以我们完全可以使用缓存来解决这些问题的，但是必须实现高可用，否则集群挂掉，所有的访问压力全部集中于数据库，数据库会瘫痪。 数据库的瓶颈以及解决办法数据容量是瓶颈，例如订单表，数据量只增不减，历史数据又必须要留存，非常容易成为性能的瓶颈，而要解决这样的数据库瓶颈问题，“读写分离”和缓存往往都不合适，最适合的是什么呢？答案是数据切分 数据切分切分的目的在于减少数据库的负担，缩短查询时间！数据库分布式的核心就是数据切分，以及切分后对数据的定位、整合数据切分根据其切分类型，可以分为两种方式：垂直（纵向）切分和水平（横向）切分详细学习，比较难理解，后续继续学习！]]></content>
       <categories>
-        <category>数据库</category>
+        <category>mysql</category>
       </categories>
   </entry>
   <entry>
@@ -193,8 +207,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>jvm底层学习</tag>
         <tag>java底层知识</tag>
+        <tag>jvm底层学习</tag>
       </tags>
   </entry>
   <entry>
