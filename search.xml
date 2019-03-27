@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Zookeeper深入学习总结]]></title>
+    <url>%2F2019%2F03%2F27%2FZookeeper%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[zookeeper深入学习（观察者设计模式）Zookeeper = 文件系统 + 通知机制Zookeeper是一个分布式的服务框架，主要用来解决分布式集群中应用系统的一致性问题，它能提供基于类似于文件系统的目录节点树方式的数据存储。但是，zookeeper并不是专门存储数据的，它主要是维护和监控系统的数据的状态的变化的。通过监控这些数据的变化，从而达到基于数据的集群管理。Zookeeper所提供的服务主要是通过: 数据结构+原句+watcher机制这三个部分来实现的。 初步了解zookeeper的节点初步介绍zookeeper中的数据存储在一个叫做ReplicatedDataSource的数据库中，该数据是一个内存数据库，既然是内存数据库，数据量就不会很大zookeeper的数据存储在内存中，由于内存空间的限制，存储的节点需要根据需求和功能进行选择，都是有ZK节点的性质和该节点所关联的数据实现的。 Zookeeper中每个节点存储的数据都是要进行原子性的操作，也就是读操作将获取与节点相关的所有数据，写操作将替换掉节点所有的数据。每一个节点都拥有自己的ACL(访问控制列表)，这个列表规定了用户的权限，即限定了特定用户对目标节点可以执行的操作。 特点 zookeeper节点类型主要有两种，一种是 临时节点，另一种是 永久节点，节点的类型在创建时即被确定，并且不能改变。 临时节点该节点的生命周期依赖于创建它们的会话。一旦会话(Session)结束，临时节点将被自动删除，当然可以也可以手动删除。虽然每个临时的Znode都会绑定到一个客户端会话，但他们对所有的客户端还是可见的。另外，ZooKeeper的临时节点不允许拥有子节点。 永久节点该节点的生命周期不依赖于会话，并且只有在客户端显示执行删除操作的时候，他们才能被删除。 存储结构是一个树状，每个节点被称为一个ZNode,默认能够存储1MB的数据，并且每个ZNode都是可以通过路径唯一标识 Zookeeper的常用方式统一配置信息把集群的中各个服务器配置存放于每一个ZNode中，节点信息变化，会通知到各个服务器 统一集群模式主要是把各个集群的状态存放于节点中，哪台服务器宕机了，其他节点会立刻被通知到 服务器动态上下线服务节点上下线会把信息返回给客户端，客户端将不再调用此服务 软负载均衡把服务器的访问量存储在ZNode中，然后，客户端去访问的时候，把访问的请求分发给请求少的服务器 Zookeeper监听原理 首先要有一个main（）线程 在main线程中创建zookeeper客户端，这时就会创建两个线程，一个负责网络连接通信(connect),一个负责监听(listener) 通过connect线程将注册的监听事件发给zookeeper 在zookeeper的注册监听列表中将注册的监听事件添加到列表中 zookeeper监听到数据或者路径有变化时，会将这个消息发送给listener线程 listener线程内部调用process()方法。 常见的监听类型 监听节点数据的变化 get [path] watch 监听节点数量的变化 ls [path] watch]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>zookeeper</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[mysql优化后续总结]]></title>
     <url>%2F2019%2F03%2F23%2Fmysql%E4%BC%98%E5%8C%96%E5%90%8E%E7%BB%AD%E6%80%BB%E7%BB%93%2F</url>
     <content type="text"><![CDATA[mysql优化后续总结show status like ‘innodb_row_lock%’ 查看行级锁的状态 show status like ‘table%’ 查看表级锁的状态 explainid select_key table type key possible_key key_len ref rows extra 执行顺序id相同，从上往下执行id不同，从大向小执行type: all-&gt;index-&gt;range-&gt;ref-&gt;eq_ref-&gt;const-&gt;systempossible_key: 可能用到的索引key: 实际用到的索引ref: const,实际引用extra: using index using where using filesort(效率偏差，最左匹配原则断层) using temporty(从上往下) 写sql的时候注意点 不对索引建立操作 != &lt;&gt; 适当选择使用 exists in 索引最左匹配 order by 、group by和where一样，根据最左匹配原则合理创建索引 字符类型一定要加双引号 索引操作创建索引create index 索引名 on 表名(索引列1,..)alter table 表名 add index 索引名(索引列1,..) 删除索引drop index 索引名 on 表名 查找所有的索引show index from 表名 执行过程详细查看接着我们需要详细查看执行情况 show variables like ‘profiling’ 默认关闭 set global profiling = 1;打开然后 使用 show profiles 查看所有的语句执行 然后根据某个语句执行id show profile cpu,block io 或者(all) for query id(上面的id);可以获得哪个执行的秒数情况，用来排查 其实我们还可以使用mysql全局监测 set global general_log = 1;默认关闭，是自带数据库mysql中的select * from mysql.general_log;获得以往执行情况 mysql锁表级索 行级索 inndb表级索 myisam mysql5.5以后默认innodb 以 innodb为例： 首先 设置读锁lock table 表名 read; 不可以对表进行写，但是可以读，只能读当前表其他session可以读，但是呢，写的话会阻塞 unlock tables; 释放所有的锁 设置写锁 lock table 表名 write; 不能写也不能读 unlock tables;]]></content>
@@ -207,8 +218,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>java底层知识</tag>
         <tag>jvm底层学习</tag>
+        <tag>java底层知识</tag>
       </tags>
   </entry>
   <entry>
@@ -329,9 +340,9 @@
         <category>python flask</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>商城</tag>
         <tag>flask</tag>
+        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -389,8 +400,8 @@
         <category>springboot</category>
       </categories>
       <tags>
-        <tag>socket</tag>
         <tag>jQuery</tag>
+        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
