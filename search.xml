@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Spring底层巩固]]></title>
+    <url>%2F2019%2F03%2F31%2FSpring%E5%BA%95%E5%B1%82%E5%B7%A9%E5%9B%BA%2F</url>
+    <content type="text"><![CDATA[Spring底层巩固BeanFactory ApplicationContextBeanFactoryBeanFactory实际上是实例化，配置和管理众多bean的容器。这些bean通常会彼此合作，因而他们之间会产生依赖。Spring使用BeanFactory来实例化、配置、管理Bean，是IOC容器的核心接口，定义了IOC的基本功能。 切记BeanFactory只管理单例Bean的生命周期。它不能管理原型(prototype,非单例)Bean 的生命周期。因为原型Bean实例被创建之后便被传给了客户端，容器失去了对它们的引用。 ApplicationContextApplicationContext由BeanFactory派生而来，提供了更多面向实际应用的功能。在BeanFactory中，很多功能需要以编程的方式实现，而在ApplicationContext中则可以通过配置实现。由于ApplicationContext是BeanFactor的派生，则拥有BeanFactory的所有功能，另外增加了更多的扩展 增加了如下的扩展: MessageSource, 提供国际化的消息访问 资源访问，如URL和文件 事件传播特性，即支持aop特性 载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层 ApplicationContext：是IOC容器另一个重要接口， 它继承了BeanFactory的基本功能， 同时也继承了容器的高级功能，如：MessageSource（国际化资源接口）、ResourceLoader（资源加载接口）、ApplicationEventPublisher（应用事件发布接口） BeanFactory ApplicationContext区别 BeanFactroy采用的是延迟加载形式来注入Bean的，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化，这样，我们就不能发现一些存在的Spring的配置问题。而ApplicationContext则相反，它是在容器启动时，一次性创建了所有的Bean。这样，在容器启动时，我们就可以发现Spring中存在的配置错误。 相对于基本的BeanFactory，ApplicationContext 唯一的不足是占用内存空间。当应用程序配置Bean较多时，程序启动较慢。BeanFacotry延迟加载,如果Bean的某一个属性没有注入，BeanFacotry加载后，直至第一次使用调用getBean方法才会抛出异常；而ApplicationContext则在初始化自身是检验，这样有利于检查所依赖属性是否注入；所以通常情况下我们选择使用 ApplicationContext。应用上下文则会在上下文启动后预载入所有的单实例Bean。通过预载入单实例bean ,确保当你需要的时候，你就不用等待，因为它们已经创建好了。 BeanFactory和ApplicationContext都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，但两者之间的区别是：BeanFactory需要手动注册，而ApplicationContext则是自动注册。 Bean的生命周期关于Bean的初始化和销毁，可以有以下方法 跟源码之后，发现BeanPostProcess源码之后，内部原理 在spring中有很多地方用到了BeanPostProcess原理,例如:1.@Sync注解2.@PostConstruct,@PreDesrory3.@Autowired4.类实现ApplicationContextAware往类中注入ioc容器(ApplicationContext) 这篇博客，关于Bean的生命周期流程图写的很好，借鉴一下,自己跟底层源码证实了正确性！ BeanFactoryAware和BeanNameAware 实现 BeanFactoryAware 接口的 bean 可以直接访问 Spring 容器，被容器创建以后，它会拥有一个指向 Spring 容器的引用。 BeanFactoryAware 接口只有一个方法void setBeanFactory(BeanFactorybeanFactory)。配置和一般的bean一样。 如果某个 bean 需要访问配置文件中本身的 id 属性，则可以使用 BeanNameAware 接口，该接口提供了回调本身的能力。实现该接口的 bean，能访问到本身的 id 属性。该接口提供一个方法:void setBeanName(String name)。 Spring 提供了以下 5 中标准的事件1.上下文更新事件（ContextRefreshedEvent）：该事件会在 ApplicationContext 被初始化或者更新时发布。也可以在调用 ConfigurableApplicationContext 接口中的 refresh()方法时被触发。2.上下文开始事件（ContextStartedEvent）：当容器调用ConfigurableApplicationContext的 Start()方法开始/重新开始容器时触发该事件。3.上下文停止事件（ContextStoppedEvent）：当容器调用ConfigurableApplicationContext的 Stop()方法停止容器时触发该事件。4.上下文关闭事件（ContextClosedEvent）：当 ApplicationContext 被关闭时触发该事件。容器被关闭时，其管理的所有单例 Bean 都被销毁。5.请求处理事件（RequestHandledEvent）：在 Web 应用中，当一个 http 请求（request）结束触发该事件。]]></content>
+      <categories>
+        <category>spring</category>
+      </categories>
+      <tags>
+        <tag>spring底层原理</tag>
+        <tag>spring事件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[SpringCloud Stream]]></title>
     <url>%2F2019%2F03%2F30%2FSpringCloud-Stream%2F</url>
     <content type="text"><![CDATA[SpringCloud StreamSpringCloud Stream（消息驱动微服务的框架）先上官方的一张图从图中我们可以看出，应用程序通过inputs和outputs来与SpringCloud Stream中的binder交互，接着springcloud的binder来和消息中间件实现交互！SpringCloud Stream为供应商的消息中间件产品提供了个性化的自动化配置实现，引用了发布—订阅，消费组，分区的三个核心概念。目前只支持RabbitMQ,Kafka.在我看来，主要为了简化开发，开发者只关注业务即可。 既然有Rabbit、Kafka，为什么还要SpringCloud Stream消息驱动呢? 比方说我们用到了RabbitMQ和Kafka，由于这两个消息中间件的架构上的不同，像RabbitMQ有exchange，kafka有Topic，partitions分区，这些中间件的差异性导致我们实际项目开发给我们造成了一定的困扰，我们如果用了两个消息队列的其中一种，后面的业务需求，假如想往另外一种消息队列进行迁移，这时候无疑就是一个灾难性的，一大堆东西都要重新推倒重新做，因为它跟我们的系统耦合了，这时候springcloud Stream给我们提供了一种解耦合的方式。 如何实现呢，实操来体会 首先在对应的服务的pom.xml中引入依赖(我使用的底层是RabbitMQ) 1234 &lt;dependency&gt; &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt; &lt;artifactId&gt;spring-cloud-starter-stream-rabbit&lt;/artifactId&gt;&lt;/dependency&gt; 然后我们定义一个接口123456789101112131415161718public interface StreamClient &#123; String INPUT = "myMessage"; String INPUT2 = "myMessage2"; @Input(INPUT) SubscribableChannel input(); @Output(INPUT) MessageChannel output(); @Input(INPUT2) SubscribableChannel input2(); @Output(INPUT2) MessageChannel output2();&#125; 接着我们实现消息的接受者 其中的 @SendTo注解表示接收到消息并且返回给消息队列，然后@StreamListener(StreamClient.INPUT2)捕获到12345678910111213141516@Component@EnableBinding(StreamClient.class)public class StreamReceiver &#123; @SendTo(StreamClient.INPUT2) @StreamListener(StreamClient.INPUT) public String process(Object message)&#123; System.out.println("消息是:"+message); return "received"; &#125; @StreamListener(StreamClient.INPUT2) public void getMsg(Object msg)&#123; System.out.println("接受到并返回:"+msg); &#125;&#125; 如何设置发送者呢其中MessageBuilder是org.springframework.messaging.support.MessageBuilder该包下的12345@GetMapping("/sendMessage")public void process()&#123; String msg = "复习springcloud的 stream用法"; streamClient.output().send(MessageBuilder.withPayload(msg).build());&#125; 基本上介绍都差不多了但是我们往往希望在rabbitMQ软件中也可以看出消息具体内容，所以我们可以这样在yml中配置123456spring: cloud: stream: bindings: myMessage: content-type: application/json]]></content>
@@ -241,8 +253,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>java底层知识</tag>
         <tag>jvm底层学习</tag>
+        <tag>java底层知识</tag>
       </tags>
   </entry>
   <entry>
