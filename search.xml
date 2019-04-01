@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[canal实现同步]]></title>
+    <url>%2F2019%2F04%2F01%2Fcanal%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5%2F</url>
+    <content type="text"><![CDATA[数据同步的问题——Canal常常我们在一个大型分布式系统中会有redis、solr、mysql等各种数据库，往往nosql数据库都是从mysql总获取数据，那在系统运行中如何保证数据的同步呢？我们常常有以下三种 利用业务代码实现同步往往在删除或者修改之后，执行逻辑代码实现同步。 优点：操作简单缺点：1. 业务耦合度太高 2. 执行效率变低 利用定时器来实现同步(SpringTask、Quartz)在数据库添加一个时间戳字段，然后每次定时执行任务，查询最后一个时间之后的数据变化然后同步到各个nosql数据库中。优点：和业务代码实现了解耦缺点： 数据的实时性不高 通过MQ实现同步当执行完删除或者修改操作之后，发送消息到消息中间件，然后消费者接收到消息，执行同步逻辑优点：业务逻辑解耦，可以做到准实时缺点： 还是要在业务代码中加入发送消息的代码，API耦合 通过Canal来实现实时同步(阿里巴巴技术)通过Canal来解析数据库的日志信息，来检测数据库中表结构的数据变化，从而更新Nosql数据库优点：业务逻辑解耦，可以做到准实时，API完全解耦 Canal深入学习介绍canal的github地址点我去下载地址 内部组成其中 server代表一个canal运行实例，对应一个jvm,Instance对应一个数据队列(可能有多个) 接着instance下的三个子模块关系 EventParser: 数据源接入，模拟slave协议和master进行交互,协议解析EventSink: Parser和Store的链接器，进行数据的过滤、加工、分发的工作EventStore: 数据的存储 进行canal搭建canal原理利用mysql binlog技术，所以要开启Binlog写入功能，建议binlog模式为row；1234567mysql&gt; show variables like &apos;binlog_format&apos;;+---------------+-----------+| Variable_name | Value |+---------------+-----------+| binlog_format | STATEMENT |+---------------+-----------+1 row in set (0.00 sec) 通过查询我们可以看出默认是STATEMENT,所以我们需要设置成row 然后接着我们可以进行配置 123456781. 在linux中复制一份conf到/etc下 cp/usr/share/mysql/my-default.cnf /etc/my.cnf2. 修改etc下的 my.cnlog-bin=mysql-bin binlog_format=ROW server_id=1f3.然后重启mysql service mysql restart 由于canal底层和主从相近，所以我们需要创建一个用户 1234561. 创建一个用户root1密码root1CREATE USER root1@&apos;localhost&apos; IDENTIFIED BY &apos;root1&apos;;2. 赋予查询权限(slave只复制读操作)GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO &apos; root1&apos;@&apos;localhost&apos;;3. 刷新权限FLUSH PRIVILEGES; 上传解压 canal.deployer-1.0.24.tar.gz，我解压到了/usr/local/canal下目录下编辑 canal/conf/example/instance.properties : 选项含义:1) canal.instance.mysql.slaveId : mysql 集群配置中的 serverId 概念，需要保证和当前 mysql 集群中 id 唯一;2) canal.instance.master.address: mysql 主库链接地址;3) canal.instance.dbUsername : mysql 数据库帐号4) canal.instance.dbPassword : mysql 数据库密码;5) canal.instance.defaultDatabaseName : mysql 链接时默认数据库;6) canal.instance.connectionCharset : mysql 数据解析编码;7) canal.instance.filter.regex : mysql 数据解析关注的表，Perl 正则表达 接下来我们启动canalcd /usr/local/canal/bin/startup.sh启动之后进入/usr/local/canal/logs/example，然后查询日志tail -f example.log 然后我们根据官方一个的测试工程12345678910111213141516171819202122232425262728293031323334353637383940414243package com.alibaba.otter.canal.example;import java.net.InetSocketAddress;import org.apache.commons.lang.exception.ExceptionUtils;import com.alibaba.otter.canal.client.CanalConnector;import com.alibaba.otter.canal.client.CanalConnectors;import com.alibaba.otter.canal.common.utils.AddressUtils;public class SimpleCanalClientTest extends AbstractCanalClientTest &#123; public SimpleCanalClientTest(String destination)&#123; super(destination); &#125; public static void main(String args[]) &#123; // 根据ip，直接创建链接，无HA的功能 String destination = "example"; CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("192.168.13.130", 11111), destination, "", ""); final SimpleCanalClientTest clientTest = new SimpleCanalClientTest(destination); clientTest.setConnector(connector); clientTest.start(); Runtime.getRuntime().addShutdownHook(new Thread() &#123; public void run() &#123; try &#123; logger.info("## stop the canal client"); clientTest.stop(); &#125; catch (Throwable e) &#123; logger.warn("##something goes wrong when stopping canal:\n&#123;&#125;", ExceptionUtils.getFullStackTrace(e)); &#125; finally &#123; logger.info("## canal client is down."); &#125; &#125; &#125;); &#125;&#125; InetSocketAddress修改自己服务器ip然后创建了canaldb表之后 执行插入语句后12INSERT INTO tb_book(NAME , author , publishtime , price , publishgroup) VALUES('白帽子讲安全协议 2','吴瀚请',NOW(),99.00,'电子工业出版社'); 执行之后，控制台打印出对应的日志过程基本上使用上结束 canal实现redis工程已经在gitub上，大家可以download下来运行在idea上，点我去下载]]></content>
+      <categories>
+        <category>分布式</category>
+      </categories>
+      <tags>
+        <tag>canal整合redis实现同步</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring底层巩固]]></title>
     <url>%2F2019%2F03%2F31%2FSpring%E5%BA%95%E5%B1%82%E5%B7%A9%E5%9B%BA%2F</url>
     <content type="text"><![CDATA[Spring底层巩固BeanFactory ApplicationContextBeanFactoryBeanFactory实际上是实例化，配置和管理众多bean的容器。这些bean通常会彼此合作，因而他们之间会产生依赖。Spring使用BeanFactory来实例化、配置、管理Bean，是IOC容器的核心接口，定义了IOC的基本功能。 切记BeanFactory只管理单例Bean的生命周期。它不能管理原型(prototype,非单例)Bean 的生命周期。因为原型Bean实例被创建之后便被传给了客户端，容器失去了对它们的引用。 ApplicationContextApplicationContext由BeanFactory派生而来，提供了更多面向实际应用的功能。在BeanFactory中，很多功能需要以编程的方式实现，而在ApplicationContext中则可以通过配置实现。由于ApplicationContext是BeanFactor的派生，则拥有BeanFactory的所有功能，另外增加了更多的扩展 增加了如下的扩展: MessageSource, 提供国际化的消息访问 资源访问，如URL和文件 事件传播特性，即支持aop特性 载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层 ApplicationContext：是IOC容器另一个重要接口， 它继承了BeanFactory的基本功能， 同时也继承了容器的高级功能，如：MessageSource（国际化资源接口）、ResourceLoader（资源加载接口）、ApplicationEventPublisher（应用事件发布接口） BeanFactory ApplicationContext区别 BeanFactroy采用的是延迟加载形式来注入Bean的，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化，这样，我们就不能发现一些存在的Spring的配置问题。而ApplicationContext则相反，它是在容器启动时，一次性创建了所有的Bean。这样，在容器启动时，我们就可以发现Spring中存在的配置错误。 相对于基本的BeanFactory，ApplicationContext 唯一的不足是占用内存空间。当应用程序配置Bean较多时，程序启动较慢。BeanFacotry延迟加载,如果Bean的某一个属性没有注入，BeanFacotry加载后，直至第一次使用调用getBean方法才会抛出异常；而ApplicationContext则在初始化自身是检验，这样有利于检查所依赖属性是否注入；所以通常情况下我们选择使用 ApplicationContext。应用上下文则会在上下文启动后预载入所有的单实例Bean。通过预载入单实例bean ,确保当你需要的时候，你就不用等待，因为它们已经创建好了。 BeanFactory和ApplicationContext都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，但两者之间的区别是：BeanFactory需要手动注册，而ApplicationContext则是自动注册。 Bean的生命周期关于Bean的初始化和销毁，可以有以下方法 跟源码之后，发现BeanPostProcess源码之后，内部原理 在spring中有很多地方用到了BeanPostProcess原理,例如:1.@Sync注解2.@PostConstruct,@PreDesrory3.@Autowired4.类实现ApplicationContextAware往类中注入ioc容器(ApplicationContext) 这篇博客，关于Bean的生命周期流程图写的很好，借鉴一下,自己跟底层源码证实了正确性！ BeanFactoryAware和BeanNameAware 实现 BeanFactoryAware 接口的 bean 可以直接访问 Spring 容器，被容器创建以后，它会拥有一个指向 Spring 容器的引用。 BeanFactoryAware 接口只有一个方法void setBeanFactory(BeanFactorybeanFactory)。配置和一般的bean一样。 如果某个 bean 需要访问配置文件中本身的 id 属性，则可以使用 BeanNameAware 接口，该接口提供了回调本身的能力。实现该接口的 bean，能访问到本身的 id 属性。该接口提供一个方法:void setBeanName(String name)。 Spring 提供了以下 5 中标准的事件1.上下文更新事件（ContextRefreshedEvent）：该事件会在 ApplicationContext 被初始化或者更新时发布。也可以在调用 ConfigurableApplicationContext 接口中的 refresh()方法时被触发。2.上下文开始事件（ContextStartedEvent）：当容器调用ConfigurableApplicationContext的 Start()方法开始/重新开始容器时触发该事件。3.上下文停止事件（ContextStoppedEvent）：当容器调用ConfigurableApplicationContext的 Stop()方法停止容器时触发该事件。4.上下文关闭事件（ContextClosedEvent）：当 ApplicationContext 被关闭时触发该事件。容器被关闭时，其管理的所有单例 Bean 都被销毁。5.请求处理事件（RequestHandledEvent）：在 Web 应用中，当一个 http 请求（request）结束触发该事件。]]></content>
@@ -375,9 +386,9 @@
         <category>python flask</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>商城</tag>
         <tag>flask</tag>
+        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -435,8 +446,8 @@
         <category>springboot</category>
       </categories>
       <tags>
-        <tag>socket</tag>
         <tag>jQuery</tag>
+        <tag>socket</tag>
       </tags>
   </entry>
   <entry>
