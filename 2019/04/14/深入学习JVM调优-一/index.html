@@ -1,0 +1,1314 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.lug.ustc.edu.cn/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JVM性能调优,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="深入学习JDK调优非标准化参数X类型参数-Xint: 解释执行-Xcomp: 第一次使用就编译成本地代码-Xmixed: 混合模式,JVM自己决定是否编译成本地代码 扩展解释执行：将编译好的字节码一行一行地翻译为机器码执行。编译执行：以方法为单位，将字节码一次性翻译为机器码后执行。 在编译示时期，我们通过将源代码编译成.class ，配合JVM这种跨平台的抽象，屏蔽了底层计算机操作系统和硬件的区别">
+<meta name="keywords" content="JVM性能调优">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入学习JVM调优(一)">
+<meta property="og:url" content="https://lmx110522.github.io/2019/04/14/深入学习JVM调优-一/index.html">
+<meta property="og:site_name" content="茂展的分享博客">
+<meta property="og:description" content="深入学习JDK调优非标准化参数X类型参数-Xint: 解释执行-Xcomp: 第一次使用就编译成本地代码-Xmixed: 混合模式,JVM自己决定是否编译成本地代码 扩展解释执行：将编译好的字节码一行一行地翻译为机器码执行。编译执行：以方法为单位，将字节码一次性翻译为机器码后执行。 在编译示时期，我们通过将源代码编译成.class ，配合JVM这种跨平台的抽象，屏蔽了底层计算机操作系统和硬件的区别">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/JVM%E9%9D%9E%E6%A0%87%E5%87%86%E5%8C%96%E5%8F%82%E6%95%B0.png">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/%E7%AC%AC%E4%BA%8C%E5%BC%A0PrintFlagsFinal%E5%8F%82%E6%95%B0%E6%89%93%E5%8D%B0.png">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/%E7%AC%AC%E4%B8%89%E5%BC%A0%20jps%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8.png">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/MAT%E8%BD%AF%E4%BB%B6%E8%A7%A3%E6%9E%90%E5%86%85%E5%AD%98%E6%98%A0%E5%83%8F%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/MAT%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8.png">
+<meta property="og:updated_time" content="2019-04-14T01:49:08.040Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入学习JVM调优(一)">
+<meta name="twitter:description" content="深入学习JDK调优非标准化参数X类型参数-Xint: 解释执行-Xcomp: 第一次使用就编译成本地代码-Xmixed: 混合模式,JVM自己决定是否编译成本地代码 扩展解释执行：将编译好的字节码一行一行地翻译为机器码执行。编译执行：以方法为单位，将字节码一次性翻译为机器码后执行。 在编译示时期，我们通过将源代码编译成.class ，配合JVM这种跨平台的抽象，屏蔽了底层计算机操作系统和硬件的区别">
+<meta name="twitter:image" content="http://qiniuyun.lmxljc.xyz/JVM%E9%9D%9E%E6%A0%87%E5%87%86%E5%8C%96%E5%8F%82%E6%95%B0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lmx110522.github.io/2019/04/14/深入学习JVM调优-一/">
+
+
+
+
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+  <title> 深入学习JVM调优(一) | 茂展的分享博客 </title>
+</head>
+
+  	 <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+});
+</script>
+  
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?340874ba9357cbe81570aa4ac1185941";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">茂展的分享博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <h1 class="site-subtitle" itemprop="description">享受编码的乐趣</h1>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/2019/04/14/深入学习JVM调优-一/">
+
+  <span style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="李茂展">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="茂展的分享博客">
+    <span style="display:none" itemprop="logo" itemscope="" itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="茂展的分享博客" src="/images/avatar.jpg">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入学习JVM调优(一)
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-14T21:01:00+08:00">
+                2019-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2019/04/14/深入学习JVM调优-一/" class="leancloud_visitors" data-flag-title="深入学习JVM调优(一)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,375
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="深入学习JDK调优"><a href="#深入学习JDK调优" class="headerlink" title="深入学习JDK调优"></a>深入学习JDK调优</h1><h2 id="非标准化参数"><a href="#非标准化参数" class="headerlink" title="非标准化参数"></a>非标准化参数</h2><h3 id="X类型参数"><a href="#X类型参数" class="headerlink" title="X类型参数"></a>X类型参数</h3><p>-Xint: 解释执行<br>-Xcomp: 第一次使用就编译成本地代码<br>-Xmixed: 混合模式,JVM自己决定是否编译成本地代码<br><img src="http://qiniuyun.lmxljc.xyz/JVM%E9%9D%9E%E6%A0%87%E5%87%86%E5%8C%96%E5%8F%82%E6%95%B0.png" alt="X类型的参数" title="X类型的参数"></p>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p><strong>解释执行：将编译好的字节码一行一行地翻译为机器码执行。</strong><br><strong>编译执行：以方法为单位，将字节码一次性翻译为机器码后执行。</strong></p>
+<p>在编译示时期，我们通过将源代码编译成.class ，配合JVM这种跨平台的抽象，屏蔽了底层计算机操作系统和硬件的区别，实现了“一次编译，到处运行” 。 而在运行时期，目前主流的JVM 都是混合模式（-Xmixed），即解释运行 和编译运行配合使用。以 Oracle JDK提供的HotSpot虚拟机为例，在HotSpot虚拟机中，提供了两种编译模式：解释执行 和 即时编译（JIT，Just-In-Time）<strong>。解释执行即逐条翻译字节码为可运行的机器码，而即时编译则以方法为单位将字节码翻译成机器码</strong>（上述提到的“编译执行”）。<strong>前者的优势在于不用等待，后者则在实际运行当中效率更高。</strong></p>
+<h3 id="XX类型参数"><a href="#XX类型参数" class="headerlink" title="XX类型参数"></a>XX类型参数</h3><p>主要用途:jvm调优</p>
+<h4 id="Boolean类型"><a href="#Boolean类型" class="headerlink" title="Boolean类型"></a>Boolean类型</h4><p>格式： -XX:[+-]&lt; name&gt;表示启用或者禁用name属性，其中+表示启用，-表示禁用<br>例如： -XX:+UseConcMarkSweepGC 启用CMS垃圾收集器；-XX：+UseG1GC 启用G1垃圾收集器</p>
+<h4 id="非Boolean类型"><a href="#非Boolean类型" class="headerlink" title="非Boolean类型"></a>非Boolean类型</h4><p>格式： -XX:&lt; name&gt;=&lt; value&gt;表示name属性的值是value<br>比如： -XX:MaxGCPauseMillis=500表示GC垃圾收集最大停顿时间是500毫秒</p>
+<p>-Xms: jvm的初始内存大小，也可以成为最小内存大小<br>-Xmx: jvm的最大内存大大小<br>-Xss: 设置线程堆栈的大小</p>
+<h2 id="JVM运行时参数"><a href="#JVM运行时参数" class="headerlink" title="JVM运行时参数"></a>JVM运行时参数</h2><p>-XX:+PrintFlagsInitial 查看初始值</p>
+<p>-XX:+PrintFlagsFinal 查看最终值</p>
+<p>-XX:+UnlockExperimentalVMOptions 解锁实验参数</p>
+<p>-XX:+UnlockDiagnosticVMOptions 解锁诊断参数</p>
+<p>-XX:+PrintCommandLineFlags 打印命令行参数</p>
+<h3 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h3><p>-XX：+PrintFlagsFinal 查看最终值<br>然后执行java -XX:PrintFlagsFinal -version结果得到有 := 和 =的键值对，其中 := 表示 被用户或者JVM修改后的值，= 表示默认值</p>
+<p><strong>此时运行的结果表示是当前命令执行的所在线程的参数值</strong><br><img src="http://qiniuyun.lmxljc.xyz/%E7%AC%AC%E4%BA%8C%E5%BC%A0PrintFlagsFinal%E5%8F%82%E6%95%B0%E6%89%93%E5%8D%B0.png" alt="当前所有线程的参数值" title="当前所有线程的参数值"></p>
+<h3 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h3><p>专门用来查询java进程的命令，类似于linux中的ps命令<br>其中 jps -l 能够查看到具体的进程中的全类名<br><img src="http://qiniuyun.lmxljc.xyz/%E7%AC%AC%E4%B8%89%E5%BC%A0%20jps%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8.png" alt="jps打印" title="jps打印"></p>
+<p>刚刚我们通过jps查到对用的进程号，然后我们通过jinfo -flags 进程号 打印出所有的参数变量</p>
+<h3 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h3><p>用来查看JVM的统计信息</p>
+<ol>
+<li>类加载 2. 垃圾收集 3. JIT编译<br>我们首先使用jps找到对应的进程id，<br>然后我们使用 jstat -class id 毫秒数 数量 打印出对应的统计信息</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">F:\jvm&gt;jstat -<span class="class"><span class="keyword">class</span> 16108</span></span><br><span class="line"><span class="class"><span class="title">Loaded</span>  <span class="title">Bytes</span>  <span class="title">Unloaded</span>  <span class="title">Bytes</span>     <span class="title">Time</span></span></span><br><span class="line"><span class="class">   677  1339.9        0     0.0       0.54</span></span><br><span class="line"><span class="class"></span></span><br><span class="line">F:\jvm&gt;jstat -compiler 16108</span><br><span class="line">Compiled Failed Invalid   Time   FailedType FailedMethod</span><br><span class="line">     <span class="number">114</span>      <span class="number">0</span>       <span class="number">0</span>     <span class="number">0.08</span>          <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//其中S0C S1C S0U S1U表示survior区的总量和使用量</span></span><br><span class="line"><span class="comment">// EC  EU  OC  OU 分别表示 Eden区和old区的总量和使用量</span></span><br><span class="line"><span class="comment">//GCT 总的垃圾回收时间</span></span><br><span class="line"><span class="comment">// YGC YGCT FGC FGCT 分别表示minor gc的次数和时间 Full gc的次数和时间</span></span><br><span class="line">F:\jvm&gt;jstat -gc <span class="number">16108</span></span><br><span class="line"> S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT</span><br><span class="line"><span class="number">512.0</span>  <span class="number">512.0</span>  <span class="number">504.0</span>   <span class="number">0.0</span>    <span class="number">2048.0</span>   <span class="number">587.3</span>    <span class="number">129536.0</span>    <span class="number">638.1</span>    <span class="number">4864.0</span> <span class="number">3810.5</span> <span class="number">512.0</span>  <span class="number">427.0</span>       <span class="number">4</span>    <span class="number">0.005</span>   <span class="number">0</span>      <span class="number">0.000</span>    <span class="number">0.005</span></span><br></pre></td></tr></table></figure>
+<p>其中 Loaded 加载的个数</p>
+<h3 id="jmap-MAT-定位内存溢出"><a href="#jmap-MAT-定位内存溢出" class="headerlink" title="jmap + MAT 定位内存溢出"></a>jmap + MAT 定位内存溢出</h3><p><strong>出现内存泄露，需要我们导出内存映像文件，有两种方式</strong><br>1  <strong>内存溢出自动导出</strong><br>-XX:+HeapDumpOnOutOfMemoryError<br>-XX:HeapDumpPath=./</p>
+<p>在系统运行的时候配置上面两个参数，控制台打印出<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">java.lang.OutOfMemoryError: GC overhead limit exceeded</span><br><span class="line">Dumping heap to ./\java_pid18408.hprof ...</span><br><span class="line">Heap dump file created [<span class="number">48277884</span> bytes in <span class="number">0.389</span> secs]</span><br><span class="line">Exception in thread <span class="string">"http-nio-80-exec-3"</span> java.lang.OutOfMemoryError: GC overhead limit exceeded</span><br><span class="line">Exception in thread <span class="string">"http-nio-80-exec-1"</span> java.lang.OutOfMemoryError: GC overhead limit exceeded</span><br></pre></td></tr></table></figure></p>
+<p>然后我们会在项目所在目录找到 java_pid18408.hprof 文件</p>
+<p>2 <strong>使用jmap命令手动导出</strong><br>首先我们使用jps -l 得到对应进程的进程号<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">F:\jvm&gt;jmap -dump:format=b,file=heap.hprof <span class="number">18408</span></span><br><span class="line">Dumping heap to F:\jvm\heap.hprof ...</span><br><span class="line">Heap dump file created</span><br></pre></td></tr></table></figure></p>
+<p>我们使用jmap -heap 进程号，可以得到对应堆内存数据配置<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">F:\jvm&gt;jmap -heap <span class="number">18408</span></span><br><span class="line">Attaching to process ID <span class="number">18408</span>, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is <span class="number">25.11</span>-b03</span><br><span class="line"></span><br><span class="line">using thread-local object allocation.</span><br><span class="line">Parallel GC with <span class="number">8</span> thread(s)</span><br><span class="line"></span><br><span class="line">Heap Configuration:</span><br><span class="line">   MinHeapFreeRatio         = <span class="number">40</span></span><br><span class="line">   MaxHeapFreeRatio         = <span class="number">70</span></span><br><span class="line">   MaxHeapSize              = <span class="number">33554432</span> (<span class="number">32.0</span>MB)</span><br><span class="line">   NewSize                  = <span class="number">11010048</span> (<span class="number">10.5</span>MB)</span><br><span class="line">   MaxNewSize               = <span class="number">11010048</span> (<span class="number">10.5</span>MB)</span><br><span class="line">   OldSize                  = <span class="number">22544384</span> (<span class="number">21.5</span>MB)</span><br><span class="line">   NewRatio                 = <span class="number">2</span></span><br><span class="line">   SurvivorRatio            = <span class="number">8</span></span><br><span class="line">   MetaspaceSize            = <span class="number">21807104</span> (<span class="number">20.796875</span>MB)</span><br><span class="line">   CompressedClassSpaceSize = <span class="number">1073741824</span> (<span class="number">1024.0</span>MB)</span><br><span class="line">   MaxMetaspaceSize         = <span class="number">17592186044415</span> MB</span><br><span class="line">   G1HeapRegionSize         = <span class="number">0</span> (<span class="number">0.0</span>MB)</span><br><span class="line"></span><br><span class="line">Heap Usage:</span><br><span class="line">PS Young Generation</span><br><span class="line">Eden Space:</span><br><span class="line">   capacity = <span class="number">4718592</span> (<span class="number">4.5</span>MB)</span><br><span class="line">   used     = <span class="number">4718592</span> (<span class="number">4.5</span>MB)</span><br><span class="line">   free     = <span class="number">0</span> (<span class="number">0.0</span>MB)</span><br><span class="line">   <span class="number">100.0</span>% used</span><br><span class="line">From Space:</span><br><span class="line">   capacity = <span class="number">3145728</span> (<span class="number">3.0</span>MB)</span><br><span class="line">   used     = <span class="number">0</span> (<span class="number">0.0</span>MB)</span><br><span class="line">   free     = <span class="number">3145728</span> (<span class="number">3.0</span>MB)</span><br><span class="line">   <span class="number">0.0</span>% used</span><br><span class="line">To Space:</span><br><span class="line">   capacity = <span class="number">3145728</span> (<span class="number">3.0</span>MB)</span><br><span class="line">   used     = <span class="number">0</span> (<span class="number">0.0</span>MB)</span><br><span class="line">   free     = <span class="number">3145728</span> (<span class="number">3.0</span>MB)</span><br><span class="line">   <span class="number">0.0</span>% used</span><br><span class="line">PS Old Generation</span><br><span class="line">   capacity = <span class="number">22544384</span> (<span class="number">21.5</span>MB)</span><br><span class="line">   used     = <span class="number">22106680</span> (<span class="number">21.08257293701172</span>MB)</span><br><span class="line">   free     = <span class="number">437704</span> (<span class="number">0.41742706298828125</span>MB)</span><br><span class="line">   <span class="number">98.0584787767987</span>% used</span><br><span class="line"></span><br><span class="line"><span class="number">13365</span> interned Strings occupying <span class="number">1920632</span> bytes.</span><br></pre></td></tr></table></figure></p>
+<p>根据上面我们导出的内存映像文件，我们这时候下载一个mat软件，然后在此软件内打开我们的内存映像文件<br><a href="https://www.eclipse.org/mat/downloads.php" title="点我去下载MAT软件" target="_blank" rel="noopener">点我去下载MAT软件</a><br><img src="http://qiniuyun.lmxljc.xyz/MAT%E8%BD%AF%E4%BB%B6%E8%A7%A3%E6%9E%90%E5%86%85%E5%AD%98%E6%98%A0%E5%83%8F%E6%96%87%E4%BB%B6.png" alt="MAT软件加载内存映像文件" title="MAT软件加载内存映像文件"><br><img src="http://qiniuyun.lmxljc.xyz/MAT%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8.png" alt="MAT分析" title="MAT分析"></p>
+<p>下一篇继续学习jvm调优的其他方式</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+  
+        <div class="post-tags">
+          
+            <a href="/tags/JVM性能调优/" rel="tag"># JVM性能调优</a>
+          
+        </div>
+      
+
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="李茂展 WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="李茂展 Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+      <ul class="post-copyright">
+         <li class="post-copyright-link">
+          <strong>本文作者：</strong>
+          <a href="/" title="欢迎访问 李茂展 的个人博客">李茂展</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文标题：</strong>
+          <a href="https://lmx110522.github.io/2019/04/14/深入学习JVM调优-一/" title="深入学习JVM调优(一)">深入学习JVM调优(一)</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文链接：</strong>
+          <a href="https://lmx110522.github.io/2019/04/14/深入学习JVM调优-一/" title="深入学习JVM调优(一)">https://lmx110522.github.io/2019/04/14/深入学习JVM调优-一/</a>
+        </li>
+
+        <li class="post-copyright-date">
+            <strong>发布时间：</strong>2019年4月14日 - 21时04分
+        </li>  
+
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong>
+          本文由 李茂展 原创，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="license" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a> <br>转载请保留以上声明信息！
+        </li>
+      </ul>
+    
+  </div>  
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/13/梳理Java线程的状态以及切换/" rel="next" title="梳理Java线程的状态以及切换">
+                <i class="fa fa-chevron-left"></i> 梳理Java线程的状态以及切换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI4My84ODQ3"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李茂展">
+          <p class="site-author-name" itemprop="name">李茂展</p>
+          <p class="site-description motion-element" itemprop="description">欢迎您光临本站!~</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lmx110522?tab=repositories" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/u/5393136352?nick=%E5%9B%BD%E6%B0%91%E5%B0%8F%E6%B2%AB%E7%86%99" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://blog.csdn.net/over110522" target="_blank" title="csdn">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  csdn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.csdn.net/" title="CSDN" target="_blank">CSDN</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深入学习JDK调优"><span class="nav-number">1.</span> <span class="nav-text">深入学习JDK调优</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#非标准化参数"><span class="nav-number">1.1.</span> <span class="nav-text">非标准化参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#X类型参数"><span class="nav-number">1.1.1.</span> <span class="nav-text">X类型参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">扩展</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XX类型参数"><span class="nav-number">1.1.2.</span> <span class="nav-text">XX类型参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Boolean类型"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Boolean类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非Boolean类型"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">非Boolean类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM运行时参数"><span class="nav-number">1.2.</span> <span class="nav-text">JVM运行时参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#详解"><span class="nav-number">1.2.1.</span> <span class="nav-text">详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jps"><span class="nav-number">1.2.2.</span> <span class="nav-text">jps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jstat"><span class="nav-number">1.2.3.</span> <span class="nav-text">jstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jmap-MAT-定位内存溢出"><span class="nav-number">1.2.4.</span> <span class="nav-text">jmap + MAT 定位内存溢出</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李茂展</span>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/lmx110522/lmx110522.github.io" rel="external nofollow">
+    github
+  </a>| 感谢光临本站！<a style="font-weight:bolder;" href="mailto:1247721306@qq.com?subject=寻求疑问&body=你的名字%0d%0a疑问宝宝">有疑问可以给我留言</a>
+  	
+
+   <!--  
+    	    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    	   
+     -->
+
+	</div>
+
+
+
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">访客数<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人</span>
+  
+
+  
+    <span class="site-pv">总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+  
+  <script type="text/javascript" src="/vendors/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("kJ2sJuSJeByLioULSXrJ5CSq-9Nh9j0Va", "uBWeNxCbFEWsOVDTmAInrDq3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+	<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>
