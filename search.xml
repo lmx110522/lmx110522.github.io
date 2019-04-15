@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[蚂蚁金服HR面——重新审视自己]]></title>
+    <url>%2F2019%2F04%2F15%2F%E8%9A%82%E8%9A%81%E9%87%91%E6%9C%8DHR%E9%9D%A2%E2%80%94%E2%80%94%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86%E8%87%AA%E5%B7%B1%2F</url>
+    <content type="text"><![CDATA[蚂蚁金服HR面——重新审视自己关于和面试官的疑惑面试差不多有半个小时左右，然后整个过程差不多面试官都在问我的优点缺点以及如果面试没有面过或者面过种种问题，我还是想说，我是个有理想的小男生。 面试官问我，工作室老师对我的评价，我说，老师说我有跳跃性思维，其实，从不同的角度看，结果是不同的，我从百度百科中摘抄了这个词汇的理解 1跳跃式思维（Jump Thinking）是指一种不依逻辑步骤，直接从命题跳到答案，并再一步推而广之到其他相关的可能的一种思考模式。这种思考模式在部分资优学童很常见，而随著因特网的普及，这种思考模式更慢慢成为了主流。因此，现时对这种称呼有另一种叫法，叫作选单式思考。简单地说，跳跃性思维就是一种杂乱的思维方式。通常对一种事物的想象突然跳到与此事物不相干的另一事物上了，而且连续这样跳跃想象，想象力非常丰富。逻辑不严密，组织杂乱无序。它与逻辑思维是相对立的。通常的表现是说话或者写文章太乱，组织不严密，立意太分散。 面试官说和我的专注度是矛盾的在面对多个处境的时候，可能我会跳跃性的去选择我认为正确的路，然后去专注的做好它。并不是说，学习的时候不够深入，这是不矛盾的。当初我在接触到c++的时候，我没有去学习它，不是我不专注，是因为我觉着我不喜欢所以才会不去做这件事，然后接触java之后，我觉着这就是我喜欢的语言。但是由刚开始的再表面上学习使用，觉着很好用，甚至没有了c++中复杂的指针，不用自己进行垃圾回收。这只是我刚开始用的时候的直观感受，其实在后来的学习中不然。 我是一个要强的人我一定要做到比别人好，这是我的态度，也是我在做一件事情的时候，会去做的比别人好。可能从小家庭的缘故，我见不到别人比我要好，所以我会花更多的事情去做好这件事情，这是一种态度，也是我精神的食量。在我们学习的技术中，全国很多程序员都会做，都不是傻子，谁不会做呢，但是真正深入的那部分人就是他们中优秀的那部分人，这就话是我常常告诉我自己的，要做好就要做更多的努力，持之以恒。我虽然没有科比每天早晨凌晨的四点钟的洛杉矶的太阳，但作为我的偶像，我要做我这周围人中最优秀的。我经历过大学几乎大部分时间的早晨6点钟的南阳理工的清晨，多少个日日夜夜在屏幕前看着一行行字母，还有一份份pdf文档,还有一个个视频的播放，那是我的经历，是我人生的积累！我认为我是个专注的人，这不矛盾！ 我是一个有计划的人马云说过，我们和富人们的一样的是一天我们都是有24个小时！我喜欢有计划的做好这个24个小时大约在初中的时候，语文老师告诉我们，做任何事情都要有计划，即使计划赶不上变化，大部分时间会让你很自信面对生活。 这个计划在我脑子里面一直履行，已经享受了这种计划带来的幸福感！每一天的学习计划都会在前一天晚上做好，提前一天准备好我的学习资料和视频，第二天大部分时间就会做到！除非有其他的生活琐事占满！我的幸福感的大部分来源于有个规划的明天 关于面试官问我的问题1.如果面试不上，你觉着你比别人差在哪2.如果你面试上，你觉着你比别人优秀在哪3.你的优点以及缺点4.身边的人对你的评价5.你为什么想来阿里巴巴6. 你除了蚂蚁金服，你还喜欢阿里巴巴的哪个公司7. 你从前面的一个个面试官哪个学到了东西8. 面试官给你的建议你后来是怎么来学习的成功不是偶然，机会是给有准备的人学业上的成就不是用时间来衡量的，是你比别人多思考了多少。 校园里的一名小学生，上述仅个人观点！]]></content>
+      <categories>
+        <category>自我认知</category>
+      </categories>
+      <tags>
+        <tag>蚂蚁金服HR面</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[深入学习JVM调优(一)]]></title>
     <url>%2F2019%2F04%2F14%2F%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0JVM%E8%B0%83%E4%BC%98-%E4%B8%80%2F</url>
     <content type="text"><![CDATA[深入学习JDK调优非标准化参数X类型参数-Xint: 解释执行-Xcomp: 第一次使用就编译成本地代码-Xmixed: 混合模式,JVM自己决定是否编译成本地代码 扩展解释执行：将编译好的字节码一行一行地翻译为机器码执行。编译执行：以方法为单位，将字节码一次性翻译为机器码后执行。 在编译示时期，我们通过将源代码编译成.class ，配合JVM这种跨平台的抽象，屏蔽了底层计算机操作系统和硬件的区别，实现了“一次编译，到处运行” 。 而在运行时期，目前主流的JVM 都是混合模式（-Xmixed），即解释运行 和编译运行配合使用。以 Oracle JDK提供的HotSpot虚拟机为例，在HotSpot虚拟机中，提供了两种编译模式：解释执行 和 即时编译（JIT，Just-In-Time）。解释执行即逐条翻译字节码为可运行的机器码，而即时编译则以方法为单位将字节码翻译成机器码（上述提到的“编译执行”）。前者的优势在于不用等待，后者则在实际运行当中效率更高。 XX类型参数主要用途:jvm调优 Boolean类型格式： -XX:[+-]&lt; name&gt;表示启用或者禁用name属性，其中+表示启用，-表示禁用例如： -XX:+UseConcMarkSweepGC 启用CMS垃圾收集器；-XX：+UseG1GC 启用G1垃圾收集器 非Boolean类型格式： -XX:&lt; name&gt;=&lt; value&gt;表示name属性的值是value比如： -XX:MaxGCPauseMillis=500表示GC垃圾收集最大停顿时间是500毫秒 -Xms: jvm的初始内存大小，也可以成为最小内存大小-Xmx: jvm的最大内存大大小-Xss: 设置线程堆栈的大小 JVM运行时参数-XX:+PrintFlagsInitial 查看初始值 -XX:+PrintFlagsFinal 查看最终值 -XX:+UnlockExperimentalVMOptions 解锁实验参数 -XX:+UnlockDiagnosticVMOptions 解锁诊断参数 -XX:+PrintCommandLineFlags 打印命令行参数 详解-XX：+PrintFlagsFinal 查看最终值然后执行java -XX:PrintFlagsFinal -version结果得到有 := 和 =的键值对，其中 := 表示 被用户或者JVM修改后的值，= 表示默认值 此时运行的结果表示是当前命令执行的所在线程的参数值 jps专门用来查询java进程的命令，类似于linux中的ps命令其中 jps -l 能够查看到具体的进程中的全类名 刚刚我们通过jps查到对用的进程号，然后我们通过jinfo -flags 进程号 打印出所有的参数变量 jstat用来查看JVM的统计信息 类加载 2. 垃圾收集 3. JIT编译我们首先使用jps找到对应的进程id，然后我们使用 jstat -class id 毫秒数 数量 打印出对应的统计信息 123456789101112131415F:\jvm&gt;jstat -class 16108Loaded Bytes Unloaded Bytes Time 677 1339.9 0 0.0 0.54F:\jvm&gt;jstat -compiler 16108Compiled Failed Invalid Time FailedType FailedMethod 114 0 0 0.08 0//其中S0C S1C S0U S1U表示survior区的总量和使用量// EC EU OC OU 分别表示 Eden区和old区的总量和使用量//GCT 总的垃圾回收时间// YGC YGCT FGC FGCT 分别表示minor gc的次数和时间 Full gc的次数和时间F:\jvm&gt;jstat -gc 16108 S0C S1C S0U S1U EC EU OC OU MC MU CCSC CCSU YGC YGCT FGC FGCT GCT512.0 512.0 504.0 0.0 2048.0 587.3 129536.0 638.1 4864.0 3810.5 512.0 427.0 4 0.005 0 0.000 0.005 其中 Loaded 加载的个数 jmap + MAT 定位内存溢出出现内存泄露，需要我们导出内存映像文件，有两种方式1 内存溢出自动导出-XX:+HeapDumpOnOutOfMemoryError-XX:HeapDumpPath=./ 在系统运行的时候配置上面两个参数，控制台打印出12345java.lang.OutOfMemoryError: GC overhead limit exceededDumping heap to ./\java_pid18408.hprof ...Heap dump file created [48277884 bytes in 0.389 secs]Exception in thread "http-nio-80-exec-3" java.lang.OutOfMemoryError: GC overhead limit exceededException in thread "http-nio-80-exec-1" java.lang.OutOfMemoryError: GC overhead limit exceeded 然后我们会在项目所在目录找到 java_pid18408.hprof 文件 2 使用jmap命令手动导出首先我们使用jps -l 得到对应进程的进程号123F:\jvm&gt;jmap -dump:format=b,file=heap.hprof 18408Dumping heap to F:\jvm\heap.hprof ...Heap dump file created 我们使用jmap -heap 进程号，可以得到对应堆内存数据配置1234567891011121314151617181920212223242526272829303132333435363738394041424344454647F:\jvm&gt;jmap -heap 18408Attaching to process ID 18408, please wait...Debugger attached successfully.Server compiler detected.JVM version is 25.11-b03using thread-local object allocation.Parallel GC with 8 thread(s)Heap Configuration: MinHeapFreeRatio = 40 MaxHeapFreeRatio = 70 MaxHeapSize = 33554432 (32.0MB) NewSize = 11010048 (10.5MB) MaxNewSize = 11010048 (10.5MB) OldSize = 22544384 (21.5MB) NewRatio = 2 SurvivorRatio = 8 MetaspaceSize = 21807104 (20.796875MB) CompressedClassSpaceSize = 1073741824 (1024.0MB) MaxMetaspaceSize = 17592186044415 MB G1HeapRegionSize = 0 (0.0MB)Heap Usage:PS Young GenerationEden Space: capacity = 4718592 (4.5MB) used = 4718592 (4.5MB) free = 0 (0.0MB) 100.0% usedFrom Space: capacity = 3145728 (3.0MB) used = 0 (0.0MB) free = 3145728 (3.0MB) 0.0% usedTo Space: capacity = 3145728 (3.0MB) used = 0 (0.0MB) free = 3145728 (3.0MB) 0.0% usedPS Old Generation capacity = 22544384 (21.5MB) used = 22106680 (21.08257293701172MB) free = 437704 (0.41742706298828125MB) 98.0584787767987% used13365 interned Strings occupying 1920632 bytes. 根据上面我们导出的内存映像文件，我们这时候下载一个mat软件，然后在此软件内打开我们的内存映像文件点我去下载MAT软件 下一篇继续学习jvm调优的其他方式]]></content>
@@ -441,9 +452,9 @@
         <category>python flask</category>
       </categories>
       <tags>
+        <tag>jQuery</tag>
         <tag>商城</tag>
         <tag>flask</tag>
-        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -501,8 +512,8 @@
         <category>springboot</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>socket</tag>
+        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
