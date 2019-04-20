@@ -335,8 +335,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>jvm底层学习</tag>
         <tag>java底层知识</tag>
+        <tag>jvm底层学习</tag>
       </tags>
   </entry>
   <entry>
@@ -457,9 +457,9 @@
         <category>python flask</category>
       </categories>
       <tags>
+        <tag>jQuery</tag>
         <tag>商城</tag>
         <tag>flask</tag>
-        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
@@ -517,8 +517,8 @@
         <category>springboot</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>socket</tag>
+        <tag>jQuery</tag>
       </tags>
   </entry>
   <entry>
