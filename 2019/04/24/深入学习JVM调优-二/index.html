@@ -90,7 +90,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="LMX">
+  <meta name="keywords" content="JVM性能调优,">
 
 
 
@@ -106,16 +106,20 @@
 
 
 
-<meta name="description" content="欢迎您光临本站!~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="茂展的分享博客">
-<meta property="og:url" content="https://lmx110522.github.io/tags/面向对象的五大基本原则/index.html">
+<meta name="description" content="深入学习JVM调优(二)BtraceBtrace可以动态地向目标应用程序的字节码注入追踪代码 安装Btrace首先我们去github下载，然我去下载！ 开始安装1.解压到指定的目录2.新建环境变量BTRACE_HOME,设置成项目的地址3.添加Path: %BTRACE_HOME%\bin 运行Btrace第一种： 在JVisualVM中添加Btrace插件，添加classpath 第二种: 使用">
+<meta name="keywords" content="JVM性能调优">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入学习JVM调优(二)">
+<meta property="og:url" content="https://lmx110522.github.io/2019/04/24/深入学习JVM调优-二/index.html">
 <meta property="og:site_name" content="茂展的分享博客">
-<meta property="og:description" content="欢迎您光临本站!~">
+<meta property="og:description" content="深入学习JVM调优(二)BtraceBtrace可以动态地向目标应用程序的字节码注入追踪代码 安装Btrace首先我们去github下载，然我去下载！ 开始安装1.解压到指定的目录2.新建环境变量BTRACE_HOME,设置成项目的地址3.添加Path: %BTRACE_HOME%\bin 运行Btrace第一种： 在JVisualVM中添加Btrace插件，添加classpath 第二种: 使用">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://qiniuyun.lmxljc.xyz/btrace%E5%91%BD%E4%BB%A4%E8%A1%8C.png">
+<meta property="og:updated_time" content="2019-04-24T06:46:18.184Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="茂展的分享博客">
-<meta name="twitter:description" content="欢迎您光临本站!~">
+<meta name="twitter:title" content="深入学习JVM调优(二)">
+<meta name="twitter:description" content="深入学习JVM调优(二)BtraceBtrace可以动态地向目标应用程序的字节码注入追踪代码 安装Btrace首先我们去github下载，然我去下载！ 开始安装1.解压到指定的目录2.新建环境变量BTRACE_HOME,设置成项目的地址3.添加Path: %BTRACE_HOME%\bin 运行Btrace第一种： 在JVisualVM中添加Btrace插件，添加classpath 第二种: 使用">
+<meta name="twitter:image" content="http://qiniuyun.lmxljc.xyz/btrace%E5%91%BD%E4%BB%A4%E8%A1%8C.png">
 
 
 
@@ -143,7 +147,7 @@
 
 
 
-  <link rel="canonical" href="https://lmx110522.github.io/tags/面向对象的五大基本原则/">
+  <link rel="canonical" href="https://lmx110522.github.io/2019/04/24/深入学习JVM调优-二/">
 
 
 
@@ -166,7 +170,7 @@
 </style>
 
 
-  <title> 标签: 面向对象的五大基本原则 | 茂展的分享博客 </title>
+  <title> 深入学习JVM调优(二) | 茂展的分享博客 </title>
 </head>
 
   	 <!-- custom analytics part create by xiamo -->
@@ -280,7 +284,7 @@ $(function() {
     
   
 
-  <div class="container one-collumn sidebar-position-right  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -405,44 +409,261 @@ $(function() {
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2>
-        面向对象的五大基本原则
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/2019/04/24/深入学习JVM调优-二/">
+
+  <span style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="李茂展">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="茂展的分享博客">
+    <span style="display:none" itemprop="logo" itemscope="" itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="茂展的分享博客" src="/images/avatar.jpg">
+    </span>
+  </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入学习JVM调优(二)
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-24T14:42:00+08:00">
+                2019-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+		  
+			 
+          
+          
+             <span id="/2019/04/24/深入学习JVM调优-二/" class="leancloud_visitors" data-flag-title="深入学习JVM调优(二)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+		   
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+		  
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  435
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+		  
+          
+ 
+        
+
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h1 id="深入学习JVM调优-二"><a href="#深入学习JVM调优-二" class="headerlink" title="深入学习JVM调优(二)"></a>深入学习JVM调优(二)</h1><h2 id="Btrace"><a href="#Btrace" class="headerlink" title="Btrace"></a>Btrace</h2><p>Btrace可以动态地向目标应用程序的字节码注入追踪代码</p>
+<h2 id="安装Btrace"><a href="#安装Btrace" class="headerlink" title="安装Btrace"></a>安装Btrace</h2><p>首先我们<a href="https://github.com/btraceio/btrace/releases/tag/v1.3.11.3" title="去github下载" target="_blank" rel="noopener">去github下载</a>，<a href="https://github.com/btraceio/btrace/releases/tag/v1.3.11.3" title="然我去下载" target="_blank" rel="noopener">然我去下载</a>！</p>
+<h3 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h3><p>1.解压到指定的目录<br>2.新建环境变量BTRACE_HOME,设置成项目的地址<br>3.添加Path: %BTRACE_HOME%\bin</p>
+<h2 id="运行Btrace"><a href="#运行Btrace" class="headerlink" title="运行Btrace"></a>运行Btrace</h2><p>第一种： 在JVisualVM中添加Btrace插件，添加classpath</p>
+<p>第二种: 使用命令行 btrace &lt; pid&gt; &lt; trace_script&gt;</p>
+<h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.sun.btrace<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>btrace-agent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>F:/JaveWeb/btrace/build/btrace-agent.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.sun.btrace<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>btrace-boot<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>F:/JaveWeb/btrace/build/btrace-boot.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.sun.btrace<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>btrace-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>system<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">systemPath</span>&gt;</span>F:/JaveWeb/btrace/build/btrace-client.jar<span class="tag">&lt;/<span class="name">systemPath</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nyist.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sun.btrace.AnyType;</span><br><span class="line"><span class="keyword">import</span> com.sun.btrace.BTraceUtils;</span><br><span class="line"><span class="keyword">import</span> com.sun.btrace.annotations.BTrace;</span><br><span class="line"><span class="keyword">import</span> com.sun.btrace.annotations.Kind;</span><br><span class="line"><span class="keyword">import</span> com.sun.btrace.annotations.Location;</span><br><span class="line"><span class="keyword">import</span> com.sun.btrace.annotations.OnMethod;</span><br><span class="line"><span class="keyword">import</span> com.sun.btrace.annotations.ProbeClassName;</span><br><span class="line"><span class="keyword">import</span> com.sun.btrace.annotations.ProbeMethodName;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@BTrace</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintArgSimple</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@OnMethod</span>(</span><br><span class="line">            clazz = <span class="string">"com.nyist.controller.BTraceController"</span>,</span><br><span class="line"></span><br><span class="line">            method = <span class="string">"arg1"</span>,</span><br><span class="line"></span><br><span class="line">            location = <span class="meta">@Location</span>(Kind.ENTRY)</span><br><span class="line">    )</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">anyRead</span><span class="params">(@ProbeClassName String pcn,</span></span></span><br><span class="line"><span class="function"><span class="params">                               @ProbeMethodName String pmn,</span></span></span><br><span class="line"><span class="function"><span class="params">                               AnyType[] args</span></span></span><br><span class="line"><span class="function"><span class="params">    )</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        BTraceUtils.printArray(args);</span><br><span class="line"></span><br><span class="line">        BTraceUtils.println(<span class="string">"className: "</span> + pcn);</span><br><span class="line">        BTraceUtils.println(<span class="string">"MethodName: "</span> + pmn);</span><br><span class="line">        BTraceUtils.println();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们启动我们的项目<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nyist.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestParam;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/btrace"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BTraceController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/arg1"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">arg1</span><span class="params">(@RequestParam(<span class="string">"name"</span>)</span> String name) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello: "</span> + name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>结果是：<br><img src="http://qiniuyun.lmxljc.xyz/btrace%E5%91%BD%E4%BB%A4%E8%A1%8C.png" alt="Btrace使用命令行" title="Btrace使用命令行"></p>
 
-      <h2 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2019/03/02/面试总结-One/" itemprop="url">
-              
-                <span itemprop="name">面试总结(One)</span>
-              
-            </a>
+
+      
+    </div>
+  
+        <div class="post-tags">
+          
+            <a href="/tags/JVM性能调优/" rel="tag"># JVM性能调优</a>
+          
+        </div>
+      
+
+
+    <div>
+      
         
-      </h2>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>🐶 您的支持将鼓励我继续创作 🐶</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赞赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-img.jpg" alt="李茂展 WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-img.jpg" alt="李茂展 Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-02T11:44:43+08:00" content="2019-03-02">
-          03-02
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+
+    <footer class="post-footer">
+        
+     <div>    
+      
+      <ul class="post-copyright">
+         <li class="post-copyright-link">
+          <strong>本文作者：</strong>
+          <a href="/" title="欢迎访问 李茂展 的个人博客">李茂展</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文标题：</strong>
+          <a href="https://lmx110522.github.io/2019/04/24/深入学习JVM调优-二/" title="深入学习JVM调优(二)">深入学习JVM调优(二)</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文链接：</strong>
+          <a href="https://lmx110522.github.io/2019/04/24/深入学习JVM调优-二/" title="深入学习JVM调优(二)">https://lmx110522.github.io/2019/04/24/深入学习JVM调优-二/</a>
+        </li>
+
+        <li class="post-copyright-date">
+            <strong>发布时间：</strong>2019年4月24日 - 14时04分
+        </li>  
+
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong>
+          本文由 李茂展 原创，采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="license" target="_blank">保留署名-非商业性使用-禁止演绎 4.0-国际许可协议</a> <br>转载请保留以上声明信息！
+        </li>
+      </ul>
+    
+  </div>  
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/20/复习查漏补缺（二）/" rel="next" title="复习查漏补缺（二）">
+                <i class="fa fa-chevron-left"></i> 复习查漏补缺（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -450,6 +671,12 @@ $(function() {
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI4My84ODQ3"></div>
+    
+  </div>
+
 
         </div>
         
@@ -469,8 +696,17 @@ $(function() {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="李茂展">
           <p class="site-author-name" itemprop="name">李茂展</p>
@@ -567,6 +803,22 @@ $(function() {
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#深入学习JVM调优-二"><span class="nav-number">1.</span> <span class="nav-text">深入学习JVM调优(二)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Btrace"><span class="nav-number">1.1.</span> <span class="nav-text">Btrace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Btrace"><span class="nav-number">1.2.</span> <span class="nav-text">安装Btrace</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始安装"><span class="nav-number">1.2.1.</span> <span class="nav-text">开始安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行Btrace"><span class="nav-number">1.3.</span> <span class="nav-text">运行Btrace</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入依赖"><span class="nav-number">1.3.1.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写脚本"><span class="nav-number">1.3.2.</span> <span class="nav-text">编写脚本</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
@@ -694,6 +946,10 @@ $(function() {
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -725,6 +981,10 @@ $(function() {
 
   
 
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
   
 
 
