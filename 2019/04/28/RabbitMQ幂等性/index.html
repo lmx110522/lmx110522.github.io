@@ -90,7 +90,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="mysql,">
+  <meta name="keywords" content="RabbitMQ幂等性,">
 
 
 
@@ -106,18 +106,18 @@
 
 
 
-<meta name="description" content="mysql优化后续总结show status like ‘innodb_row_lock%’ 查看行级锁的状态 show status like ‘table%’ 查看表级锁的状态 explainid select_key table type key possible_key key_len ref rows extra 执行顺序id相同，从上往下执行id不同，从大向小执行type: all-&amp;">
-<meta name="keywords" content="mysql">
+<meta name="description" content="RabbitMQ 幂等性什么是幂等性类似于数据库乐观锁机制，比如执行一条更新库存的 SQL 语句，在并发场景，为了性能和数据可靠性，会在更新时加上查询时的版本，并且更新这个版本信息。可能你要对一个事情进行操作，这个操作可能会执行成百上千次，但是操作结果都是相同的，这就是幂等性。 消费端的幂等性在海量订单的业务高峰期，生产端可能产生重复的消息，这个时候消费端就会实现幂等性，这就意味着即使我们消费多次">
+<meta name="keywords" content="RabbitMQ幂等性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql优化后续总结">
-<meta property="og:url" content="https://lmx110522.github.io/2019/03/23/mysql优化后续总结/index.html">
+<meta property="og:title" content="RabbitMQ幂等性">
+<meta property="og:url" content="https://lmx110522.github.io/2019/04/28/RabbitMQ幂等性/index.html">
 <meta property="og:site_name" content="茂展的分享博客">
-<meta property="og:description" content="mysql优化后续总结show status like ‘innodb_row_lock%’ 查看行级锁的状态 show status like ‘table%’ 查看表级锁的状态 explainid select_key table type key possible_key key_len ref rows extra 执行顺序id相同，从上往下执行id不同，从大向小执行type: all-&amp;">
+<meta property="og:description" content="RabbitMQ 幂等性什么是幂等性类似于数据库乐观锁机制，比如执行一条更新库存的 SQL 语句，在并发场景，为了性能和数据可靠性，会在更新时加上查询时的版本，并且更新这个版本信息。可能你要对一个事情进行操作，这个操作可能会执行成百上千次，但是操作结果都是相同的，这就是幂等性。 消费端的幂等性在海量订单的业务高峰期，生产端可能产生重复的消息，这个时候消费端就会实现幂等性，这就意味着即使我们消费多次">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-23T11:04:16.549Z">
+<meta property="og:updated_time" content="2019-04-28T06:37:42.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql优化后续总结">
-<meta name="twitter:description" content="mysql优化后续总结show status like ‘innodb_row_lock%’ 查看行级锁的状态 show status like ‘table%’ 查看表级锁的状态 explainid select_key table type key possible_key key_len ref rows extra 执行顺序id相同，从上往下执行id不同，从大向小执行type: all-&amp;">
+<meta name="twitter:title" content="RabbitMQ幂等性">
+<meta name="twitter:description" content="RabbitMQ 幂等性什么是幂等性类似于数据库乐观锁机制，比如执行一条更新库存的 SQL 语句，在并发场景，为了性能和数据可靠性，会在更新时加上查询时的版本，并且更新这个版本信息。可能你要对一个事情进行操作，这个操作可能会执行成百上千次，但是操作结果都是相同的，这就是幂等性。 消费端的幂等性在海量订单的业务高峰期，生产端可能产生重复的消息，这个时候消费端就会实现幂等性，这就意味着即使我们消费多次">
 
 
 
@@ -145,7 +145,7 @@
 
 
 
-  <link rel="canonical" href="https://lmx110522.github.io/2019/03/23/mysql优化后续总结/">
+  <link rel="canonical" href="https://lmx110522.github.io/2019/04/28/RabbitMQ幂等性/">
 
 
 
@@ -168,7 +168,7 @@
 </style>
 
 
-  <title> mysql优化后续总结 | 茂展的分享博客 </title>
+  <title> RabbitMQ幂等性 | 茂展的分享博客 </title>
 </head>
 
   	 <!-- custom analytics part create by xiamo -->
@@ -417,7 +417,7 @@ $(function() {
   
 
   <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/2019/03/23/mysql优化后续总结/">
+  <link itemprop="mainEntityOfPage" href="https://lmx110522.github.io/2019/04/28/RabbitMQ幂等性/">
 
   <span style="display:none" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
     <meta itemprop="name" content="李茂展">
@@ -441,7 +441,7 @@ $(function() {
             
             
               
-                mysql优化后续总结
+                RabbitMQ幂等性
               
             
           </h2>
@@ -456,8 +456,8 @@ $(function() {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-23T19:02:02+08:00">
-                2019-03-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-28T14:33:00+08:00">
+                2019-04-28
               </time>
             
 
@@ -479,8 +479,8 @@ $(function() {
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/消息中间件/" itemprop="url" rel="index">
+                    <span itemprop="name">消息中间件</span>
                   </a>
                 </span>
 
@@ -499,7 +499,7 @@ $(function() {
 			 
           
           
-             <span id="/2019/03/23/mysql优化后续总结/" class="leancloud_visitors" data-flag-title="mysql优化后续总结">
+             <span id="/2019/04/28/RabbitMQ幂等性/" class="leancloud_visitors" data-flag-title="RabbitMQ幂等性">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -529,7 +529,7 @@ $(function() {
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  475
+                  929
                 </span>
               
 
@@ -545,7 +545,7 @@ $(function() {
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -567,39 +567,21 @@ $(function() {
       
 
       
-        <h1 id="mysql优化后续总结"><a href="#mysql优化后续总结" class="headerlink" title="mysql优化后续总结"></a>mysql优化后续总结</h1><p><strong>show status like ‘innodb_row_lock%’</strong> 查看行级锁的状态</p>
-<p><strong>show status like ‘table%’ </strong>查看表级锁的状态</p>
-<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>id select_key table type key possible_key key_len ref rows extra</p>
-<h3 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h3><p>id相同，从上往下执行<br>id不同，从大向小执行<br>type: all-&gt;index-&gt;range-&gt;ref-&gt;eq_ref-&gt;const-&gt;system<br>possible_key: 可能用到的索引<br>key: 实际用到的索引<br>ref: const,实际引用<br>extra: using index using where using filesort(效率偏差，最左匹配原则断层) using temporty(从上往下)</p>
-<h2 id="写sql的时候注意点"><a href="#写sql的时候注意点" class="headerlink" title="写sql的时候注意点"></a>写sql的时候注意点</h2><ol>
-<li>不对索引建立操作</li>
-<li>!= &lt;&gt; </li>
-<li>适当选择使用 exists in</li>
-<li>索引最左匹配</li>
-<li>order by 、group by和where一样，根据最左匹配原则合理创建索引</li>
-<li>字符类型一定要加双引号 </li>
-</ol>
-<h2 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><p>create index 索引名 on 表名(索引列1,..)<br>alter table 表名 add index 索引名(索引列1,..)</p>
-<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><p>drop index 索引名 on 表名</p>
-<h3 id="查找所有的索引"><a href="#查找所有的索引" class="headerlink" title="查找所有的索引"></a>查找所有的索引</h3><p>show <strong>index</strong> from 表名</p>
-<h2 id="执行过程详细查看"><a href="#执行过程详细查看" class="headerlink" title="执行过程详细查看"></a>执行过程详细查看</h2><p>接着我们需要详细查看执行情况</p>
-<p>show variables like ‘profiling’</p>
-<p>默认关闭</p>
-<p>set global profiling = 1;打开<br>然后 使用 show profiles 查看所有的语句执行</p>
-<p>然后根据某个语句执行id</p>
-<p>show profile cpu,block io 或者(all) for query id(上面的id);<br>可以获得哪个执行的秒数情况，用来排查</p>
-<p>其实我们还可以使用mysql全局监测</p>
-<p>set global general_log = 1;默认关闭，是自带数据库mysql中的<br>select * from mysql.general_log;获得以往执行情况</p>
-<h2 id="mysql锁"><a href="#mysql锁" class="headerlink" title="mysql锁"></a>mysql锁</h2><p>表级索 行级索 inndb<br>表级索 myisam</p>
-<p>mysql5.5以后默认innodb</p>
-<p>以 innodb为例：</p>
-<p>首先 设置读锁<br>lock table 表名 read;</p>
-<p>不可以对表进行写，但是可以读，只能读当前表<br>其他session可以读，但是呢，写的话会阻塞</p>
-<p>unlock tables; 释放所有的锁</p>
-<p>设置写锁</p>
-<p>lock table 表名 write;</p>
-<p>不能写也不能读</p>
-<p>unlock tables;</p>
+        <h1 id="RabbitMQ-幂等性"><a href="#RabbitMQ-幂等性" class="headerlink" title="RabbitMQ 幂等性"></a>RabbitMQ 幂等性</h1><h2 id="什么是幂等性"><a href="#什么是幂等性" class="headerlink" title="什么是幂等性"></a>什么是幂等性</h2><p>类似于数据库乐观锁机制，比如执行一条更新库存的 SQL 语句，在并发场景，为了性能和数据可靠性，会在更新时加上查询时的版本，并且更新这个版本信息。可能你要对一个事情进行操作，这个操作可能会执行成百上千次，但是操作结果都是相同的，这就是幂等性。</p>
+<h2 id="消费端的幂等性"><a href="#消费端的幂等性" class="headerlink" title="消费端的幂等性"></a>消费端的幂等性</h2><p>在海量订单的业务高峰期，生产端可能产生重复的消息，这个时候消费端就会实现幂等性，这就意味着即使我们消费多次同一个消息，产生的结果都是一样的。</p>
+<h3 id="实现幂等性的操作"><a href="#实现幂等性的操作" class="headerlink" title="实现幂等性的操作"></a>实现幂等性的操作</h3><p><strong>1. 唯一ID + 指纹码 机制 ，利用数据库主键去重</strong><br><strong>2. 利用redis的原子性实现</strong></p>
+<h2 id="唯一-ID-指纹码-机制"><a href="#唯一-ID-指纹码-机制" class="headerlink" title="唯一 ID + 指纹码 机制"></a>唯一 ID + 指纹码 机制</h2><p>大家肯定懂唯一 ID 的，就不多说了，为什么需要指纹码呢？这是为了应对用户在一瞬间的频繁操作，这个指纹码可能是我们的一些规则或者时间戳加别的服务给到的唯一信息码，它并不一定是我们系统生成的，基本都是由我们的业务规则拼接而来，但是一定要保证唯一性，然后就利用查询语句进行判断这个id是否存在数据库中。</p>
+<p>好处就是实现简单，就一个拼接，然后查询判断是否重复。</p>
+<p>坏处就是在高并发时，如果是单个数据库就会有写入性能瓶颈</p>
+<p><strong>解决方案 </strong>：根据 ID 进行分库分表，对 id 进行算法路由，落到一个具体的数据库，然后当这个 id 第二次来又会落到这个数据库，这时候就像我单库时的查重一样了。利用算法路由把单库的幂等变成多库的幂等，分摊数据流量压力，提高性能。</p>
+<h2 id="利用-redis-的原子性去实现"><a href="#利用-redis-的原子性去实现" class="headerlink" title="利用 redis 的原子性去实现"></a>利用 redis 的原子性去实现</h2><p>使用 redis 的原子性去实现需要考虑两个点</p>
+<p><strong>一是 是否 要进行数据落库，如果落库的话，关键解决的问题是数据库和缓存如何做到原子性？ 数据库与缓存进行同步肯定要进行写操作，到底先写 redis 还是先写数据库，这是个问题，涉及到缓存更新与淘汰的问题</strong></p>
+<p><strong>二是如果不落库，那么都存储到缓存中，如何设置定时同步的策略？ 不入库的话，可以使用双重缓存等策略，保障一个消息副本，具体同步可以使用类似 databus 这种同步工具。
+</strong></p>
+<h2 id="怎么保证消息队列消费的幂等性"><a href="#怎么保证消息队列消费的幂等性" class="headerlink" title="怎么保证消息队列消费的幂等性"></a>怎么保证消息队列消费的幂等性</h2><p>其实还是得结合业务来思考<br>（1）比如你拿个数据要写库，你先根据主键查一下，如果这数据都有了，你就别插入了，update一下好吧</p>
+<p>（2）比如你是写redis，那没问题了，反正每次都是set，天然幂等性</p>
+<p>（3）比如你不是上面两个场景，那做的稍微复杂一点，你需要让生产者发送每条数据的时候，里面加一个全局唯一的id，类似订单id之类的东西，然后你这里消费到了之后，先根据这个id去比如redis里查一下，之前消费过吗？如果没有消费过，你就处理，然后这个id写redis。如果消费过了，那你就别处理了，保证别重复处理相同的消息即可。</p>
+<p>本文借鉴于<a href="https://blog.csdn.net/weixin_44048532/article/details/86628234" title="此篇文章" target="_blank" rel="noopener">此篇文章</a>，讲的很好</p>
 
       
     </div>
@@ -613,7 +595,7 @@ $(function() {
   
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
+            <a href="/tags/RabbitMQ幂等性/" rel="tag"># RabbitMQ幂等性</a>
           
         </div>
       
@@ -660,16 +642,16 @@ $(function() {
 
         <li class="post-copyright-link">
           <strong>本文标题：</strong>
-          <a href="https://lmx110522.github.io/2019/03/23/mysql优化后续总结/" title="mysql优化后续总结">mysql优化后续总结</a>
+          <a href="https://lmx110522.github.io/2019/04/28/RabbitMQ幂等性/" title="RabbitMQ幂等性">RabbitMQ幂等性</a>
         </li>
 
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="https://lmx110522.github.io/2019/03/23/mysql优化后续总结/" title="mysql优化后续总结">https://lmx110522.github.io/2019/03/23/mysql优化后续总结/</a>
+          <a href="https://lmx110522.github.io/2019/04/28/RabbitMQ幂等性/" title="RabbitMQ幂等性">https://lmx110522.github.io/2019/04/28/RabbitMQ幂等性/</a>
         </li>
 
         <li class="post-copyright-date">
-            <strong>发布时间：</strong>2019年3月23日 - 19时03分
+            <strong>发布时间：</strong>2019年4月28日 - 14时04分
         </li>  
 
         <li class="post-copyright-license">
@@ -683,8 +665,8 @@ $(function() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/21/蚂蚁金服面试总结/" rel="next" title="蚂蚁金服面试总结">
-                <i class="fa fa-chevron-left"></i> 蚂蚁金服面试总结
+              <a href="/2019/04/24/深入学习JVM调优-二/" rel="next" title="深入学习JVM调优(二)">
+                <i class="fa fa-chevron-left"></i> 深入学习JVM调优(二)
               </a>
             
           </div>
@@ -692,10 +674,6 @@ $(function() {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/27/Zookeeper深入学习总结/" rel="prev" title="Zookeeper深入学习总结">
-                Zookeeper深入学习总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -861,7 +839,7 @@ $(function() {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql优化后续总结"><span class="nav-number">1.</span> <span class="nav-text">mysql优化后续总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#explain"><span class="nav-number">1.1.</span> <span class="nav-text">explain</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行顺序"><span class="nav-number">1.1.1.</span> <span class="nav-text">执行顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写sql的时候注意点"><span class="nav-number">1.2.</span> <span class="nav-text">写sql的时候注意点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引操作"><span class="nav-number">1.3.</span> <span class="nav-text">索引操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建索引"><span class="nav-number">1.3.1.</span> <span class="nav-text">创建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除索引"><span class="nav-number">1.3.2.</span> <span class="nav-text">删除索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找所有的索引"><span class="nav-number">1.3.3.</span> <span class="nav-text">查找所有的索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行过程详细查看"><span class="nav-number">1.4.</span> <span class="nav-text">执行过程详细查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql锁"><span class="nav-number">1.5.</span> <span class="nav-text">mysql锁</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RabbitMQ-幂等性"><span class="nav-number">1.</span> <span class="nav-text">RabbitMQ 幂等性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是幂等性"><span class="nav-number">1.1.</span> <span class="nav-text">什么是幂等性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消费端的幂等性"><span class="nav-number">1.2.</span> <span class="nav-text">消费端的幂等性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现幂等性的操作"><span class="nav-number">1.2.1.</span> <span class="nav-text">实现幂等性的操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#唯一-ID-指纹码-机制"><span class="nav-number">1.3.</span> <span class="nav-text">唯一 ID + 指纹码 机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-redis-的原子性去实现"><span class="nav-number">1.4.</span> <span class="nav-text">利用 redis 的原子性去实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么保证消息队列消费的幂等性"><span class="nav-number">1.5.</span> <span class="nav-text">怎么保证消息队列消费的幂等性</span></a></li></ol></li></ol></div>
             
 
           </div>
