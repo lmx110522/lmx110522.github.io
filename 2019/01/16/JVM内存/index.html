@@ -2,6 +2,7 @@
 
 
 
+
   
 
 
@@ -99,7 +100,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="jvm底层学习,java底层知识,">
+  <meta name="keywords" content="java底层知识,jvm底层学习,">
 
 
 
@@ -118,7 +119,7 @@
 
 
 <meta name="description" content="JVM内存内存泄露:是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果。 GC机制既然java有垃圾回收(GC)机制，理论上不应该有内存泄露的问题，然而总会有无用但可达的对象，这些对象不能被GC回收，因此也会导致内存泄露的发生。例如： hibernate的Session(一级缓存)中的对象属于持久态，垃圾回收器是不会回收这些">
-<meta name="keywords" content="jvm底层学习,java底层知识">
+<meta name="keywords" content="java底层知识,jvm底层学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM内存">
 <meta property="og:url" content="https://lmx110522.github.io/2019/01/16/JVM内存/index.html">
@@ -371,6 +372,16 @@ $(function() {
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            书籍
           </a>
         </li>
       
@@ -632,9 +643,9 @@ $(function() {
   
         <div class="post-tags">
           
-            <a href="/tags/jvm底层学习/" rel="tag"><i class="fa fa-tag"></i> jvm底层学习</a>
-          
             <a href="/tags/java底层知识/" rel="tag"><i class="fa fa-tag"></i> java底层知识</a>
+          
+            <a href="/tags/jvm底层学习/" rel="tag"><i class="fa fa-tag"></i> jvm底层学习</a>
           
         </div>
       
@@ -1033,7 +1044,7 @@ $(function() {
   <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
 
   
-  <script type="text/javascript" src="/vendors/canvas-nest/canvas-nest.min.js"></script>
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
@@ -1443,5 +1454,8 @@ $(function() {
    <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
    <script type="text/javascript" src="/js/src/fireworks.js"></script>
 
+<script type="text/javascript" src="https://unpkg.com/minigrid@3.1.1/dist/minigrid.min.js"></script>
+<link rel="stylesheet" href="/photos/photos.css">
+<script type="text/javascript" src="/photos/photo.js"></script>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":300,"height":500,"hOffset":200,"vOffset":20},"mobile":{"show":true},"log":false,"tagMode":false});</script></body>
 </html>
