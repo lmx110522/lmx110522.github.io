@@ -1897,7 +1897,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7826b5;
+  background: #4611ab;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2981,9 +2981,6 @@ body {
   opacity: 1;
   min-height: 500px;
 }
-header#header {
-  opacity: 0.8;
-}
 code {
   color: #fc6423;
   background: #fbf7f8;
@@ -3009,4 +3006,21 @@ pre {
   color: #fc6423;
   border-bottom: none;
   border-bottom: 1px solid #fc6423;
+}
+ul#menu a {
+  font-size: 18px;
+  font-weight: bolder;
+  color: #000;
+}
+h2 {
+  color: #f00;
+}
+h3 {
+  color: #00f;
+}
+h4 {
+  color: #008000;
+}
+h5 {
+  color: #ffc0cb;
 }
