@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[再见我的博客]]></title>
-    <url>%2F2019%2F05%2F19%2F%E5%86%8D%E8%A7%81%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%2F</url>
-    <content type="text"><![CDATA[考研辗转几次，现已决定考研！ 学历作为一个二本的学生，在今年阿里蚂蚁金服的春招浪潮中，我还在简历池中，3月12号投递的，4月15号面的hr,还没有收到意向书。假如我学历是个985或者211或者一本，可能我就不至于这样了。当初下定决心不考研的我，如今动摇了！ 下决心问了很多985学校的朋友，给我的建议是考研，考研路很长，希望我可以坚持！希望我失败的时候，可以回来看看我当初的决定，我不会后悔的！半年….2019-5-19,我决定考研！博客暂定更新]]></content>
-      <categories>
-        <category>自我总结</category>
-      </categories>
-      <tags>
-        <tag>再见</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[RocketMQ-Console控制台安装(linux安装)]]></title>
     <url>%2F2019%2F05%2F17%2FRocketMQ-Console%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%AE%89%E8%A3%85-linux%E5%AE%89%E8%A3%85%2F</url>
     <content type="text"><![CDATA[RocketMQ-Console控制台安装(linux安装)RocketMQ有一个对其扩展的开源项目incubator-rocketmq-externals，rocketmq-console项目就是管理控制台项目。 下载:1$ wget https://github.com/apache/rocketmq-externals/archive/master.zip 如果安装了git 可以直接git clone 解压1$ unzip master.zip 解压后是一个 rocketmq-externals-master 目录 修改配置找到rocketmq-console，先编辑一下rocketmq-console里面的application.properties文件，将项目使用的rocketmq.config.namesrvAddr配置上去（或者在项目启动时，以参数的形式配进去） 打包 将rocktmq-console打成jar包，得到rocketmq-console-ng-1.0.0.jar 切记：只使用 mvn clean package是不可以的!会报错~ 1mvn clean package -Dmaven.test.skip=true 运行jar包，启动项目1java -jar rocketmq-console-ng-1.0.0.jar 默认端口号8080，当然你也可以启动jar包的时候通过--server.port=80的方式覆盖默认端口 启动结果]]></content>
